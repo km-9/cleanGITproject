@@ -32,23 +32,27 @@ u_result capture_and_display(RPlidarDriver* drv)
 	rplidar_response_measurement_node_t nodes[360*2];
 	size_t count = _countof(nodes);
 
-	// fetech extactly one 0-360 degrees' scan
+	// fetch extactly one 0-360 degrees' scan
 	ans = drv->grabScanData(nodes, count);
-	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
+	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
+	{
 			drv->ascendScanData(nodes, count);
 			frontVal = 1;
 			leftVal = 1;
 			rightVal = 1;
 					for (int pos = 0; pos < (int)count ; ++pos) {
-									if (pos == 180){
+									if (pos == 180)
+									{
 											rightVal = nodes[pos].distance_q2/4.0f;
 											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 										}
-									if (pos == 90){
+									if (pos == 90)
+									{
 											leftVal = nodes[pos].distance_q2/4.0f;
 											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 										}
-									if (pos == 270){
+									if (pos == 270)
+									{
 											frontVal = nodes[pos].distance_q2/4.0f;
 											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 									}
