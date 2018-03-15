@@ -102,7 +102,6 @@ bool canForward()
 	if(frontVal > 175 || frontVal == 0)
 	{
 		cout << "canForward" << endl;
-		cout << front
 	 	return true;
 	}
  return false;
