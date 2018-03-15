@@ -181,17 +181,17 @@ int main (int argc, char const *argv[])
 
 				//too far from wall
 				//leftVal = d(this, object @ pi/4)
-				if (leftVal > 250)
+				if (leftVal > 300)
 				{
 					//turn left
-					pwm1.setPWM(0,0,0);
+					pwm1.setPWM(0,0,100);
 			    pwm2.setPWM(1,0,600);
 					usleep(500000);
 					//capture_and_display(drv);
 				}
 
 				//too close to wall
-				if (leftVal < 200)
+				if (leftVal < 275)
 				{
 					//turn right
 					pwm1.setPWM(0, 0, 150);
