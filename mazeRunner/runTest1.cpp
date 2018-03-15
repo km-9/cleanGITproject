@@ -9,15 +9,91 @@
 #include <cstdio>
 #include <ctime>
 #include "rplidar.h"
+#ifndef _countof
+#define _countof(_Array) (int)(sizeof(_Array) / sizeof(_Array[0]))
+#endif
+
 
 using namespace rp::standalone::rplidar;
 using namespace std;
 
-protected int leftCount; int rightCount;
-public bool leftFollow = true;
+int leftCount; int rightCount;
+bool leftFollow = true;
+double frontVal;
+double leftVal;
+double rightVal;
 
-int main () {
+u_result capture_and_display(RPlidarDriver* drv){
+	u_result ans;
+	cout << "inside cap_and_disp" << endl;
 
+	rplidar_response_measurement_node_t nodes[360*2];
+	size_t count = _countof(nodes);
+
+	// fetech extactly one 0-360 degrees' scan
+	ans = drv->grabScanData(nodes, count);
+	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
+			drv->ascendScanData(nodes, count);
+			frontVal = 1;
+			leftVal = 1;
+			rightVal = 1;
+					for (int pos = 0; pos < (int)count ; ++pos) {
+									if (pos == 180){
+											rightVal = nodes[pos].distance_q2/4.0f;
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
+										}
+									if (pos == 90){
+											leftVal = nodes[pos].distance_q2/4.0f;
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
+										}
+									if (pos == 270){
+											frontVal = nodes[pos].distance_q2/4.0f;
+											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
+									}
+					}
+			}
+	 else {
+			printf("error code: %x\n", ans);
+	}
+	return ans;
+}
+
+bool canLeft(){
+	cout << "leftCall" << endl;
+	cout << leftVal << endl;
+  if(leftVal > 200){
+//  if(leftCount < 1){
+		cout << "canLeft" << endl;
+    return true;
+//  }
+}
+  return false;
+}
+
+bool canRight(){
+cout << "rightCall" << endl;
+cout << rightVal << endl;
+if(rightVal > 200 && !canLeft()){
+ //if(rightCount < 1){
+	 cout << "canRight" << endl;
+   return true;
+// }
+}
+ return false;
+}
+
+bool canForward(){
+		cout << "forwardCall" << endl;
+		cout << frontVal << endl;
+if(frontVal > 175 || frontVal == 0){
+	cout << "canForward" << endl;
+ return true;
+}
+ return false;
+}
+
+int main (int argc, char const *argv[]) {
+	cout << "inside main" << endl;
 	PCA9685 pwm1;
 	pwm1.init(1,0x40);
 
@@ -32,8 +108,7 @@ int main () {
     int opt_com_baudrate = 115200;
     const char * opt_com_path = "/dev/ttyUSB0";
     RPlidarDriver * drv = RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
-while (leftFollow){
-    do {
+		do {
         // try to connect
         if (IS_FAIL(drv->connect(opt_com_path, opt_com_baudrate))) {
             fprintf(stderr, "Error, cannot bind to the specified serial port %s.\n"
@@ -55,168 +130,45 @@ while (leftFollow){
             break;
 
         }
-					if(canLeft()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 600);
-						leftCount++;
-						rightCount = 0;
-						leftFollow = true;
-					}
-					else if(canRight()){
-						pwm1.setPWM(0,0, 600);
-						pwm2.setPWM(1,0, 150);
-						rightCount++;
-						leftCount = 0;
-						leftFollow = false;
-					}
-					else if(canForward()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 150);
-						leftCount = 0;
-						rightCount = 0;
-					}
-					else{
-					pwm1.setPWM(0,0,0);
-					pwm2.setPWM(1,0,0);
-				  }
-    }
-	}
-	while(!leftFollow){
-		do {
-				// try to connect
-				if (IS_FAIL(drv->connect(opt_com_path, opt_com_baudrate))) {
-						fprintf(stderr, "Error, cannot bind to the specified serial port %s.\n"
-								, opt_com_path);
-						break;
-				}
-				drv->startMotor();
-
-				// take only one 360 deg scan and display the result as a histogram
-				////////////////////////////////////////////////////////////////////////////////
-				if (IS_FAIL(drv->startScan( /* true */ ))) // you can force rplidar to perform scan operation regardless whether the motor is rotating
-				{
-						fprintf(stderr, "Error, cannot start the scan operation.\n");
-						break;
-				}
-
-				if (IS_FAIL(capture_and_display(drv))) {
-						fprintf(stderr, "Error, cannot grab scan data.\n");
-						break;
-
-				}
-				while(!canLeft && !canRight && canForward){
-					if(canLeft()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 600);
-						leftCount++;
-						rightCount = 0;
-						leftFollow = true;
-					}
-					else if(canRight()){
-						pwm1.setPWM(0,0, 600);
-						pwm2.setPWM(1,0, 150);
-						rightCount++;
-						leftCount = 0;
-						leftFollow = false;
-					}
-					else if(canForward()){
-						pwm1.setPWM(0,0, 150);
-						pwm2.setPWM(1,0, 150);
-						leftCount = 0;
-						rightCount = 0;
-					}
-
-					if (rightVal < 150){
-						pwm1.setPWM(0, 0, 200)
-						pwm2.setPWM(1,0, 150)
-						uwait(50, 50);
-					}
-					if (rightVal > 250){
-						pwm1.setPWM(0, 0, 150)
-						pwm2.setPWM(1,0, 200)
-						uwait(50, 50);
-					}
-					pwm1.setPWM(0,0,0);
-					pwm2.setPWM(1,0,0);
-
-				}
+				cout << "end of lidar driver in main" << endl;
+			}while(0);
+while(true){
+	capture_and_display(drv);
+	while (canForward()){
+		capture_and_display(drv);
+		pwm1.setPWM(0, 0, 150);
+		pwm2.setPWM(1, 0, 600);
+		usleep(1000 * 1000);
+			if (leftVal > 250){
+				pwm1.setPWM(0,0,0);
+		    pwm2.setPWM(1,0,600);
+				usleep(1000 * 500);
+				//capture_and_display(drv);
+			}
+			if (leftVal < 200){
+				pwm1.setPWM(0, 0, 150);
+				pwm2.setPWM(1, 0, 0);
+				usleep(1000 * 500);
+				//capture_and_display(drv);
+			}
 		}
-	}
-	}
+		if (!canForward){
+		pwm1.setPWM(0, 0, 0);
+		pwm2.setPWM(1, 0, 0);
+		usleep(1000 * 1000);
 
+		pwm1.setPWM(0, 0, 600);
+		pwm2.setPWM(1, 0, 150);
+		usleep(1000 * 1000);
+
+		pwm1.setPWM(0, 0, 0);
+		pwm2.setPWM(1, 0, 600);
+		usleep(1000 * 1000);
+	}
+}
     drv->stop();
     drv->stopMotor();
 
     RPlidarDriver::DisposeDriver(drv);
     return 0;
   }
-  public double frontVal;
-	public double leftVal;
-	public double rightVal;
-	u_result capture_and_display(RPlidarDriver * drv)
-	{
-	    u_result ans;
-
-	    rplidar_response_measurement_node_t nodes[360*2];
-	    size_t count = _countof(nodes);
-
-	    printf("waiting for data...\n");
-
-	    // fetech extactly one 0-360 degrees' scan
-	    ans = drv->grabScanData(nodes, count);
-	    if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT) {
-	        drv->ascendScanData(nodes, count);
-	        //plot_histogram(nodes, count);
-
-	        printf("Do you want to see all the data? (y/n) ");
-	        int key = getchar();
-	        if (key == 'Y' || key == 'y') {
-	            for (int pos = 0; pos < (int)count ; ++pos) {
-											if (pos >= 170 && pos <= 190){
-												if (nodes[pos].distance_q2/4.0f < frontVal){
-													frontVal = nodes[pos].distance_q2/4.0f;
-												}
-											}
-											if (pos >= 85 && pos <= 95){
-												if (nodes[pos].distance_q2/4.0f < leftVal){
-													leftVal = nodes[pos].distance_q2/4.0f;
-												}
-											}
-											if (pos >= 265 && pos <= 275){
-												if (nodes[pos].distance_q2/4.0f < rightVal){
-													rightVal = nodes[pos].distance_q2/4.0f;
-												}
-											}
-	            }
-	        }
-	    } else {
-	        printf("error code: %x\n", ans);
-	    }
-
-	    return ans;
-	}
-
-bool canLeft(){
-  if(leftVal > 300){
-  if(leftCount > 1){
-    return true;
-  }
-}
-  return false;
-}
-
-bool canRight(int count){
-if(rightVal > 300){
- if(rightCount < 1){
-   return true;
- }
-}
- return false;
-}
-
-bool canForward(){
-if(frontVal > 250){
- return true;
-}
- return false;
-}
