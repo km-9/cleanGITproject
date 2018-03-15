@@ -40,25 +40,29 @@ u_result capture_and_display(RPlidarDriver* drv)
 			frontVal = 1;
 			leftVal = 1;
 			rightVal = 1;
-					for (int pos = 0; pos < (int)count ; ++pos) {
-									if (pos == 180)
-									{
-											rightVal = nodes[pos].distance_q2/4.0f;
-											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
-										}
-									if (pos == 90)
-									{
-											leftVal = nodes[pos].distance_q2/4.0f;
-											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
-										}
-									if (pos == 270)
-									{
-											frontVal = nodes[pos].distance_q2/4.0f;
-											cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
-									}
+
+			//0 is behind
+			for (int pos = 0; pos < (int)count ; ++pos)
+			{
+					if (pos == 270)
+					{
+							rightVal = nodes[pos].distance_q2/4.0f;
+							cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
 					}
+					if (pos == 90)
+					{
+							leftVal = nodes[pos].distance_q2/4.0f;
+							cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
+					}
+					if (pos == 180)
+					{
+							frontVal = nodes[pos].distance_q2/4.0f;
+							cout << "Angle: "<< pos << " Dist: " << nodes[pos].distance_q2/4.0f;
+					}
+				}
 			}
-	 else {
+	 else
+	 {
 			printf("error code: %x\n", ans);
 	}
 	return ans;
@@ -95,9 +99,11 @@ bool canForward()
 {
 	cout << "forwardCall" << endl;
 	cout << frontVal << endl;
-	if(frontVal > 175 || frontVal == 0){
-	cout << "canForward" << endl;
- 	return true;
+	if(frontVal > 175 || frontVal == 0)
+	{
+		cout << "canForward" << endl;
+		cout << front
+	 	return true;
 	}
  return false;
 }
