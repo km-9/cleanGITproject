@@ -86,6 +86,7 @@ bool canRight()
 {
 	cout << "rightCall" << endl;
 	cout << rightVal << endl;
+	//this logic is misplaced. You should simply ask canLeft() first and if not canLeft ask canRight, but canRight has nothing to do with canRight
 	if(rightVal > 200 && !canLeft()){
  //if(rightCount < 1){
 	 cout << "canRight" << endl;
@@ -191,6 +192,7 @@ int main (int argc, char const *argv[])
 				}
 
 				//too close to wall
+				//why are we using this instead of canLeft()?
 				if (leftVal < 275)
 				{
 					//turn right

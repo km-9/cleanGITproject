@@ -1,0 +1,5 @@
+g++ runTest1.cpp -L /home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release -lrplidar_sdk -pthread PCA9685.cpp -orunTest1
+/usr/bin/ld: cannot find -lrplidar_sdk
+collect2: error: ld returned 1 exit status
+Makefile:16: recipe for target 'runTest1' failed
+make: *** [runTest1] Error 1
