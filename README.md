@@ -1,1 +1,5 @@
-robotGITcode
+So first of all congrats to you guys on figuring out all of the hardware and the interfacing with the hardware, that's the reason I gave up on this in the first place. Now that we have the hardest things over with, I think we can start to make real progress.
+
+The change I made the commit I just pushed was to translate everything you guys figured out to OOP, that's why I had you walk me through and commented. I implemented all of the methods in a WallFollower object. I would suggest going forward that we ensure that all of the methods do what we think they do and then we can build more complex concepts from our basic methods like stop(), goForward, turnRight(degrees), etc. Once we have those basic building blocks and LIDAR working, this will be easy AF. The other big advantage of this is that our code is easily readable and reusable so next year Connor and I have a big head start.
+
+All fields and methods are briefly explained in the h file and alphabetical in the h and cpp with fields followed by methods so its easy to find the code we need. I am going to open a couple of issues so you guys can give me feedback on the most crucial methods and we can brainstorm on how to fix shit because we only have like three weeks until the competition.
