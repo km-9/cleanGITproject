@@ -31,6 +31,7 @@ namespace WallFollower
                     //getter for dist[i]
                     double getDists(int i);
 
+                    //getter for LiDAR
                     rp::standalone::rplidar::RPlidarDriver * getLidar();
 
                     //getter for max_left_dist
