@@ -1,5 +1,6 @@
 #ifndef WALLFOLLOWER_H
 #define WALLFOLLOWER_H
+#endif
 #include "rplidar.h"
 #include "rplidar_driver.h"
 #include "PCA9685.h"
