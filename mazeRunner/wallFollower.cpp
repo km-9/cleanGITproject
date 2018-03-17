@@ -1,4 +1,7 @@
 #include "wallFollower.h"
+#ifndef _countof
+#define _countof(_Array) (int)(sizeof(_Array) / sizeof(_Array[0]))
+#endif
 using namespace std;
 
 namespace WallFollower
@@ -51,7 +54,7 @@ namespace WallFollower
                 break;
             }
 
-            if (IS_FAIL(updateDists(drv)) {
+            if (IS_FAIL(updateDists()) {
                 fprintf(stderr, "Error, cannot grab scan data.\n");
                 break;
             }
@@ -203,6 +206,7 @@ namespace WallFollower
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
 
+      double * tmp = double [360];
       ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
@@ -223,7 +227,7 @@ namespace WallFollower
     		printf("error code: %x\n", ans);
     	}
 
-      this.dists = tmp;
+      this->dists = tmp;
       return ans;
     }
 
