@@ -3,7 +3,7 @@
 SOURCE=wallFollowerTest1.cpp
 PROGRAM=wallFollowerTest1
 INCLUDESPATH=/home/pi/Downloads/lidar_sdk/sdk/sdk/include
-INCLUDES=-rplidar.h -rplidar_driver.h -rplidar_protocol.h -rptypes.h -rplidar_cmd.h
+INCLUDES=-rplidar.h -rplidar_driver.h -rplidar_protocol.h -rptypes.h -rplidar_cmd.h -wallFollower.h
 LIBRARIESPATH=/home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release
 LIBRARIES= lrplidar_sdk
 CC=g++
