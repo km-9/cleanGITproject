@@ -106,6 +106,11 @@ namespace WallFollower
       return (i < 0 || i > 360) ? 0 : dists[i];
     }
 
+    rp::standalone::rplidar::RPlidarDriver * ()
+    {
+      return &drv;
+    }
+
     int wallFollower::getMaxLeftDist()
     {
       return max_left_dist;

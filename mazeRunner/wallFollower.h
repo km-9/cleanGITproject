@@ -18,7 +18,33 @@ namespace WallFollower
       public:
           //constructor
           wallFollower();
-      protected:
+
+                   //returns whether or not we are able to go forward
+                    bool canGoForward();
+
+                    //returns whether or not we are able to go left
+                    bool canGoLeft();
+
+                    //return whether or not we are able to go right
+                    bool canGoRight();
+
+                    //getter for dist[i]
+                    double getDists(int i);
+
+                    rp::standalone::rplidar::RPlidarDriver * getLidar();
+
+                    //getter for max_left_dist
+                    int getMaxLeftDist();
+
+                    //getter for min_forward_dist
+                    int getMinForwardDist();
+
+                    //getter for min_left_dist
+                    int getMinLeftDist();
+
+                    //getter for min_right_dist
+                    int getMinRightDist();
+      private:
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double *dists;
@@ -43,30 +69,6 @@ namespace WallFollower
 
           //minimum allowable distance between the robot and any object to the right of it
           int min_right_dist;
-
-          //returns whether or not we are able to go forward
-          bool canGoForward();
-
-          //returns whether or not we are able to go left
-          bool canGoLeft();
-
-          //return whether or not we are able to go right
-          bool canGoRight();
-
-          //getter for dist[i]
-          double getDists(int i);
-
-          //getter for max_left_dist
-          int getMaxLeftDist();
-
-          //getter for min_forward_dist
-          int getMinForwardDist();
-
-          //getter for min_left_dist
-          int getMinLeftDist();
-
-          //getter for min_right_dist
-          int getMinRightDist();
 
           //makes the robot go forward hopefully
           void goForward();
