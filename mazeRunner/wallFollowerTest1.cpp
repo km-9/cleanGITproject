@@ -3,6 +3,7 @@
 int main (int argc, char const *argv[])
 {
   wallFollower f;
+  f.wallFollwer();
   f.goForward();
   f.holdTheFuckUp(10000000);
 
