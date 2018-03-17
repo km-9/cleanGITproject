@@ -1,5 +1,6 @@
 #include "wallFollower.h"
-using namespace wallFollower
+namespace wallFollower
+using namespace wallFollower;
 int main (int argc, char const *argv[])
 {
   wallFollower f;
