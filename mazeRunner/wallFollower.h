@@ -55,10 +55,10 @@ namespace WallFollower
           rp::standalone::rplidar::RPlidarDriver * drv;
 
           //left wheel
-          PCA9685 * pwm1;
+          PCA9685 pwm1;
 
           //right wheel
-          PCA9685 * pwm2;
+          PCA9685 pwm2;
 
           //maximum allowable distance between the robot and the wall
           int max_left_dist;
