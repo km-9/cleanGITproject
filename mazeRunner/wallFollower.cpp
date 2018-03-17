@@ -1,7 +1,7 @@
 #include "wallFollower.h"
 using namespace std;
 
-namespace wallFollower
+namespace WallFollower
 {
     wallFollower::wallFollower()
     {

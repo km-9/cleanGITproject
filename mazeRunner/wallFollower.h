@@ -11,7 +11,7 @@
 #include <cstdio>
 #include <ctime>
 
-namespace wallFollower
+namespace WallFollower
 {
   class wallFollower
   {
