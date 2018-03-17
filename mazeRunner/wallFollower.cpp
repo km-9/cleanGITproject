@@ -31,7 +31,7 @@ namespace WallFollower
       	//device path for lidar
         const char * opt_com_path = "/dev/ttyUSB0";
 
-        this->drv = RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
+        this->drv = rp::standalone::rplidar::RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
       	do
         {
           	// try to connect
