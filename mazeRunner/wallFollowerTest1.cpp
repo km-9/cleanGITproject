@@ -3,7 +3,7 @@ using namespace wallFollwer
 int main (int argc, char const *argv[])
 {
   wallFollower f;
-  f.wallFollwer();
+  f.wallFollower();
   f.goForward();
   f.holdTheFuckUp(10000000);
 
