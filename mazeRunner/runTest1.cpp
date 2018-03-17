@@ -223,23 +223,23 @@ int main (int argc, char const *argv[])
 		}
 		//****************plug-and-play testing********************************
     //0neSecondWheelTest
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
       usleep(1000000);
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 0);
+      pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 0);
       usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 0);
+      pwm2.setPWM(1, 0, 600);
       usleep(1000000);
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
       usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 0);
+      pwm2.setPWM(1, 0, 600);
       usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(0, 0, 0);
+      pwm1.setPWM(0, 0, 0);
+      pwm2.setPWM(0, 0, 0);
     //*********************************************************************
 		stop = true;
 	}
