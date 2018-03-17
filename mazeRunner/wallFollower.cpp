@@ -51,7 +51,7 @@ namespace WallFollower
                 break;
             }
 
-            if (IS_FAIL(capture_and_display(drv))) {
+            if (IS_FAIL(updateDists(drv))) {
                 fprintf(stderr, "Error, cannot grab scan data.\n");
                 break;
             }
@@ -110,7 +110,7 @@ namespace WallFollower
 
     rp::standalone::rplidar::RPlidarDriver * wallFollower::getLidar()
     {
-      return &drv;
+      return this->drv;
     }
 
     int wallFollower::getMaxLeftDist()
@@ -140,8 +140,8 @@ namespace WallFollower
 
     void wallFollower::goForward()
     {
-      pwm1.setPWM(0, 0, 150);
-			pwm2.setPWM(1, 0, 600);
+      pwm1->setPWM(0, 0, 150);
+			pwm2->setPWM(1, 0, 600);
     }
 
     void wallFollower::pause(int units)
@@ -151,14 +151,14 @@ namespace WallFollower
 
     void wallFollower::reverse()
     {
-      pwm1.setPWM(0, 0, 600);
-			pwm2.setPWM(1, 0, 150);
+      pwm1->setPWM(0, 0, 600);
+			pwm2->setPWM(1, 0, 150);
     }
 
     void wallFollower::stop()
     {
-      pwm1.setPWM(0,0,0);
-    	pwm2.setPWM(1,0,0);
+      pwm1->setPWM(0,0,0);
+    	pwm2->setPWM(1,0,0);
     }
 
     void wallFollower::takeItBackNowYall()
@@ -184,18 +184,18 @@ namespace WallFollower
       //if this doesn't work I would want to make time our parameter
       //and for (i < units) turn, then take in a bool keep_moving
       //if keep_moing == true go back to straight, else stop
-      pwm1.setPWM(0,0,100);
-      pwm2.setPWM(1,0,600);
+      pwm1->setPWM(0,0,100);
+      pwm2->setPWM(1,0,600);
     }
 
     void wallFollower::strafeRight(int degrees)
     {
       //same idea with turnLeft()
-      pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,550);
+      pwm1->setPWM(0,0,150);
+      pwm2->setPWM(1,0,550);
     }
 
-    rp::standalone::rplidar::u_ wallFollower::updateDists()
+    rp::standalone::rplidar::u_result wallFollower::updateDists()
     {
       u_result ans;
       cout << "in updateDists" << endl;
@@ -227,17 +227,17 @@ namespace WallFollower
       return ans;
     }
 
-    void wallFollower::turnLeftDegree(int degrees){
+    void wallFollower::turnLeft(int degrees){
       long time = degrees*11111;
-      pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,0);
+      pwm1->setPWM(0,0,150);
+      pwm2->setPWM(1,0,0);
       usleep(time);
     }
 
-    void wallFollower::turnRightDegree(int degrees){
+    void wallFollower::turnRight(int degrees){
       long time = degrees*11111;
-      pwm1.setPWM(0,0,0);
-      pwm2.setPWM(1,0,600);
+      pwm1->setPWM(0,0,0);
+      pwm2->setPWM(1,0,600);
       usleep(time);
     }
 }

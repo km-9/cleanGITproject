@@ -87,6 +87,10 @@ namespace WallFollower
           //stop both wheels
           void stop();
 
+          void strafeLeft();
+
+          void strafeRight();
+
           //calls reverse()
           void takeItBackNowYall();
 
