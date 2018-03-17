@@ -29,8 +29,8 @@ namespace WallFollower
         pwm1.setPWM(0,0,0);
         pwm2.setPWM(1,0,0);
 
-        //this->pwm1 = & pwm1;
-        //this->pwm2 = & pwm2;
+        this->pwm1 = & pwm1;
+        this->pwm2 = & pwm2;
 
         //to communicate with lidar
         int opt_com_baudrate = 115200;
