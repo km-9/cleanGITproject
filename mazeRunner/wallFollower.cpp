@@ -146,7 +146,7 @@ namespace WallFollower
 
     void wallFollower::pause(int units)
     {
-      drv.usleep(units);
+      drv->usleep(units);
     }
 
     void wallFollower::reverse()
@@ -177,7 +177,7 @@ namespace WallFollower
       return false;
     }
 
-    void wallFollower::strafeLeft(int degrees)
+    void wallFollower::strafeLeft()
     {
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
@@ -188,16 +188,16 @@ namespace WallFollower
       pwm2->setPWM(1,0,600);
     }
 
-    void wallFollower::strafeRight(int degrees)
+    void wallFollower::strafeRight()
     {
       //same idea with turnLeft()
       pwm1->setPWM(0,0,150);
       pwm2->setPWM(1,0,550);
     }
 
-    rp::standalone::rplidar::u_result wallFollower::updateDists()
+    int wallFollower::updateDists()
     {
-      u_result ans;
+      int ans;
       cout << "in updateDists" << endl;
 
     	rplidar_response_measurement_node_t nodes[360*2];
