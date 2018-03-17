@@ -257,6 +257,42 @@ int main (int argc, char const *argv[])
 
 			pwm1.setPWM(0, 0, 0);
       pwm2.setPWM(1, 0, 0);
+			usleep(5000000000);
+/****************************************/
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
+      usleep(1000000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 0);
+      usleep(800000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
+      usleep(1000000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 0);
+      usleep(800000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
+      usleep(1000000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 0);
+      usleep(800000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 600);
+      usleep(1000000);
+
+			pwm1.setPWM(0, 0, 150);
+      pwm2.setPWM(1, 0, 0);
+      usleep(800000);
+
+			pwm1.setPWM(0, 0, 0);
+      pwm2.setPWM(1, 0, 0);
       /*pwm1.setPWM(0, 0, 150);
       pwm2.setPWM(1, 0, 0);
       usleep(1000000);
