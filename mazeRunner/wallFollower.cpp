@@ -193,7 +193,7 @@ namespace wallFollower
       cout << "in updateDists" << endl;
 
     	rplidar_response_measurement_node_t nodes[360*2];
-    	size_t count = _countof(nodes);
+    	int count = _countof(nodes);
 
     	ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)

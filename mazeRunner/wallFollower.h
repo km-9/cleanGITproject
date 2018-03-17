@@ -1,6 +1,7 @@
 #ifndef WALLFOLLOWER_H
 #define WALLFOLLOWER_H
 #include "rplidar.h"
+#include "rplidar_driver.h"
 #include "PCA9685.h"
 #include <iostream>
 #include <stdio.h>
@@ -20,10 +21,10 @@ namespace wallFollower
       private:
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
-          double[360] dists;
+          double dists*;
 
           //lidar controller
-          RPlidarDriver * drv;
+          RPlidarDriver RPlidarDriver * drv;
 
           //left wheel
           PCA9685 * pwm1;
