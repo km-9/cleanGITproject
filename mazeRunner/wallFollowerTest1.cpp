@@ -34,7 +34,7 @@ int main (int argc, char const *argv[])
   f.drv->stop();
   f.drv->stopMotor();
 
-  RPlidarDriver::DisposeDriver(f->drv);
+  rp::standalone::rplidar::RPlidarDriver::DisposeDriver(f.drv);
 
   return 0;
 }
