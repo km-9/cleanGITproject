@@ -4,8 +4,11 @@ using namespace WallFollower;
 int main (int argc, char const *argv[])
 {
   wallFollower f = wallFollower();
+  cout << "constructor finished" << endl;
   f.goForward();
+  cout << "goForward finished" << endl;
   f.holdTheFuckUp(10000000);
+  cout << "holdTheFuckUp"
 
   /*while (true)
   {
