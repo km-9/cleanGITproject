@@ -35,17 +35,17 @@ namespace WallFollower
       	do
         {
           	// try to connect
-            if (IS_FAIL(drv.connect(opt_com_path, opt_com_baudrate)))
+            if (IS_FAIL(drv->connect(opt_com_path, opt_com_baudrate)))
       			{
                 fprintf(stderr, "Error, cannot bind to the specified serial port %s.\n", opt_com_path);
                 break;
             }
       			//spin lidar
-            drv.startMotor();
+            drv->startMotor();
 
             // take only one 360 deg scan and display the result as a histogram (we don't know wtf this is?)
       			//check doc
-            if (IS_FAIL(drv.startScan( /* true */ ))) // you can force rplidar to perform scan operation regardless whether the motor is rotating
+            if (IS_FAIL(drv->startScan( /* true */ ))) // you can force rplidar to perform scan operation regardless whether the motor is rotating
             {
                 fprintf(stderr, "Error, cannot start the scan operation.\n");
                 break;
@@ -108,29 +108,29 @@ namespace WallFollower
       return (i < 0 || i > 360) ? 0 : dists[i];
     }
 
-    rp::standalone::rplidar::RPlidarDriver * ()
+    rp::standalone::rplidar::RPlidarDriver * wallFollower::getLidar()
     {
       return &drv;
     }
 
     int wallFollower::getMaxLeftDist()
     {
-      return max_left_dist;
+      return this->max_left_dist;
     }
 
     int wallFollower::getMinForwardDist()
     {
-      return min_forward_dist;
+      return this->min_forward_dist;
     }
 
     int wallFollower::getMinLeftDist()
     {
-      return min_left_dist;
+      return this->min_left_dist;
     }
 
     int wallFollower::getMinRightDist()
     {
-      return min_right_dist;
+      return this->min_right_dist;
     }
 
     void wallFollower::holdTheFuckUp(int units)
@@ -195,29 +195,36 @@ namespace WallFollower
       pwm2.setPWM(1,0,550);
     }
 
-    void wallFollower::updateDists()
+    rp::standalone::rplidar::u_ wallFollower::updateDists()
     {
+      u_result ans;
       cout << "in updateDists" << endl;
 
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
 
-    	ans = drv->grabScanData(nodes, count);
+      ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
     			drv->ascendScanData(nodes, count);
 
-    			double tmp [360];
+    			//0 is behind
     			for (int pos = 0; pos < (int)count ; ++pos)
     			{
-    					tmp[pos] = nodes[pos].distance_q2/4.0f;
+            double tmp [360];
+            for (int pos = 0; pos < (int)count ; ++pos)
+            {
+                tmp[pos] = nodes[pos].distance_q2/4.0f;
+            }
     			}
-    	 else
-    	 {
-    			printf("error code: %x\n", ans);
+    	}
+    	else
+    	{
+    		printf("error code: %x\n", ans);
     	}
 
       this.dists = tmp;
+      return ans;
     }
 
     void wallFollower::turnLeftDegree(int degrees){
