@@ -222,101 +222,10 @@ int main (int argc, char const *argv[])
 			usleep(1000000);
 		}
 		//****************plug-and-play testing********************************
-    //0neSecondWheelTest
-      pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 150);
-      usleep(400000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 150);
-      usleep(400000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 150);
-      usleep(400000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 150);
-      usleep(400000);
-
-			pwm1.setPWM(0, 0, 0);
-      pwm2.setPWM(1, 0, 0);
-<<<<<<< HEAD
-			usleep(5000000);
-=======
-			usleep(5000000000);
->>>>>>> master
-/****************************************/
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 0);
-      usleep(800000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 0);
-      usleep(800000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 0);
-      usleep(800000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 0);
-      usleep(800000);
-
-			pwm1.setPWM(0, 0, 0);
-      pwm2.setPWM(1, 0, 0);
-      /*pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 0);
-      usleep(1000000);
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-      pwm1.setPWM(0, 0, 0);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-      pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-      pwm1.setPWM(0, 0, 0);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-			pwm1.setPWM(0, 0, 150);
-      pwm2.setPWM(1, 0, 600);
-      usleep(1000000);
-      pwm1.setPWM(0, 0, 0);
-      pwm2.setPWM(1, 0, 0);*/
+    //4/10 if both wheels make the turn
+		//1 second if one wheel makes the turns
+		//hardly anything close to accurate, is short at least 5 degrees each turns
+		
     //*********************************************************************
 		stop = true;
 	}

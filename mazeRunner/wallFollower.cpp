@@ -170,7 +170,7 @@ namespace wallFollower
       return false;
     }
 
-    void wallFollower::turnLeft(int degrees)
+    void wallFollower::strafeLeft(int degrees)
     {
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
@@ -181,7 +181,7 @@ namespace wallFollower
       pwm2->setPWM(1,0,600);
     }
 
-    void wallFollower::turnRight(int degrees)
+    void wallFollower::strafeRight(int degrees)
     {
       //same idea with turnLeft()
       pwm1->setPWM(0,0,150);
@@ -213,32 +213,17 @@ namespace wallFollower
       this->dists = tmp;
     }
 
-    void wallFollower::turnDegree(int degrees){
-      for (int count = 1; count <= degrees; count++){
-
-      }
+    void wallFollower::turnLeftDegree(int degrees){
+      long time = degrees*11111;
+      pwm1.setPWM(0,0,150);
+      pwm2.setPWM(1,0,0);
+      usleep(time);
     }
 
-    //****************plug-and-play testing********************************
-    void wallFollower::oneSecondWheelTest(){
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 600);
-      usleep(1000000);
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 0);
-      usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(1, 0, 600);
-      usleep(1000000);
-      setPWM(0, 0, 150);
-      setPWM(1, 0, 600);
-      usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(1, 0, 600);
-      usleep(1000000);
-      setPWM(0, 0, 0);
-      setPWM(0, 0, 0);
+    void wallFollower::turnRightDegree(int degrees){
+      long time = degrees*11111;
+      pwm1.setPWM(0,0,0);
+      pwm2.setPWM(1,0,600);
+      usleep(time);
     }
-
-    //*********************************************************************
 }

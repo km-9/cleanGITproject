@@ -3,8 +3,10 @@
 int main (int argc, char const *argv[])
 {
   wallFollower f;
+  f.goForward();
+  f.holdTheFuckUp(10000000);
 
-  while (true)
+  /*while (true)
   {
     while (f.canForward())
     {
@@ -26,7 +28,7 @@ int main (int argc, char const *argv[])
       f.reverse();
       f.turnLeft();
     }
-  }
+  }*/
 
   f->drv->stop();
   f->drv->stopMotor();
