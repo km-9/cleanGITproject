@@ -33,7 +33,7 @@ namespace WallFollower
                     double getDists(int i);
 
                     //getter for LiDAR
-                    int * getLidar();
+                    rp::standalone::rplidar::RPlidarDriver * wallFollower::getLidar()
 
                     //getter for max_left_dist
                     int getMaxLeftDist();
@@ -104,6 +104,6 @@ namespace WallFollower
           void turnRight(int degres);
 
           //updates the dist[] using drv
-          void updateDists();
+          int updateDists();
   };
 }

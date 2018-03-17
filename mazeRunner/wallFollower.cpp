@@ -51,7 +51,7 @@ namespace WallFollower
                 break;
             }
 
-            if (IS_FAIL(updateDists(drv))) {
+            if (IS_FAIL(updateDists(drv)) {
                 fprintf(stderr, "Error, cannot grab scan data.\n");
                 break;
             }
@@ -146,7 +146,7 @@ namespace WallFollower
 
     void wallFollower::pause(int units)
     {
-      drv->usleep(units);
+      usleep(units);
     }
 
     void wallFollower::reverse()
