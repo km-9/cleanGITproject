@@ -185,7 +185,7 @@ namespace wallFollower
     {
       //same idea with turnLeft()
       pwm1->setPWM(0,0,150);
-      pwm2->setPWM(1,0,0);
+      pwm2->setPWM(1,0,550);
     }
 
     void wallFollower::updateDists()
@@ -213,5 +213,32 @@ namespace wallFollower
       this->dists = tmp;
     }
 
+    void wallFollower::turnDegree(int degrees){
+      for (int count = 1; count <= degrees; count++){
 
+      }
+    }
+
+    //****************plug-and-play testing********************************
+    void wallFollower::oneSecondWheelTest(){
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 0);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(0, 0, 0);
+    }
+
+    //*********************************************************************
 }

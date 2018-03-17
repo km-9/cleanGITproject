@@ -161,14 +161,14 @@ int main (int argc, char const *argv[])
 			cout << "end of lidar driver in main" << endl;
 		}
 		while(0);
-
-	while(true)
+  bool stop = false;
+	while(!stop)
 	{
 		//read lidar if initiziatization didn't error out
 		capture_and_display(drv);
 
 		//while we can go forward
-		while (canForward())
+		while (0)
 		{
 			//read again
 			capture_and_display(drv);
@@ -203,7 +203,7 @@ int main (int argc, char const *argv[])
 				}
 			}
 
-		if (!canForward)
+		if (!canForward && false)
 		{
 			//why isn't this stopping?
 			pwm1.setPWM(0, 0, 0);
@@ -221,6 +221,27 @@ int main (int argc, char const *argv[])
 			pwm2.setPWM(1, 0, 0);
 			usleep(1000000);
 		}
+		//****************plug-and-play testing********************************
+    //0neSecondWheelTest
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 0);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 150);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(1, 0, 600);
+      usleep(1000000);
+      setPWM(0, 0, 0);
+      setPWM(0, 0, 0);
+    //*********************************************************************
+		stop = true;
 	}
     drv->stop();
     drv->stopMotor();
