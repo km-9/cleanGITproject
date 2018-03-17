@@ -45,7 +45,7 @@ namespace WallFollower
 
                     //getter for min_right_dist
                     int getMinRightDist();
-      private:
+
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double *dists;
