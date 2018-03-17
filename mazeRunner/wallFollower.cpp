@@ -139,7 +139,7 @@ namespace WallFollower
 
     void wallFollower::pause(int units)
     {
-      this->drv->usleep(units);
+      drv->usleep(units);
     }
 
     void wallFollower::reverse()
