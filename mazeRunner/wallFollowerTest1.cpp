@@ -1,10 +1,9 @@
 #include "wallFollower.h"
-namespace wallFollower
+
 using namespace wallFollower;
 int main (int argc, char const *argv[])
 {
   wallFollower f;
-  f.wallFollower();
   f.goForward();
   f.holdTheFuckUp(10000000);
 
