@@ -29,8 +29,8 @@ namespace WallFollower
         pwm1.setPWM(0,0,0);
         pwm2.setPWM(1,0,0);
 
-        this->pwm1 = & pwm1;
-        this->pwm2 = & pwm2;
+        this.pwm1 = & pwm1;
+        this.pwm2 = & pwm2;
 
         //to communicate with lidar
         int opt_com_baudrate = 115200;
@@ -158,14 +158,14 @@ namespace WallFollower
 
     void wallFollower::reverse()
     {
-      pwm1->setPWM(0, 0, 600);
-			pwm2->setPWM(1, 0, 150);
+      pwm1.setPWM(0, 0, 600);
+			pwm2.setPWM(1, 0, 150);
     }
 
     void wallFollower::stop()
     {
-      pwm1->setPWM(0,0,0);
-    	pwm2->setPWM(1,0,0);
+      pwm1.setPWM(0,0,0);
+    	pwm2.setPWM(1,0,0);
     }
 
     void wallFollower::takeItBackNowYall()
@@ -191,15 +191,15 @@ namespace WallFollower
       //if this doesn't work I would want to make time our parameter
       //and for (i < units) turn, then take in a bool keep_moving
       //if keep_moing == true go back to straight, else stop
-      pwm1->setPWM(0,0,100);
-      pwm2->setPWM(1,0,600);
+      pwm1.setPWM(0,0,100);
+      pwm2.setPWM(1,0,600);
     }
 
     void wallFollower::strafeRight()
     {
       //same idea with turnLeft()
-      pwm1->setPWM(0,0,150);
-      pwm2->setPWM(1,0,550);
+      pwm1.setPWM(0,0,150);
+      pwm2.setPWM(1,0,550);
     }
 
     int wallFollower::updateDists()
@@ -237,15 +237,15 @@ namespace WallFollower
 
     void wallFollower::turnLeft(int degrees){
       long time = degrees*11111;
-      pwm1->setPWM(0,0,150);
-      pwm2->setPWM(1,0,0);
+      pwm1.setPWM(0,0,150);
+      pwm2.setPWM(1,0,0);
       usleep(time);
     }
 
     void wallFollower::turnRight(int degrees){
       long time = degrees*11111;
-      pwm1->setPWM(0,0,0);
-      pwm2->setPWM(1,0,600);
+      pwm1.setPWM(0,0,0);
+      pwm2.setPWM(1,0,600);
       usleep(time);
     }
 }
