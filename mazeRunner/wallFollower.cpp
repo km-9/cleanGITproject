@@ -6,11 +6,13 @@ namespace WallFollower
     wallFollower::wallFollower()
     {
         //left wheel
-        PCA9685 * pwm1 = &PCA9685();
+        PCA9685 pwm1;
+        //PCA9685 * pwm1 = &PCA9685();
         pwm1.init(1,0x40);
 
         //right wheel
-        PCA9685 * pwm2 = &PCA9685();
+        PCA9685 pwm2;
+        //PCA9685 * pwm2 = &PCA9685();
         pwm2.init(1,0x40);
 
         //look up the documentation on this
