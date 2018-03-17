@@ -20,7 +20,7 @@ namespace wallFollower
       private:
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
-          double [] * dists;
+          double[] * dists;
 
           //lidar controller
           RPlidarDriver * drv;
@@ -62,7 +62,7 @@ namespace wallFollower
           int getMinForwardDist();
 
           //getter for min_left_dist
-          int getMinLeftDist()
+          int getMinLeftDist();
 
           //getter for min_right_dist
           int getMinRightDist();
