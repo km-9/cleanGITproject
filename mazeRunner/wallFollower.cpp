@@ -147,8 +147,8 @@ namespace WallFollower
 
     void wallFollower::goForward()
     {
-      pwm1->setPWM(0, 0, 150);
-			pwm2->setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 150);
+			pwm2.setPWM(1, 0, 600);
     }
 
     void wallFollower::pause(int units)
