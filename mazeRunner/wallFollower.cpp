@@ -58,10 +58,10 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this.min_forward_dist = 300;
-        this.min_left_dist = 300;
-        this.min_right_dist = 300;
-        this.max_left_dist = 400;
+        this->min_forward_dist = 300;
+        this->min_left_dist = 300;
+        this->min_right_dist = 300;
+        this->max_left_dist = 400;
         updateDists();
     }
 
@@ -200,10 +200,10 @@ namespace WallFollower
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
 
-    	ans = drv.grabScanData(nodes, count);
+    	ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
-    			drv.ascendScanData(nodes, count);
+    			drv->ascendScanData(nodes, count);
 
     			double tmp [360];
     			for (int pos = 0; pos < (int)count ; ++pos)
