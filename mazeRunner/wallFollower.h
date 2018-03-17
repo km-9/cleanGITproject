@@ -96,5 +96,5 @@ namespace wallFollower
 
           //updates the dist[] using drv
           void updateDists();
-  }
+  };
 }
