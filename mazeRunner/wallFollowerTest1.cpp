@@ -10,7 +10,7 @@ int main (int argc, char const *argv[])
   f.goForward();
   cout << "goForward finished" << endl;
   f.holdTheFuckUp(10000000);
-  cout << "holdTheFuckUp"
+  cout << "holdTheFuckUp" << endl;
 
   /*while (true)
   {
