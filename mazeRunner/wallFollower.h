@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdlib>
 #include <cstddef>
 #include <cstdio>
 #include <ctime>
@@ -18,7 +19,7 @@ namespace wallFollower
           //constructor
           wallFollower();
       private:
-        
+
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double [] * dists;
 
