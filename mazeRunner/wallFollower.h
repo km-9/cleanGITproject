@@ -24,7 +24,7 @@ namespace wallFollower
           double *dists;
 
           //lidar controller
-          RPlidarDriver * drv;
+          RPlidarDriver::RPlidarDriver * drv;
 
           //left wheel
           PCA9685 * pwm1;
