@@ -12,7 +12,7 @@
 
 namespace wallFollower
 {
-  public class wallFollower
+  class wallFollower
   {
       public:
           //constructor
