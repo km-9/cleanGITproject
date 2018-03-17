@@ -54,7 +54,8 @@ namespace WallFollower
                 break;
             }
 
-            if (IS_FAIL(updateDists()) {
+            if (IS_FAIL(updateDists()))
+            {
                 fprintf(stderr, "Error, cannot grab scan data.\n");
                 break;
             }
@@ -206,7 +207,7 @@ namespace WallFollower
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
 
-      double * tmp = double [360];
+      double tmp = [360];
       ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
