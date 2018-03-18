@@ -49,7 +49,7 @@ namespace WallFollower
 
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
-          double *dists;
+          double dists [360];
 
           //lidar controller
           rp::standalone::rplidar::RPlidarDriver * drv;

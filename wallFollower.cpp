@@ -202,7 +202,7 @@ namespace WallFollower
       pwm2.setPWM(1,0,550);
     }
 
-    int wallFollower::updateDists()
+    void wallFollower::updateDists()
     {
       int ans;
       cout << "in updateDists" << endl;
@@ -210,7 +210,7 @@ namespace WallFollower
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
 
-      double tmp [360];
+      //double tmp [360];
       ans = drv->grabScanData(nodes, count);
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
@@ -219,10 +219,10 @@ namespace WallFollower
     			//0 is behind
     			for (int pos = 0; pos < (int)count ; ++pos)
     			{
-            double tmp [360];
             for (int pos = 0; pos < (int)count ; ++pos)
             {
-                tmp[pos] = nodes[pos].distance_q2/4.0f;
+                dists[pos] = nodes[pos].distance_q2/4.0f;
+                //tmp[pos] = nodes[pos].distance_q2/4.0f;
             }
     			}
     	}
@@ -231,8 +231,7 @@ namespace WallFollower
     		printf("error code: %x\n", ans);
     	}
 
-      this->dists = tmp;
-      return ans;
+      //this->dists = tmp;
     }
 
     void wallFollower::turnLeft(int degrees){
