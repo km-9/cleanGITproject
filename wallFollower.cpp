@@ -217,7 +217,7 @@ namespace WallFollower
     			drv->ascendScanData(nodes, count);
 
     			//0 is behind
-    			for (int pos = 0; pos < (int)count ; ++pos)
+    			for (int pos = 0; pos < 360 ; ++pos)
     			{
             dists[pos] = nodes[pos].distance_q2/4.0f;
             /*
