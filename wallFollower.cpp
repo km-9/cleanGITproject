@@ -232,6 +232,7 @@ namespace WallFollower
     	}
 
       //this->dists = tmp;
+      return 1;
     }
 
     void wallFollower::turnLeft(int degrees){
