@@ -19,8 +19,8 @@ namespace WallFollower
         pwm2.init(1,0x40);
 
         //look up the documentation on this
-        pwm1.setPWMFreq(61);
-        pwm2.setPWMFreq(61);
+        pwm1.setPWMFreq(50);
+        pwm2.setPWMFreq(50);
 
         //hold for a sec
         usleep(1000000);
