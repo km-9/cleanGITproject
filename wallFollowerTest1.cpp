@@ -17,11 +17,14 @@ int main (int argc, char const *argv[])
 
 
   while(true) {
-    if(f.canGoForward() && !f.tooFarOnLeft()) {
+    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
       f.goForward();
     }
     else if(f.canGoForward() && f.tooFarOnLeft()) {
       f.strafeLeft();
+    }
+    else if (f.canGoForward() && f.tooCloseOnLeft()){
+      f.strafeRight();
     }
     else if(!f.canGoForward() && f.canGoLeft()) {
       f.turnLeft(90);
@@ -30,7 +33,7 @@ int main (int argc, char const *argv[])
       f.turnRight(90);
     }
     else {
-      f.turnLeft(180);
+      f.reverse();
     }
   }
 
