@@ -47,11 +47,11 @@ int main (int argc, char const *argv[])
     else {
       f.reverse();
       usleep(1000000);
-      if (canGoLeft()){
-        turnLeft(90);
+      if (f.canGoLeft()){
+        f.turnLeft(90);
       }
       else {
-        turnRight(90);
+        f.turnRight(90);
       }
     }
   }
