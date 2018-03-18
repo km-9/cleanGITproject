@@ -18,17 +18,23 @@ int main (int argc, char const *argv[])
 
   while(true) {
     f.updateDists();
-    if(f.canGoForward() && !f.tooFarOnLeft()) {
-      while(f.canGoForward() && !f.tooFarOnLeft()){
+    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
+      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()){
       f.updateDists();
       f.goForward();
     }
     }
-    else if(f.canGoForward() && f.tooFarOnLeft()) {
-      while(f.canGoForward() && f.tooFarOnLeft()){
+    else if(f.canGoForward() && f.tooFarOnLeft() && f.tooCloseOnLeft()) {
+      while(f.canGoForward() && f.tooFarOnLeft() && f.tooCloseOnLeft()){
       f.updateDists();
       f.strafeLeft();
     }
+    }
+    else if(f.canGoForward() && f.tooCloseOnLeft() && f.tooFarOnLeft()){
+      while (f.canGoForward() && f.tooCloseOnLeft() && f.tooFarOnLeft()){
+        f.updateDists();
+        f.strafeRight();
+      }
     }
     else if(!f.canGoForward() && f.canGoLeft()) {
       f.turnLeft(90);

@@ -150,8 +150,8 @@ namespace WallFollower
 
     void wallFollower::goForward()
     {
-      pwm1.setPWM(0, 0, 150);
-			pwm2.setPWM(1, 0, 600);
+      pwm1.setPWM(0, 0, 250);
+			pwm2.setPWM(1, 0, 350);
     }
 
     void wallFollower::pause(int units)
@@ -179,7 +179,18 @@ namespace WallFollower
     bool wallFollower::tooFarOnLeft()
     {
       cout << "in canRight()" << endl;
-      if(getDists(80) > getMaxLeftDist() || getDists(100) > getMaxLeftDist())
+      if(getDists(90) > getMaxLeftDist() || getDists(91) > getMaxLeftDist())
+      {
+        cout << getDists(80)  << "  " << getDists(100) << endl;
+        return true;
+      }
+      return false;
+    }
+
+    bool wallFollower::tooCloseOnLeft()
+    {
+      cout << "in canRight()" << endl;
+      if(getDists(90) < getMaxLeftDist()-1 || getDists(91) < getMaxLeftDist()-1)
       {
         cout << getDists(80)  << "  " << getDists(100) << endl;
         return true;
