@@ -12,7 +12,7 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 
-  f.max_left_dist = 300;
+  f.max_left_dist = 175;
   f.min_forward_dist = 150;
 
 
