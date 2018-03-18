@@ -27,10 +27,10 @@ int main (int argc, char const *argv[])
       f.turnLeft(90);
     }
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight()) {
-      f.turnright(90);
+      f.turnRight(90);
     }
     else {
-      f.turnleft(180);
+      f.turnLeft(180);
     }
   }
 
