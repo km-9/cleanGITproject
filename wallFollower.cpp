@@ -67,10 +67,10 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 300;
-        this->min_left_dist = 300;
-        this->min_right_dist = 300;
-        this->max_left_dist = 400;
+        this->min_forward_dist = 150;
+        this->min_left_dist = 150;
+        this->min_right_dist = 150;
+        this->max_left_dist = 175;
         updateDists();
     }
 
@@ -80,9 +80,9 @@ namespace WallFollower
       updateDists();
 
       //we should do trigonometry and enter dimensions of the robot to get this but fuck it
-      if(getDists(170) > getMinForwardDist() && getDists(190) > getMinForwardDist())
+      if(getDists(175) > getMinForwardDist() && getDists(185) > getMinForwardDist())
       {
-        cout << getDists(170)  << "  " << getDists(190) << endl;
+        cout << getDists(175)  << "  " << getDists(185) << endl;
         return true;
       }
       return false;
@@ -90,10 +90,10 @@ namespace WallFollower
 
     bool wallFollower::canGoLeft()
     {
-      cout << "in canRight()" << endl;
-      if(getDists(80) > getMinLeftDist() && getDists(100) > getMinLeftDist())
+      cout << "in canLeft()" << endl;
+      if(getDists(85) > getMinLeftDist() && getDists(95) > getMinLeftDist())
       {
-        cout << getDists(80)  << "  " << getDists(100) << endl;
+        cout << getDists(85)  << "  " << getDists(95) << endl;
         return true;
       }
       return false;
@@ -102,9 +102,9 @@ namespace WallFollower
     bool wallFollower::canGoRight()
     {
       cout << "in canRight()" << endl;
-      if(getDists(260) > getMinRightDist() && getDists(280) > getMinRightDist())
+      if(getDists(265) > getMinRightDist() && getDists(275) > getMinRightDist())
       {
-        cout << getDists(260)  << "  " << getDists(280) << endl;
+        cout << getDists(265)  << "  " << getDists(275) << endl;
         return true;
       }
       return false;
@@ -223,7 +223,7 @@ namespace WallFollower
             /*
             for (int pos = 0; pos < (int)count ; ++pos)
             {
-                
+
                 //tmp[pos] = nodes[pos].distance_q2/4.0f;
             }*/
     			}
