@@ -14,7 +14,7 @@ int main (int argc, char const *argv[])
 
   f.max_left_dist = 175;
   f.min_forward_dist = 175;
-
+  f.min_left_dist = 150;
 
   while(true) {
     while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
