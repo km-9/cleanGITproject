@@ -98,7 +98,7 @@ namespace WallFollower
           bool tooFarOnLeft();
 
           //returns whether or not the robot is too close to the wall on the left
-          bool tooCloseOnLeft()
+          bool tooCloseOnLeft();
 
           //turns the robot degrees to the left
           void turnLeft(int degrees);
