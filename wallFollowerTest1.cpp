@@ -19,6 +19,8 @@ int main (int argc, char const *argv[])
   while(true){
     cout << "strafing left now" << endl;
     f.strafeLeft();
+    usleep (5000000);
+    f.strafeRight();
   }
 
   while(true) {
