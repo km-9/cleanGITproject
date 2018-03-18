@@ -201,7 +201,7 @@ namespace WallFollower
     void wallFollower::strafeRight()
     {
       //same idea with turnLeft()
-      pwm1.setPWM(0,0,250);
+      pwm1.setPWM(0,0,275);
       pwm2.setPWM(1,0,400);
     }
 
