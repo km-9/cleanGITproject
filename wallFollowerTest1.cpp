@@ -18,13 +18,13 @@ int main (int argc, char const *argv[])
 
   while(true){
     cout << "strafing left now" << endl;
-    strafeLeft();
+    f.strafeLeft();
   }
 
   while(true) {
     f.updateDists();
-    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
-      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()){
+    if(f.canGoForward() && !f.tooFarOnLeft()) {
+      while(f.canGoForward() && !f.tooFarOnLeft()){
       f.updateDists();
       f.goForward();
     }
@@ -33,12 +33,6 @@ int main (int argc, char const *argv[])
       while(f.canGoForward() && f.tooFarOnLeft()){
       f.updateDists();
       f.strafeLeft();
-    }
-    }
-    else if (f.canGoForward() && f.tooCloseOnLeft()){
-      while (f.canGoForward() && f.tooCloseOnLeft()){
-      f.updateDists();
-      f.strafeRight();
     }
     }
     else if(!f.canGoForward() && f.canGoLeft()) {
