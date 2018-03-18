@@ -80,9 +80,9 @@ namespace WallFollower
       updateDists();
 
       //we should do trigonometry and enter dimensions of the robot to get this but fuck it
-      if(getDists(175) > getMinForwardDist() && getDists(185) > getMinForwardDist())
+      if(getDists(180) > getMinForwardDist() && getDists(180) > getMinForwardDist())
       {
-        cout << getDists(175)  << "  " << getDists(185) << endl;
+        cout << getDists(180)  << "  " << getDists(180) << endl;
         return true;
       }
       return false;
@@ -91,9 +91,9 @@ namespace WallFollower
     bool wallFollower::canGoLeft()
     {
       cout << "in canLeft()" << endl;
-      if(getDists(85) > getMinLeftDist() && getDists(95) > getMinLeftDist())
+      if(getDists(90) > getMinLeftDist() && getDists(90) > getMinLeftDist())
       {
-        cout << getDists(85)  << "  " << getDists(95) << endl;
+        cout << getDists(90)  << "  " << getDists(90) << endl;
         return true;
       }
       return false;
@@ -102,9 +102,9 @@ namespace WallFollower
     bool wallFollower::canGoRight()
     {
       cout << "in canRight()" << endl;
-      if(getDists(265) > getMinRightDist() && getDists(275) > getMinRightDist())
+      if(getDists(270) > getMinRightDist() && getDists(270) > getMinRightDist())
       {
-        cout << getDists(265)  << "  " << getDists(275) << endl;
+        cout << getDists(270)  << "  " << getDists(270) << endl;
         return true;
       }
       return false;
