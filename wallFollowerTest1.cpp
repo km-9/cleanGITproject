@@ -14,43 +14,46 @@ int main (int argc, char const *argv[])
 
   f.max_left_dist = 175;
   f.min_forward_dist = 175;
-  f.min_left_dist = 150;
+
 
   while(true) {
-    while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
-      cout << "running like lenny" << endl;
+    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
+      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()){
+      f.updateDists();
       f.goForward();
-
-    while(f.canGoForward() && f.tooFarOnLeft()) {
-      cout << "run to the left" << endl;
+    }
+    }
+    else if(f.canGoForward() && f.tooFarOnLeft()) {
+      while(f.canGoForward() && f.tooFarOnLeft()){
+      f.updateDists();
       f.strafeLeft();
-
-    while (f.canGoForward() && f.tooCloseOnLeft()){
-      cout << "runn to the right" << endl;
+    }
+    }
+    else if (f.canGoForward() && f.tooCloseOnLeft()){
+      while (f.canGoForward() && f.tooCloseOnLeft()){
+      f.updateDists();
       f.strafeRight();
-
-    if(!f.canGoForward() && f.canGoLeft()) {
+    }
+    }
+    else if(!f.canGoForward() && f.canGoLeft()) {
       f.turnLeft(90);
-      f.goForward();
-      usleep(500000);
+      if (f.canGoForward()){
+        f.goForward();
       }
     }
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight()) {
       f.turnRight(90);
-      f.goForward();
-      usleep(500000);
     }
     else {
       f.reverse();
-      usleep(2000000);
-      if(f.canGoLeft())
-      f.turnLeft(90);
-      else
-      f.turnRight(90);
+      usleep(1000000);
+      if (canGoLeft()){
+        turnLeft(90);
+      }
+      else {
+        turnRight(90);
+      }
     }
-  }
-}
-}
   }
 
   /*while (true)
