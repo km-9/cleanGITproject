@@ -15,6 +15,9 @@ int main (int argc, char const *argv[])
   f.max_left_dist = 175;
   f.min_forward_dist = 175;
 
+  while(true){
+    strafeLeft();
+  }
 
   while(true) {
     f.updateDists();
