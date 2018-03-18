@@ -202,7 +202,7 @@ namespace WallFollower
       pwm2.setPWM(1,0,550);
     }
 
-    void wallFollower::updateDists()
+    int wallFollower::updateDists()
     {
       int ans;
       cout << "in updateDists" << endl;
