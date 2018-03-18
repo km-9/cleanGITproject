@@ -5,6 +5,7 @@ using namespace WallFollower;
 using namespace std;
 int main (int argc, char const *argv[])
 {
+  cout << "in main" << endl;
   wallFollower f = wallFollower();
   //cout << "constructor finished" << endl;
   //f.goForward();
@@ -16,6 +17,7 @@ int main (int argc, char const *argv[])
   f.min_forward_dist = 175;
 
   while(true){
+    cout << "strafing left now" << endl;
     strafeLeft();
   }
 
