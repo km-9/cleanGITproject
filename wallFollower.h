@@ -104,6 +104,6 @@ namespace WallFollower
           void turnRight(int degres);
 
           //updates the dist[] using drv
-          int updateDists();
+          void updateDists();
   };
 }
