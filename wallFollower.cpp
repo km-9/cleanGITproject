@@ -90,7 +90,7 @@ namespace WallFollower
     }
 
     bool wallFollower::canGoLeft()
-    {(
+    {
       cout << "in canLeft()" << endl;
       if(getDists(89) > getMinLeftDist() || getDists(91) > getMinLeftDist() && getDists(90) > getMinLeftDist())
       {
