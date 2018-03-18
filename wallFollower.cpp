@@ -112,7 +112,7 @@ namespace WallFollower
 
     double wallFollower::getDists(int i)
     {
-      return (i < 0 || i > 360) ? 0 : dists[i]/4.0f;
+      return (i < 0 || i > 360) ? 0 : dists[i].distance_q2/4.0f;
     }
 
     rp::standalone::rplidar::RPlidarDriver * wallFollower::getLidar()
