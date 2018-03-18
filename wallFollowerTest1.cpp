@@ -18,20 +18,27 @@ int main (int argc, char const *argv[])
 
   while(true) {
     while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
+      cout << "running like lenny" << endl;
       f.goForward();
-    }
+
     while(f.canGoForward() && f.tooFarOnLeft()) {
+      cout << "run to the left" << endl;
       f.strafeLeft();
-    }
+
     while (f.canGoForward() && f.tooCloseOnLeft()){
+      cout << "runn to the right" << endl;
       f.strafeRight();
-    }
+
     if(!f.canGoForward() && f.canGoLeft()) {
       f.turnLeft(90);
+      f.goForward();
+      usleep(500000);
       }
     }
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight()) {
       f.turnRight(90);
+      f.goForward();
+      usleep(500000);
     }
     else {
       f.reverse();
@@ -41,6 +48,9 @@ int main (int argc, char const *argv[])
       else
       f.turnRight(90);
     }
+  }
+}
+}
   }
 
   /*while (true)
