@@ -16,14 +16,6 @@ int main (int argc, char const *argv[])
   f.max_left_dist = 175;
   f.min_forward_dist = 175;
 
-  while(true){
-    cout << "strafing left now" << endl;
-  //  f.strafeLeft();
-  //  usleep (5000000);
-    f.strafeRight();
-      usleep (5000000);
-  }
-
   while(true) {
     f.updateDists();
     if(f.canGoForward() && !f.tooFarOnLeft()) {
