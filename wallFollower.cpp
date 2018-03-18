@@ -194,15 +194,15 @@ namespace WallFollower
       //if this doesn't work I would want to make time our parameter
       //and for (i < units) turn, then take in a bool keep_moving
       //if keep_moing == true go back to straight, else stop
-      pwm1.setPWM(0,0,100);
-      pwm2.setPWM(1,0,600);
+      pwm1.setPWM(0,0,150);
+      pwm2.setPWM(1,0,350);
     }
 
     void wallFollower::strafeRight()
     {
       //same idea with turnLeft()
-      pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,550);
+      pwm1.setPWM(0,0,250);
+      pwm2.setPWM(1,0,400);
     }
 
     int wallFollower::updateDists()
