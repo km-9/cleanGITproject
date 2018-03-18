@@ -17,6 +17,7 @@ int main (int argc, char const *argv[])
 
 
   while(true) {
+    f.updateDists();
     if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
       while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()){
       f.updateDists();
