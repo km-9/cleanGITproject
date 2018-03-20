@@ -172,6 +172,61 @@ namespace WallFollower
 			pwm2.setPWM(1, 0, 150);
     }
 
+    void wallFollower::startWallFollowingLeft()
+    {
+      while(true)
+      {
+        updateDists();
+        if(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+        {
+          logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+          logfile << "goForward called" << endl;
+          while(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+          {
+            updateDists();
+            goForward();
+          }
+        }
+        else if(canGoForward() && tooFarOnLeft() && !canGoLeft())
+        {
+          logfile << "canGoForward && toofarOnLeft && !canGoLeft" << endl;
+          logfile << "strafeLeft called" << endl;
+          while(canGoForward() && tooFarOnLeft() && !canGoLeft())
+          {
+            updateDists();
+            strafeLeft();
+          }
+        }
+        else if(canGoForward() && !tooFarOnLeft() && canGoLeft())
+        {
+          logfile << "canGoForward && !toofarOnLeft && canGoLeft" << endl;
+          logfile << "strafeRight called" << endl;
+          while (canGoForward() && !tooFarOnLeft() && canGoLeft())
+          {
+            updateDists();
+            strafeRight();
+          }
+        }
+        else if(!canGoForward() && canGoLeft())
+        {
+          logfile << "canGoForward && canGoLeft" << endl;
+          //might need to be looked at
+          turnLeft(90);
+        }
+        else if(!canGoForward() && !canGoLeft() && canGoRight())
+        {
+          logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
+          //turnRight(90);
+        }
+        else
+        {
+          logfile << "180" << endl;
+          //let's mke it a 180 turn
+          turnLeft(180);
+        }
+      }
+    }
+
     void wallFollower::stop()
     {
       logfile << "stop has been called" << endl;

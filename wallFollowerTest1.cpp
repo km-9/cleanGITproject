@@ -15,71 +15,8 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 
-  ofstream myfile;
-  myfile.open ("lidar_log.txt");
+  f.startWallFollowingLeft();
 
-while (true)
-{
-  for(int i = 0; i < 360; i++) {
-    myfile << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
-    cout << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
-  }
-  usleep(3000000);
-}
-
-  myfile.close();
-
-  while(true)
-  {
-    f.updateDists();
-    if(f.canGoForward() && !f.tooFarOnLeft() && !f.canGoLeft())
-    {
-      f.logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
-      f.logfile << "goForward called" << endl;
-      while(f.canGoForward() && !f.tooFarOnLeft() && !f.canGoLeft())
-      {
-        f.updateDists();
-        f.goForward();
-      }
-    }
-    else if(f.canGoForward() && f.tooFarOnLeft() && !f.canGoLeft())
-    {
-      f.logfile << "canGoForward && toofarOnLeft && !canGoLeft" << endl;
-      f.logfile << "strafeLeft called" << endl;
-      while(f.canGoForward() && f.tooFarOnLeft() && !f.canGoLeft())
-      {
-        f.updateDists();
-        f.strafeLeft();
-      }
-    }
-    else if(f.canGoForward() && !f.tooFarOnLeft() && f.canGoLeft())
-    {
-      f.logfile << "canGoForward && !toofarOnLeft && canGoLeft" << endl;
-      f.logfile << "strafeRight called" << endl;
-      while (f.canGoForward() && !f.tooFarOnLeft() && f.canGoLeft())
-      {
-        f.updateDists();
-        f.strafeRight();
-      }
-    }
-    else if(!f.canGoForward() && f.canGoLeft())
-    {
-      f.logfile << "canGoForward && canGoLeft" << endl;
-      //might need to be looked at
-      f.turnLeft(90);
-    }
-    else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight())
-    {
-      f.logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
-      //f.turnRight(90);
-    }
-    else
-    {
-      f.logfile << "180" << endl;
-      //let's mke it a 180 turn
-      f.turnLeft(180);
-    }
-  }
 
   /*while (true)
   {
