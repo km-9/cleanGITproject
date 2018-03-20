@@ -388,7 +388,7 @@ namespace WallFollower
     {
       logfile << "turnLeft(" << degrees << ") called" << endl;
       long time = degrees*11111;
-      pwm1.setPWM(0,0,150);
+      pwm1.setPWM(0,0,250);
       pwm2.setPWM(1,0,0);
       usleep(time);
     }
@@ -398,7 +398,7 @@ namespace WallFollower
       logfile << "turnRight(" << degrees << ") called" << endl;
       long time = degrees*11111;
       pwm1.setPWM(0,0,0);
-      pwm2.setPWM(1,0,600);
+      pwm2.setPWM(1,0,500);
       usleep(time);
     }
 }
