@@ -86,7 +86,7 @@ namespace WallFollower
       {
         if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoForward has registered an object at " << 180 + i << " degrees " << endl;
+          logfile << "canGoForward has registered an object" << getDists(270 + i) << " units away at " << 180 + i << " degrees " << endl;
           return false;
         }
       }
@@ -100,7 +100,7 @@ namespace WallFollower
       {
         if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoLeft has registered an object at " << 90 + i << " degrees " << endl;
+          logfile << "canGoLeft has registered an object" << getDists(270 + i) << " units away at " << 90 + i << " degrees " << endl;
           return false;
         }
       }
@@ -115,7 +115,7 @@ namespace WallFollower
       {
         if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoRight has registered an object at " << 270 + i << " degrees " << endl;
+          logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
           return false;
         }
       }
