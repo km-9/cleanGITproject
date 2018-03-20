@@ -244,7 +244,7 @@ namespace WallFollower
         UPDATE: updateDists();
         if(loopCounter > 3)
         {
-          logfile << "RIP LMAO" << end;
+          logfile << "RIP LMAO" << endl;
         };
 
         if(canGoForward())
