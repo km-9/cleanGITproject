@@ -72,7 +72,7 @@ namespace WallFollower
         this->max_left_dist = 175;
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
-        this->couldGoLeft = [10];
+        this->pastGoLefts = [10];
 
         updateDists();
 
@@ -130,23 +130,24 @@ namespace WallFollower
           logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
           {
-            couldGoLeft[i] = couldGoLeft[i+1];
+            pastGoLefts[i] = pastGoLefts[i+1];
           }
-          couldGoLeft[0] = false;
+          pastGoLefts[0] = false;
           return false;
         }
       }
       logfile << "canGoLeft has not registered any objects in front of it" << endl;
       for (int i = 0; i < 10; i++)
       {
-        couldGoLeft[i] = couldGoLeft[i+1];
+        pastGoLefts[i] = pastGoLefts[i+1];
       }
-      couldGoLeft[0] = true;
+      pastGoLefts[0] = true;
       return true;
     }
 
     bool wallFollower::couldGoLeft()
     {
+      for
     }
 
     double wallFollower::getDists(int i)
