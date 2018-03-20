@@ -73,9 +73,11 @@ namespace WallFollower
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
         this->pastGoLefts = new bool[10];
+        this->pastGoRights = new bool[10];
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
+          pastGoRights[i] = false;
         }
 
         updateDists();
@@ -103,7 +105,7 @@ namespace WallFollower
       {
         if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoForward has registered an object" << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
+          logfile << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
           return false;
         }
       }
@@ -117,21 +119,7 @@ namespace WallFollower
       {
         if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoLeft has registered an object" << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
-          return false;
-        }
-      }
-      logfile << "canGoLeft has not registered any objects in front of it" << endl;
-      return true;
-    }
-
-    bool wallFollower::canGoRight()
-    {
-      for (int i = -30; i < 31; i++)
-      {
-        if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
-        {
-          logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
+          logfile << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
           {
             pastGoLefts[i] = pastGoLefts[i+1];
@@ -149,6 +137,30 @@ namespace WallFollower
       return true;
     }
 
+    bool wallFollower::canGoRight()
+    {
+      for (int i = -30; i < 31; i++)
+      {
+        if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
+        {
+          logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
+          for (int i = 0; i < 10; i++)
+          {
+            pastGoRights[i] = pastGoRights[i+1];
+          }
+          pastGoRights[0] = false;
+          return false;
+        }
+      }
+      logfile << "canGoRight has not registered any objects in front of it" << endl;
+      for (int i = 0; i < 10; i++)
+      {
+        pastGoRights[i] = pastGoRights[i+1];
+      }
+      pastGoRights[0] = true;
+      return true;
+    }
+
     bool wallFollower::couldntGoLeft()
     {
       int numLefts;
@@ -157,6 +169,16 @@ namespace WallFollower
         pastGoLefts[i]?numLefts--:numLefts++;
       }
       return (numLefts>4)?true:false;
+    }
+
+    bool wallFollower::couldntGoRight()
+    {
+      int numRights;
+      for (int i = 0; i < 10; i++)
+      {
+        pastGoRights[i]?numRights--:numRights++;
+      }
+      return (numRights>4)?true:false;
     }
 
     double wallFollower::getDists(int i)
@@ -197,7 +219,7 @@ namespace WallFollower
 
     bool wallFollower::leftPathAppeared()
     {
-
+      return (canGoLeft() && couldntGoLeft())?true:false;
     }
 
     void wallFollower::pause(int units)
@@ -210,6 +232,11 @@ namespace WallFollower
     {
       pwm1.setPWM(0, 0, 600);
 			pwm2.setPWM(1, 0, 150);
+    }
+
+    bool wallFollower::rightPathAppeared()
+    {
+      return (canGoRight() && couldntGoRight())?true:false;
     }
 
     bool wallFollower::shouldStrafeLeft()
@@ -242,6 +269,8 @@ namespace WallFollower
       while(true)
       {
         UPDATE: updateDists();
+        stop();
+        pause(500000);
         if(loopCounter > 3)
         {
           logfile << "RIP LMAO" << endl;

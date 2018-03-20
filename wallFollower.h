@@ -21,6 +21,9 @@ namespace WallFollower
          //array of past canGoLeft values
          bool * pastGoLefts;
 
+         //array of past canGoRight values
+         bool * pastGoRights;
+
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double dists [360];
 
@@ -66,6 +69,9 @@ namespace WallFollower
          //whether or not the majority of past canGoLeft values were true
          bool couldntGoLeft();
 
+         //whether or not the majority of past canGoRight values were true
+         bool couldntGoRight();
+
          //getter for dist[i]
          double getDists(int i);
 
@@ -95,6 +101,9 @@ namespace WallFollower
 
           //reverses the robot
           void reverse();
+
+          //majority of past canGoRight values were false, but now we canGoRight()
+          bool rightPathAppeared();
 
           //returns whether or not the robot should strafe left to align with the left wall
           bool shouldStrafeLeft();
