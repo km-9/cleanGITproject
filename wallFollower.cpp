@@ -178,8 +178,8 @@ namespace WallFollower
       {
           (getDists(90 - i) < getDists(90 + i))?goLeft++:goLeft--;
       }
-      logfile << "shouldStrafeLeft has determined "<< goLeft>0?"true":"false" << endl;
-      goLeft>0?true:false;
+      logfile << "shouldStrafeLeft has determined "<< (goLeft>0)?"true":"false" << endl;
+      (goLeft>0)?true:false;
     }
 
     bool wallFollower::shouldStrafeRight()
@@ -189,8 +189,8 @@ namespace WallFollower
       {
           (getDists(270 - i) < getDists(270 + i))?goRight++:goRight--;
       }
-      logfile << "shouldStrafeRight has determined "<< goRight>0?"true":"false" << endl;
-      goRight>0?true:false;
+      logfile << "shouldStrafeRight has determined "<< (goRight>0)?"true":"false" << endl;
+      (goRight>0)?true:false;
     }
 
     void wallFollower::startWallFollowingLeft()
@@ -286,7 +286,7 @@ namespace WallFollower
       {
         if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
         {
-          logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDist(90 + i) << " from the wall, so we are too far" << endl;
+          logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
           return true;
         }
       }
