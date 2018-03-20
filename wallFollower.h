@@ -52,7 +52,7 @@ namespace WallFollower
           rp::standalone::rplidar::RPlidarDriver * drv;
 
           //logfile
-          ofstream logfile;
+          public ofstream logfile;
 
           //left wheel
           PCA9685 pwm1;
