@@ -81,6 +81,9 @@ namespace WallFollower
           //reverses the robot
           void reverse();
 
+          //start wall following left
+          void startWallFollowingLeft();
+
           //stop both wheels
           void stop();
 
