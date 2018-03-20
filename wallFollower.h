@@ -19,7 +19,7 @@ namespace WallFollower
   {
       public:
          //array of past canGoLeft values
-         bool * couldGoRight;
+         bool * couldGoLeft;
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double dists [360];
@@ -63,6 +63,9 @@ namespace WallFollower
          //return whether or not we are able to go right
          bool canGoRight();
 
+         //whether or not the majority of past canGoLeft values were true
+         bool couldGoLeft();
+
          //getter for dist[i]
          double getDists(int i);
 
@@ -83,6 +86,9 @@ namespace WallFollower
 
          //calls pause(units)
          void holdTheFuckUp(int units);
+
+         //majority of past canGoLeft values were false, but we now canGoLeft()
+         bool leftPathAppeared();
 
           //holds for units milliseconds?
           void pause(int units);

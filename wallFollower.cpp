@@ -72,6 +72,8 @@ namespace WallFollower
         this->max_left_dist = 175;
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
+        this->couldGoLeft = [10];
+
         updateDists();
 
         this->logfile.open("WallFollowerRun.log");
@@ -97,7 +99,7 @@ namespace WallFollower
       {
         if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoForward has registered an object" << getDists(270 + i) << " units away at " << 180 + i << " degrees " << endl;
+          logfile << "canGoForward has registered an object" << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
           return false;
         }
       }
@@ -111,7 +113,7 @@ namespace WallFollower
       {
         if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoLeft has registered an object" << getDists(270 + i) << " units away at " << 90 + i << " degrees " << endl;
+          logfile << "canGoLeft has registered an object" << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
           return false;
         }
       }
@@ -121,20 +123,31 @@ namespace WallFollower
 
     bool wallFollower::canGoRight()
     {
-      logfile << "in canRight()" << endl;
       for (int i = -30; i < 31; i++)
       {
         if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
         {
           logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
+          for (int i = 0; i < 10; i++)
+          {
+            couldGoLeft[i] = couldGoLeft[i+1];
+          }
+          couldGoLeft[0] = false;
           return false;
         }
       }
       logfile << "canGoLeft has not registered any objects in front of it" << endl;
+      for (int i = 0; i < 10; i++)
+      {
+        couldGoLeft[i] = couldGoLeft[i+1];
+      }
+      couldGoLeft[0] = true;
       return true;
     }
 
-    bool wallFollower::
+    bool wallFollower::couldGoLeft()
+    {
+    }
 
     double wallFollower::getDists(int i)
     {
@@ -170,6 +183,10 @@ namespace WallFollower
     {
       pwm1.setPWM(0, 0, 250);
 			pwm2.setPWM(1, 0, 500);
+    }
+
+    bool wallFollower::leftPathAppeared()
+    {
     }
 
     void wallFollower::pause(int units)
