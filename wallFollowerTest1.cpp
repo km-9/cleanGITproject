@@ -16,49 +16,52 @@ int main (int argc, char const *argv[])
   while(true)
   {
     f.updateDists();
-    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft())
+    if(f.canGoForward() && !f.tooFarOnLeft() && !f.canGoLeft())
     {
-      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft())
+      f.logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+      f.logfile << "goForward called" << endl;
+      while(f.canGoForward() && !f.tooFarOnLeft() && !f.canGoLeft())
       {
-        cout << "canGoForward && !toofarOnLeft && !tooCloseOnLeft" << endl;
         f.updateDists();
         f.goForward();
       }
     }
-    else if(f.canGoForward() && f.tooFarOnLeft() && !f.tooCloseOnLeft())
+    else if(f.canGoForward() && f.tooFarOnLeft() && !f.canGoLeft())
     {
-      while(f.canGoForward() && f.tooFarOnLeft() && !f.tooCloseOnLeft())
+      f.logfile << "canGoForward && toofarOnLeft && !canGoLeft" << endl;
+      f.logfile << "strafeLeft called" << endl;
+      while(f.canGoForward() && f.tooFarOnLeft() && !f.canGoLeft())
       {
-        cout << "canGoForward && toofarOnLeft && !tooCloseOnLeft" << endl;
         f.updateDists();
         f.strafeLeft();
       }
     }
-    else if(f.canGoForward() && !f.tooFarOnLeft() && f.tooCloseOnLeft())
+    else if(f.canGoForward() && !f.tooFarOnLeft() && f.canGoLeft())
     {
-      while (f.canGoForward() && !f.tooFarOnLeft() && f.tooCloseOnLeft())
+      f.logfile << "canGoForward && !toofarOnLeft && canGoLeft" << endl;
+      f.logfile << "strafeRight called" << endl;
+      while (f.canGoForward() && !f.tooFarOnLeft() && f.canGoLeft())
       {
-        cout << "canGoForward && !toofarOnLeft && tooCloseOnLeft" << endl;
         f.updateDists();
         f.strafeRight();
       }
     }
     else if(!f.canGoForward() && f.canGoLeft())
     {
-      cout << "canGoForward && canGoLeft" << endl;
+      f.logfile << "canGoForward && canGoLeft" << endl;
       //might need to be looked at
       f.turnLeft(90);
     }
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight())
     {
-      cout << "canGoForward && !canGoLeft && canGoRight" << endl;
+      f.logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
       //f.turnRight(90);
     }
     else
     {
-      cout << "180" << endl;
+      f.logfile << "180" << endl;
       //let's mke it a 180 turn
-      //f.turnLeft(180);
+      f.turnLeft(180);
     }
   }
 
@@ -73,7 +76,7 @@ int main (int argc, char const *argv[])
       {
         f.turnLeft();
       }
-      else if (f.tooCloseOnLeft())
+      else if (f.canGoLeft())
       {
         f.turnRight()
       }
@@ -86,6 +89,7 @@ int main (int argc, char const *argv[])
     }
   }*/
 
+  f.logfile.close();
   f.drv->stop();
   f.drv->stopMotor();
 

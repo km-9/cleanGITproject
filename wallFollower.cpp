@@ -73,55 +73,60 @@ namespace WallFollower
         this->min_right_dist = 150;
         this->max_left_dist = 175;
         updateDists();
+
+        ofstream logfile;
+        logfile.open("WallFollowerRun.log");
     }
 
     bool wallFollower::canGoForward()
     {
-      cout << "in canForward" << endl;
       updateDists();
 
       //we should do trigonometry and enter dimensions of the robot to get this but fuck it
-      if(getDists(179) > getMinForwardDist() || getDists(181) > getMinForwardDist() && getDists(180) > getMinForwardDist())
+      for (int i = -30; i < 31; i++)
       {
-        cout << "can" << endl;
-        cout << getDists(179)  << "  " << getDists(181) << endl;
-        return true;
+        if(getDists(180 + i) < getMinForwardDist())
+        {
+          logfile << "canGoForward has registered an object at " << 180 + i << " degrees " endl;
+          return false;
+        }
       }
-      return false;
+      logfile << "canGoForward has not registered any objects in front of it" << endl;
+      return true;
     }
 
     bool wallFollower::canGoLeft()
     {
-      cout << "in canLeft()" << endl;
-      if(getDists(89) > getMinLeftDist() || getDists(91) > getMinLeftDist() && getDists(90) > getMinLeftDist())
+      for (int i = -30; i < 31; i++)
       {
-        cout << "can" << endl;
-        cout << getDists(90)  << "  " << getDists(90) << endl;
-        return true;
+        if(getDists(90 + i) < getMinLeftDist())
+        {
+          logfile << "canGoLeft has registered an object at " << 90 + i << " degrees " endl;
+          return false;
+        }
       }
-      return false;
+      logfile << "canGoLeft has not registered any objects in front of it" << endl;
+      return true;
     }
 
     bool wallFollower::canGoRight()
     {
       cout << "in canRight()" << endl;
-      if(getDists(269) > getMinRightDist() && getDists(271) > getMinRightDist() && getDists(270) > getMinRightDist())
+      for (int i = -30; i < 31; i++)
       {
-        cout << "can" << endl;
-        cout << getDists(270)  << "  " << getDists(270) << endl;
-        return true;
+        if(getDists(270 + i) < getMinRightDist())
+        {
+          logfile << "canGoRight has registered an object at " << 270 + i << " degrees " endl;
+          return false;
+        }
       }
-      return false;
+      logfile << "canGoLeft has not registered any objects in front of it" << endl;
+      return true;
     }
 
     double wallFollower::getDists(int i)
     {
       return (i < 0 || i > 360) ? 0 : dists[i];
-    }
-
-    rp::standalone::rplidar::RPlidarDriver * wallFollower::getLidar()
-    {
-      return this->drv;
     }
 
     int wallFollower::getMaxLeftDist()
@@ -157,6 +162,7 @@ namespace WallFollower
 
     void wallFollower::pause(int units)
     {
+      logfile << "pause(" << units << ") has been called" << endl;
       usleep(units);
     }
 
@@ -168,6 +174,7 @@ namespace WallFollower
 
     void wallFollower::stop()
     {
+      logfile << "stop has been called" << endl;
       pwm1.setPWM(0,0,0);
     	pwm2.setPWM(1,0,0);
     }
@@ -179,29 +186,21 @@ namespace WallFollower
 
     bool wallFollower::tooFarOnLeft()
     {
-      cout << "in canRight()" << endl;
-      if(getDists(90) > getMaxLeftDist() || getDists(91) > getMaxLeftDist())
+      for (int i = -30; i < 31; i++)
       {
-        cout << getDists(80)  << "  " << getDists(100) << endl;
-        return true;
+        if(getDists(90 + i) > getMaxLeftDist())
+        {
+          logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDist(90 + i) << " from the wall, so we are too far" << endl;
+          return true;
+        }
       }
-      return false;
-    }
-
-    bool wallFollower::tooCloseOnLeft()
-    {
-      cout << "in canRight()" << endl;
-      if(getDists(90) < getMaxLeftDist()-1 || getDists(91) < getMaxLeftDist()-1)
-      {
-        cout << getDists(80)  << "  " << getDists(100) << endl;
-        return true;
-      }
+      logfile << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
       return false;
     }
 
     void wallFollower::strafeLeft()
     {
-      cout << "strafeLeft" << endl;
+      logfile << "strafeLeft" << endl;
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
       //if this doesn't work I would want to make time our parameter
@@ -213,7 +212,7 @@ namespace WallFollower
 
     void wallFollower::strafeRight()
     {
-      cout << "strafeRight" << endl;
+      logfile << "in strafeRight" << endl;
       //same idea with turnLeft()
       pwm1.setPWM(0,0,275);
       pwm2.setPWM(1,0,400);
@@ -222,7 +221,7 @@ namespace WallFollower
     int wallFollower::updateDists()
     {
       int ans;
-      cout << "in updateDists" << endl;
+      logfile << "in updateDists" << endl;
 
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
@@ -254,16 +253,18 @@ namespace WallFollower
       return 1;
     }
 
-    void wallFollower::turnLeft(int degrees){
-      cout << "turnLeft" << endl;
+    void wallFollower::turnLeft(int degrees)
+    {
+      logfile << "turnLeft(" << degrees << ") called" << endl;
       long time = degrees*11111;
       pwm1.setPWM(0,0,150);
       pwm2.setPWM(1,0,0);
       usleep(time);
     }
 
-    void wallFollower::turnRight(int degrees){
-      cout << "turnRight" << endl;
+    void wallFollower::turnRight(int degrees)
+    {
+      logfile << "turnRight(" << degrees << ") called" << endl;
       long time = degrees*11111;
       pwm1.setPWM(0,0,0);
       pwm2.setPWM(1,0,600);

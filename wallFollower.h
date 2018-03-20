@@ -11,6 +11,7 @@
 #include <cstddef>
 #include <cstdio>
 #include <ctime>
+#include <fstream>
 
 namespace WallFollower
 {
@@ -20,33 +21,29 @@ namespace WallFollower
           //constructor
           wallFollower();
 
-                   //returns whether or not we are able to go forward
-                    bool canGoForward();
+          //returns whether or not we are able to go forward
+          bool canGoForward();
 
-                    //returns whether or not we are able to go left
-                    bool canGoLeft();
+          //returns whether or not we are able to go left
+          bool canGoLeft();
 
-                    //return whether or not we are able to go right
-                    bool canGoRight();
+         //return whether or not we are able to go right
+         bool canGoRight();
 
-                    //getter for dist[i]
-                    double getDists(int i);
+         //getter for dist[i]
+         double getDists(int i);
 
-                    //getter for LiDAR
-                    rp::standalone::rplidar::RPlidarDriver * getLidar();
+         //getter for max_left_dist
+         int getMaxLeftDist();
 
-                    //getter for max_left_dist
-                    int getMaxLeftDist();
+         //getter for min_forward_dist
+         int getMinForwardDist();
 
-                    //getter for min_forward_dist
-                    int getMinForwardDist();
+         //getter for min_left_dist
+         int getMinLeftDist();
 
-                    //getter for min_left_dist
-                    int getMinLeftDist();
-
-                    //getter for min_right_dist
-                    int getMinRightDist();
-
+         //getter for min_right_dist
+         int getMinRightDist();
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double dists [360];
@@ -96,9 +93,6 @@ namespace WallFollower
 
           //returns whether or not the robot is too far from the wall on the left
           bool tooFarOnLeft();
-
-          //returns whether or not the robot is too close to the wall on the left
-          bool tooCloseOnLeft();
 
           //turns the robot degrees to the left
           void turnLeft(int degrees);
