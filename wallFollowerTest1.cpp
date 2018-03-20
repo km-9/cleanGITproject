@@ -1,5 +1,7 @@
 #include "wallFollower.h"
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
 
 using namespace WallFollower;
 using namespace std;
@@ -12,6 +14,20 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
+
+  ofstream myfile;
+  myfile.open ("lidar_log.txt");
+
+while (true)
+{
+  for(int i = 0; i < 360; i++) {
+    myfile << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
+    cout << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
+  }
+  usleep(3000000);
+}
+
+  myfile.close();
 
   while(true)
   {
