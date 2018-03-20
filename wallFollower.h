@@ -51,6 +51,9 @@ namespace WallFollower
           //lidar controller
           rp::standalone::rplidar::RPlidarDriver * drv;
 
+          //logfile
+          ofstream logfile;
+
           //left wheel
           PCA9685 pwm1;
 
@@ -80,6 +83,9 @@ namespace WallFollower
 
           //reverses the robot
           void reverse();
+
+          //returns whether or not the robot should strafe left to align with the left wall
+          bool shouldStrafeLeft();
 
           //start wall following left
           void startWallFollowingLeft();

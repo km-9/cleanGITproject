@@ -74,8 +74,7 @@ namespace WallFollower
         this->max_left_dist = 175;
         updateDists();
 
-        ofstream logfile;
-        logfile.open("WallFollowerRun.log");
+        this->logfile.open("WallFollowerRun.log");
     }
 
     bool wallFollower::canGoForward()
@@ -172,6 +171,28 @@ namespace WallFollower
 			pwm2.setPWM(1, 0, 150);
     }
 
+    bool shouldStrafeLeft()
+    {
+      int goLeft = 0;
+      for (int i = 10; i < 30; i++)
+      {
+          (getDists(90 - i) < getDists(90 + i))?goLeft++:goLeft--;
+      }
+      logfile << "shouldStrafeLeft has determined "<< goLeft>0?"true":"false" << endl;
+      goLeft>0?true:false;
+    }
+
+    bool shouldStrafeRight()
+    {
+      int goRight = 0;
+      for (int i = 10; i < 30; i++)
+      {
+          (getDists(270 - i) < getDists(270 + i))?goRight++:goRight--;
+      }
+      logfile << "shouldStrafeRight has determined "<< goRight>0?"true":"false" << endl;
+      goRight>0?true:false;
+    }
+
     void wallFollower::startWallFollowingLeft()
     {
       while(true)
@@ -187,21 +208,21 @@ namespace WallFollower
             goForward();
           }
         }
-        else if(canGoForward() && tooFarOnLeft() && !canGoLeft())
+        else if(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
         {
-          logfile << "canGoForward && toofarOnLeft && !canGoLeft" << endl;
+          logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
           logfile << "strafeLeft called" << endl;
-          while(canGoForward() && tooFarOnLeft() && !canGoLeft())
+          while(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
           {
             updateDists();
             strafeLeft();
           }
         }
-        else if(canGoForward() && !tooFarOnLeft() && canGoLeft())
+        else if(canGoForward() && (shouldStrafeRight() || !canGoLeft()))
         {
-          logfile << "canGoForward && !toofarOnLeft && canGoLeft" << endl;
+          logfile << "canGoForward() && (shouldStrafeRight() || !canGoLeft())" << endl;
           logfile << "strafeRight called" << endl;
-          while (canGoForward() && !tooFarOnLeft() && canGoLeft())
+          while (canGoForward() && (shouldStrafeRight() || !canGoLeft()))
           {
             updateDists();
             strafeRight();
@@ -216,7 +237,7 @@ namespace WallFollower
         else if(!canGoForward() && !canGoLeft() && canGoRight())
         {
           logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
-          //turnRight(90);
+          turnRight(90);
         }
         else
         {
@@ -232,25 +253,6 @@ namespace WallFollower
       logfile << "stop has been called" << endl;
       pwm1.setPWM(0,0,0);
     	pwm2.setPWM(1,0,0);
-    }
-
-    void wallFollower::takeItBackNowYall()
-    {
-      reverse();
-    }
-
-    bool wallFollower::tooFarOnLeft()
-    {
-      for (int i = -30; i < 31; i++)
-      {
-        if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
-        {
-          logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDist(90 + i) << " from the wall, so we are too far" << endl;
-          return true;
-        }
-      }
-      logfile << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
-      return false;
     }
 
     void wallFollower::strafeLeft()
@@ -271,6 +273,25 @@ namespace WallFollower
       //same idea with turnLeft()
       pwm1.setPWM(0,0,275);
       pwm2.setPWM(1,0,400);
+    }
+
+    void wallFollower::takeItBackNowYall()
+    {
+      reverse();
+    }
+
+    bool wallFollower::tooFarOnLeft()
+    {
+      for (int i = -30; i < 31; i++)
+      {
+        if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
+        {
+          logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDist(90 + i) << " from the wall, so we are too far" << endl;
+          return true;
+        }
+      }
+      logfile << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
+      return false;
     }
 
     int wallFollower::updateDists()
