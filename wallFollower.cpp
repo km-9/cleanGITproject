@@ -212,7 +212,7 @@ namespace WallFollower
               goForward();
             }
           }
-          else if(canGoForward() && ()shouldStrafeLeft() || tooFarOnLeft())
+          else if(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
           {
               logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
