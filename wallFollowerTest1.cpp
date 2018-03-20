@@ -20,6 +20,7 @@ int main (int argc, char const *argv[])
     {
       while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft())
       {
+        cout << "canGoForward && !toofarOnLeft && !tooCloseOnLeft" << endl;
         f.updateDists();
         f.goForward();
       }
@@ -28,6 +29,7 @@ int main (int argc, char const *argv[])
     {
       while(f.canGoForward() && f.tooFarOnLeft() && !f.tooCloseOnLeft())
       {
+        cout << "canGoForward && toofarOnLeft && !tooCloseOnLeft" << endl;
         f.updateDists();
         f.strafeLeft();
       }
@@ -36,21 +38,25 @@ int main (int argc, char const *argv[])
     {
       while (f.canGoForward() && !f.tooFarOnLeft() && f.tooCloseOnLeft())
       {
+        cout << "canGoForward && !toofarOnLeft && tooCloseOnLeft" << endl;
         f.updateDists();
         f.strafeRight();
       }
     }
     else if(!f.canGoForward() && f.canGoLeft())
     {
+      cout << "canGoForward && canGoLeft" << endl;
       //might need to be looked at
       f.turnLeft(90);
     }
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight())
     {
+      cout << "canGoForward && !canGoLeft && canGoRight" << endl;
       f.turnRight(90);
     }
     else
     {
+      cout << "180" << endl;
       //let's mke it a 180 turn
       f.turnLeft(180);
     }

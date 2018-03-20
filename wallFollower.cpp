@@ -201,6 +201,7 @@ namespace WallFollower
 
     void wallFollower::strafeLeft()
     {
+      cout << "strafeLeft" << endl;
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
       //if this doesn't work I would want to make time our parameter
@@ -212,6 +213,7 @@ namespace WallFollower
 
     void wallFollower::strafeRight()
     {
+      cout << "strafeRight" << endl;
       //same idea with turnLeft()
       pwm1.setPWM(0,0,275);
       pwm2.setPWM(1,0,400);
@@ -253,6 +255,7 @@ namespace WallFollower
     }
 
     void wallFollower::turnLeft(int degrees){
+      cout << "turnLeft" << endl;
       long time = degrees*11111;
       pwm1.setPWM(0,0,150);
       pwm2.setPWM(1,0,0);
@@ -260,6 +263,7 @@ namespace WallFollower
     }
 
     void wallFollower::turnRight(int degrees){
+      cout << "turnRight" << endl;
       long time = degrees*11111;
       pwm1.setPWM(0,0,0);
       pwm2.setPWM(1,0,600);
