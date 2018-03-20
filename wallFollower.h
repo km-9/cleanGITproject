@@ -18,32 +18,8 @@ namespace WallFollower
   class wallFollower
   {
       public:
-          //constructor
-          wallFollower();
-
-          //returns whether or not we are able to go forward
-          bool canGoForward();
-
-          //returns whether or not we are able to go left
-          bool canGoLeft();
-
-         //return whether or not we are able to go right
-         bool canGoRight();
-
-         //getter for dist[i]
-         double getDists(int i);
-
-         //getter for max_left_dist
-         int getMaxLeftDist();
-
-         //getter for min_forward_dist
-         int getMinForwardDist();
-
-         //getter for min_left_dist
-         int getMinLeftDist();
-
-         //getter for min_right_dist
-         int getMinRightDist();
+         //array of past canGoLeft values
+         bool * couldGoRight;
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double dists [360];
@@ -72,11 +48,41 @@ namespace WallFollower
           //minimum allowable distance between the robot and any object to the right of it
           int min_right_dist;
 
-          //makes the robot go forward hopefully
-          void goForward();
+          //constructor
+          wallFollower();
 
-          //calls pause(units)
-          void holdTheFuckUp(int units);
+          //returns whether or not we are able to reverse
+          bool canGoBack();
+
+          //returns whether or not we are able to go forward
+          bool canGoForward();
+
+          //returns whether or not we are able to go left
+          bool canGoLeft();
+
+         //return whether or not we are able to go right
+         bool canGoRight();
+
+         //getter for dist[i]
+         double getDists(int i);
+
+         //getter for max_left_dist
+         int getMaxLeftDist();
+
+         //getter for min_forward_dist
+         int getMinForwardDist();
+
+         //getter for min_left_dist
+         int getMinLeftDist();
+
+         //getter for min_right_dist
+         int getMinRightDist();
+
+         //makes the robot go forward hopefully
+         void goForward();
+
+         //calls pause(units)
+         void holdTheFuckUp(int units);
 
           //holds for units milliseconds?
           void pause(int units);

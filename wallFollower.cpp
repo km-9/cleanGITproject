@@ -77,11 +77,22 @@ namespace WallFollower
         this->logfile.open("WallFollowerRun.log");
     }
 
+    bool wallFollower::canGoBack()
+    {
+      for (int i = -30; i < 31; i++)
+      {
+        if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
+        {
+          logfile << "canGoForward has registered an object" << getDists(270 + i) << " units away at " << 180 + i << " degrees " << endl;
+          return false;
+        }
+      }
+      logfile << "canGoForward has not registered any objects in front of it" << endl;
+      return true;
+    }
+
     bool wallFollower::canGoForward()
     {
-      updateDists();
-
-      //we should do trigonometry and enter dimensions of the robot to get this but fuck it
       for (int i = -30; i < 31; i++)
       {
         if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
@@ -122,6 +133,8 @@ namespace WallFollower
       logfile << "canGoLeft has not registered any objects in front of it" << endl;
       return true;
     }
+
+    bool wallFollower::
 
     double wallFollower::getDists(int i)
     {
@@ -197,11 +210,20 @@ namespace WallFollower
 
     void wallFollower::startWallFollowingLeft()
     {
+      int loopCounter = 0;
       while(true)
       {
-        updateDists();
+        UPDATE: updateDists()
+        if(loopCounter > 3)
+        {
+          logfile << "RIP LMAO" << end;
+        };
+
         if(canGoForward())
         {
+          loopCounter = 0;
+
+
           if (!tooFarOnLeft() && !canGoLeft())
           {
             logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
@@ -212,7 +234,7 @@ namespace WallFollower
               goForward();
             }
           }
-          else if(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
+          else if(shouldStrafeLeft() || tooFarOnLeft())
           {
               logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
@@ -235,22 +257,20 @@ namespace WallFollower
         }
         else
         {
+          loopCounter = 0;
+          stop();
+          updateDists();
+
           if(canGoLeft())
           {
-            logfile << "canGoForward && canGoLeft" << endl;
+            logfile << "!canGoForward && canGoLeft" << endl;
             //might need to be looked at
             turnLeft(90);
           }
           else if(canGoRight())
           {
-            logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
+            logfile << "!canGoForward && canGoRight" << endl;
             turnRight(90);
-          }
-          else
-          {
-            logfile << "180" << endl;
-            //let's mke it a 180 turn
-            turnLeft(180);
           }
         }
       }
