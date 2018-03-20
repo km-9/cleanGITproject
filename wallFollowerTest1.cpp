@@ -21,7 +21,8 @@ int main (int argc, char const *argv[])
 while (true)
 {
   for(int i = 0; i < 360; i++) {
-    myfile << "Theta: " << i << f.getDists(i) << endl;
+    myfile << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
+    cout << "Theta: " << i << " Distance: " << f.getDists(i) << endl;
   }
   usleep(3000000);
 }
