@@ -52,13 +52,13 @@ int main (int argc, char const *argv[])
     else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight())
     {
       cout << "canGoForward && !canGoLeft && canGoRight" << endl;
-      f.turnRight(90);
+      //f.turnRight(90);
     }
     else
     {
       cout << "180" << endl;
       //let's mke it a 180 turn
-      f.turnLeft(180);
+      //f.turnLeft(180);
     }
   }
 
