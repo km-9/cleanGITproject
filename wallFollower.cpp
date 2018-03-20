@@ -85,7 +85,7 @@ namespace WallFollower
       //we should do trigonometry and enter dimensions of the robot to get this but fuck it
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(180 + i) < getMinForwardDist())
+        if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
           logfile << "canGoForward has registered an object at " << 180 + i << " degrees " endl;
           return false;
@@ -99,7 +99,7 @@ namespace WallFollower
     {
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(90 + i) < getMinLeftDist())
+        if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
           logfile << "canGoLeft has registered an object at " << 90 + i << " degrees " endl;
           return false;
@@ -114,7 +114,7 @@ namespace WallFollower
       cout << "in canRight()" << endl;
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(270 + i) < getMinRightDist())
+        if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
         {
           logfile << "canGoRight has registered an object at " << 270 + i << " degrees " endl;
           return false;
@@ -188,7 +188,7 @@ namespace WallFollower
     {
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(90 + i) > getMaxLeftDist())
+        if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
         {
           logfile << "tooFarOnLeft has decided that theta" << 90 + i << " is " << getDist(90 + i) << " from the wall, so we are too far" << endl;
           return true;
