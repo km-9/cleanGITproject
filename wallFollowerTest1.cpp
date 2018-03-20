@@ -41,8 +41,6 @@ int main (int argc, char const *argv[])
       f.turnLeft();
     }
   }*/
-
-  f.logfile.close();
   f.drv->stop();
   f.drv->stopMotor();
 

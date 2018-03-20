@@ -86,7 +86,7 @@ namespace WallFollower
       {
         if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoForward has registered an object at " << 180 + i << " degrees " endl;
+          logfile << "canGoForward has registered an object at " << 180 + i << " degrees " << endl;
           return false;
         }
       }
@@ -100,7 +100,7 @@ namespace WallFollower
       {
         if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoLeft has registered an object at " << 90 + i << " degrees " endl;
+          logfile << "canGoLeft has registered an object at " << 90 + i << " degrees " << endl;
           return false;
         }
       }
@@ -115,7 +115,7 @@ namespace WallFollower
       {
         if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
         {
-          logfile << "canGoRight has registered an object at " << 270 + i << " degrees " endl;
+          logfile << "canGoRight has registered an object at " << 270 + i << " degrees " << endl;
           return false;
         }
       }
@@ -171,7 +171,7 @@ namespace WallFollower
 			pwm2.setPWM(1, 0, 150);
     }
 
-    bool shouldStrafeLeft()
+    bool wallFollower::shouldStrafeLeft()
     {
       int goLeft = 0;
       for (int i = 10; i < 30; i++)
@@ -182,7 +182,7 @@ namespace WallFollower
       goLeft>0?true:false;
     }
 
-    bool shouldStrafeRight()
+    bool wallFollower::shouldStrafeRight()
     {
       int goRight = 0;
       for (int i = 10; i < 30; i++)
