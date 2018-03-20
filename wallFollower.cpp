@@ -72,7 +72,7 @@ namespace WallFollower
         this->max_left_dist = 175;
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
-        this->pastGoLefts = handler{is: &[]bool{ false, false, false, false, false, false, false, false, false, false }[0]};
+        this->pastGoLefts = &[]bool{ false, false, false, false, false, false, false, false, false, false }[0];
 
         updateDists();
 
@@ -150,9 +150,9 @@ namespace WallFollower
       int numLefts;
       for (int i = 0; i < 10; i++)
       {
-        pastGoLefts[i]?continue:numLefts++;
+        pastGoLefts[i]?numLefts--:numLefts++;
       }
-      return (numLefts>7)?true:false;
+      return (numLefts>4)?true:false;
     }
 
     double wallFollower::getDists(int i)
@@ -193,7 +193,7 @@ namespace WallFollower
 
     bool wallFollower::leftPathAppeared()
     {
-      if ()
+    
     }
 
     void wallFollower::pause(int units)
