@@ -26,7 +26,15 @@ with minmal difficulty and realative accuracy. (an offset of a few degrees/cm is
 highly likely)
 */
 
-
+templateMatch::templateMatcher()
+{
+  //TODO these filepaths are VERY wrong
+  leftTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Left.jpg", IMREAD_COLOR );
+  rightTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Right.jpg", IMREAD_COLOR );
+  frontTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Center.jpg", IMREAD_COLOR );
+  scale = 0.7;
+  match_method = 4;
+}
 
 //This is the only thing that should be called from outside (hence everything else being private)
 //runs the template matching program, can be modified to return any relevant type as needed
@@ -40,8 +48,6 @@ void lookAround()
                 cout << "Can't read one of the images" << endl;
                 return;
         }
-
-        match_method = 4;
         MatchingMethod( 0, 0 );
         return;
 }

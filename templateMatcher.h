@@ -30,7 +30,7 @@ namespace templateMatch
       Mat frontTempl;
 
       //scaling multiplyer for template
-      double scale = 0.7;
+      double scale;
 
       //determines which side of the crib is being seen (according to which template is being used)
       int side;
