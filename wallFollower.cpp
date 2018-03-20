@@ -231,7 +231,7 @@ namespace WallFollower
       int loopCounter = 0;
       while(true)
       {
-        UPDATE: updateDists()
+        UPDATE: updateDists();
         if(loopCounter > 3)
         {
           logfile << "RIP LMAO" << end;
