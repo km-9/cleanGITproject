@@ -72,7 +72,7 @@ namespace WallFollower
         this->max_left_dist = 175;
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
-        this->pastGoLefts = [10];
+        this->pastGoLefts = vector<bool>();
 
         updateDists();
 
@@ -145,9 +145,14 @@ namespace WallFollower
       return true;
     }
 
-    bool wallFollower::couldGoLeft()
+    bool wallFollower::couldntGoLeft()
     {
-      for
+      int numLefts;
+      for (int i = 0; i < 10; i++)
+      {
+        pastGoLefts[i]?continue:numLefts++;
+      }
+      return (numLefts>7)?true:false;
     }
 
     double wallFollower::getDists(int i)
