@@ -1,6 +1,7 @@
 #include "wallFollower.h"
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 
 using namespace WallFollower;
 using namespace std;
