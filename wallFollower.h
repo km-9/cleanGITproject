@@ -106,10 +106,10 @@ namespace WallFollower
           bool rightPathAppeared();
 
           //returns whether or not the robot should strafe left to align with the left wall
-          bool shouldStrafeLeft();
+          bool strafeLeftToAlignWithWall();
 
-          //returns whether or not the robot should strafe left to align with the right wall
-          bool shouldStrafeRight();
+          //returns whether or not the robot should strafe right to align with the right wall
+          bool strafeRightToAlignWithWall();
 
           //start wall following left
           void startWallFollowingLeft();

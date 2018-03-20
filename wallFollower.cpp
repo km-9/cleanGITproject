@@ -239,7 +239,7 @@ namespace WallFollower
       return (canGoRight() && couldntGoRight())?true:false;
     }
 
-    bool wallFollower::shouldStrafeLeft()
+    bool wallFollower::strafeLeftToAlignWithWall()
     {
       int goLeft = 0;
       for (int i = 10; i < 30; i++)
@@ -247,11 +247,11 @@ namespace WallFollower
           (getDists(90 - i) < getDists(90 + i))?goLeft++:goLeft--;
       }
       string answer = (goLeft>0)?"true":"false";
-      logfile << "shouldStrafeLeft has determined "<< answer << endl;
+      logfile << "strafeLeftToAlignWithWall has determined "<< answer << endl;
       (goLeft>0)?true:false;
     }
 
-    bool wallFollower::shouldStrafeRight()
+    bool wallFollower::strafeRightToAlignWithWall()
     {
       int goRight = 0;
       for (int i = 10; i < 30; i++)
@@ -259,7 +259,7 @@ namespace WallFollower
           (getDists(270 - i) < getDists(270 + i))?goRight++:goRight--;
       }
       string answer = (goRight>0)?"true":"false";
-      logfile << "shouldStrafeRight has determined "<< answer << endl;
+      logfile << "strafeRightToAlignWithWall has determined "<< answer << endl;
       (goRight>0)?true:false;
     }
 
@@ -296,21 +296,21 @@ namespace WallFollower
               goForward();
             }
           }
-          else if(shouldStrafeLeft() || tooFarOnLeft())
+          else if(strafeLeftToAlignWithWall() || tooFarOnLeft())
           {
-              logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
+              logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
-              while(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
+              while(canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft()))
               {
                 updateDists();
                 strafeLeft();
               }
           }
-          else if(shouldStrafeRight() || !canGoLeft())
+          else if(strafeRightToAlignWithWall() || !canGoLeft())
           {
-            logfile << "canGoForward() && (shouldStrafeRight() || !canGoLeft())" << endl;
+            logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             logfile << "strafeRight called" << endl;
-            while (canGoForward() && (shouldStrafeRight() || !canGoLeft()))
+            while (canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft()))
             {
               updateDists();
               strafeRight();
