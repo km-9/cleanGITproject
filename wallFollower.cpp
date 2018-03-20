@@ -72,7 +72,7 @@ namespace WallFollower
         this->max_left_dist = 175;
         this->min_right_dist = 140.5;
         this->max_left_dist = 175;
-        this->pastGoLefts = { false, false, false, false, false, false, false, false, false, false };
+        this->pastGoLefts = handler{is: &[]bool{ false, false, false, false, false, false, false, false, false, false }[0]};
 
         updateDists();
 
