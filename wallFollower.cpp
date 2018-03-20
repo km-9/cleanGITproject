@@ -178,7 +178,8 @@ namespace WallFollower
       {
           (getDists(90 - i) < getDists(90 + i))?goLeft++:goLeft--;
       }
-      logfile << "shouldStrafeLeft has determined "<< (goLeft>0)?"true":"false" << endl;
+      String answer = (goLeft>0)?"true":"false";
+      logfile << "shouldStrafeLeft has determined "<< answer << endl;
       (goLeft>0)?true:false;
     }
 
@@ -189,7 +190,8 @@ namespace WallFollower
       {
           (getDists(270 - i) < getDists(270 + i))?goRight++:goRight--;
       }
-      logfile << "shouldStrafeRight has determined "<< (goRight>0)?"true":"false" << endl;
+      String answer = (goRight>0)?"true":"false";
+      logfile << "shouldStrafeRight has determined "<< answer << endl;
       (goRight>0)?true:false;
     }
 
