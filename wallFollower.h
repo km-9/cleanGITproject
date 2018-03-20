@@ -19,7 +19,7 @@ namespace WallFollower
   {
       public:
          //array of past canGoLeft values
-         std::vector<bool> pastGoLefts;
+         bool * pastGoLefts;
 
           //an 360 length array with distance from a lidar detector to the nearest detectable object at the index's angle
           double dists [360];
