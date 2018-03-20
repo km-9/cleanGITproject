@@ -110,7 +110,7 @@ namespace WallFollower
 
     bool wallFollower::canGoRight()
     {
-      cout << "in canRight()" << endl;
+      logfile << "in canRight()" << endl;
       for (int i = -30; i < 31; i++)
       {
         if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
@@ -200,52 +200,58 @@ namespace WallFollower
       while(true)
       {
         updateDists();
-        if(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+        if(canGoForward())
         {
-          logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
-          logfile << "goForward called" << endl;
-          while(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+          if (!tooFarOnLeft() && !canGoLeft())
           {
-            updateDists();
-            goForward();
+            logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+            logfile << "goForward called" << endl;
+            while(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+            {
+              updateDists();
+              goForward();
+            }
           }
-        }
-        else if(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
-        {
-          logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
-          logfile << "strafeLeft called" << endl;
-          while(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
+          else if(canGoForward() && ()shouldStrafeLeft() || tooFarOnLeft())
           {
-            updateDists();
-            strafeLeft();
+              logfile << "canGoForward() && (shouldStrafeLeft() || tooFarOnLeft())" << endl;
+              logfile << "strafeLeft called" << endl;
+              while(canGoForward() && (shouldStrafeLeft() || tooFarOnLeft()))
+              {
+                updateDists();
+                strafeLeft();
+              }
           }
-        }
-        else if(canGoForward() && (shouldStrafeRight() || !canGoLeft()))
-        {
-          logfile << "canGoForward() && (shouldStrafeRight() || !canGoLeft())" << endl;
-          logfile << "strafeRight called" << endl;
-          while (canGoForward() && (shouldStrafeRight() || !canGoLeft()))
+          else if(shouldStrafeRight() || !canGoLeft())
           {
-            updateDists();
-            strafeRight();
+            logfile << "canGoForward() && (shouldStrafeRight() || !canGoLeft())" << endl;
+            logfile << "strafeRight called" << endl;
+            while (canGoForward() && (shouldStrafeRight() || !canGoLeft()))
+            {
+              updateDists();
+              strafeRight();
+            }
           }
-        }
-        else if(!canGoForward() && canGoLeft())
-        {
-          logfile << "canGoForward && canGoLeft" << endl;
-          //might need to be looked at
-          turnLeft(90);
-        }
-        else if(!canGoForward() && !canGoLeft() && canGoRight())
-        {
-          logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
-          turnRight(90);
         }
         else
         {
-          logfile << "180" << endl;
-          //let's mke it a 180 turn
-          turnLeft(180);
+          if(canGoLeft())
+          {
+            logfile << "canGoForward && canGoLeft" << endl;
+            //might need to be looked at
+            turnLeft(90);
+          }
+          else if(canGoRight())
+          {
+            logfile << "canGoForward && !canGoLeft && canGoRight" << endl;
+            turnRight(90);
+          }
+          else
+          {
+            logfile << "180" << endl;
+            //let's mke it a 180 turn
+            turnLeft(180);
+          }
         }
       }
     }
@@ -299,7 +305,6 @@ namespace WallFollower
     int wallFollower::updateDists()
     {
       int ans;
-      logfile << "in updateDists" << endl;
 
     	rplidar_response_measurement_node_t nodes[360*2];
     	int count = _countof(nodes);
