@@ -67,8 +67,9 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 150;
+        this->min_forward_dist = 175;
         this->min_left_dist = 150;
+        this->max_left_dist = 175;
         this->min_right_dist = 150;
         this->max_left_dist = 175;
         updateDists();

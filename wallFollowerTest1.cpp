@@ -13,47 +13,46 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 
-  f.max_left_dist = 175;
-  f.min_forward_dist = 175;
-
-  while(true) {
+  while(true)
+  {
     f.updateDists();
-    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()) {
-      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft()){
-      f.updateDists();
-      f.goForward();
+    if(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft())
+    {
+      while(f.canGoForward() && !f.tooFarOnLeft() && !f.tooCloseOnLeft())
+      {
+        f.updateDists();
+        f.goForward();
+      }
     }
+    else if(f.canGoForward() && f.tooFarOnLeft() && !f.tooCloseOnLeft())
+    {
+      while(f.canGoForward() && f.tooFarOnLeft() && !f.tooCloseOnLeft())
+      {
+        f.updateDists();
+        f.strafeLeft();
+      }
     }
-    else if(f.canGoForward() && f.tooFarOnLeft() && f.tooCloseOnLeft()) {
-      while(f.canGoForward() && f.tooFarOnLeft() && f.tooCloseOnLeft()){
-      f.updateDists();
-      f.strafeLeft();
-    }
-    }
-    else if(f.canGoForward() && f.tooCloseOnLeft() && f.tooFarOnLeft()){
-      while (f.canGoForward() && f.tooCloseOnLeft() && f.tooFarOnLeft()){
+    else if(f.canGoForward() && !f.tooFarOnLeft() && f.tooCloseOnLeft())
+    {
+      while (f.canGoForward() && !f.tooFarOnLeft() && f.tooCloseOnLeft())
+      {
         f.updateDists();
         f.strafeRight();
       }
     }
-    else if(!f.canGoForward() && f.canGoLeft()) {
+    else if(!f.canGoForward() && f.canGoLeft())
+    {
+      //might need to be looked at
       f.turnLeft(90);
-      if (f.canGoForward()){
-        f.goForward();
-      }
     }
-    else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight()) {
+    else if(!f.canGoForward() && !f.canGoLeft() && f.canGoRight())
+    {
       f.turnRight(90);
     }
-    else {
-      f.reverse();
-      usleep(1000000);
-      if (f.canGoLeft()){
-        f.turnLeft(90);
-      }
-      else {
-        f.turnRight(90);
-      }
+    else
+    {
+      //let's mke it a 180 turn
+      f.turnLeft(180);
     }
   }
 
