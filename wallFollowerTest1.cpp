@@ -17,82 +17,81 @@ int main (int argc, char const *argv[])
 
   while (true)
   {
-    if (avoidLeft())
+    if (f.avoidLeft())
     {
-      loopCounter = 0;
-      strafeRight();
+      int loopCounter = 0;
+      f.strafeRight();
       int i = 0;
-      while (avoidLeft())
+      while (f.avoidLeft())
       {
         if (i % 16667 == 0)
         {
-          updateDists();
+          f.updateDists();
         }
         i++;
       }
-      goto UPDATE;
     }
-    else if (avoidRight())
+    else if (f.avoidRight())
     {
       loopCounter = 0;
-      strafeLeft();
-      while (avoidRight() && !avoidLeft())
+      f.strafeLeft();
+      int i = 0;
+      while (f.avoidRight() && !f.avoidLeft())
       {
         if (i % 16667 == 0)
         {
-          updateDists();
+          f.updateDists();
         }
         i++;
       }
-      goto UPDATE;
     }
-    else if(canGoForward())
+    else if(f.canGoForward())
     {
       loopCounter = 0;
-      if(strafeLeftToAlignWithWall() || tooFarOnLeft())
+      if(f.strafeLeftToAlignWithWall() || f.tooFarOnLeft())
       {
-          logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
-          logfile << "strafeLeft called" << endl;
-          strafeLeft();
-          while (!avoidRight() && !avoidLeft())
+          f.logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
+          f.logfile << "strafeLeft called" << endl;
+          f.strafeLeft();
+          int i = 0;
+          while (!f.avoidRight() && !f.avoidLeft())
           {
             if (i % 16667 == 0)
             {
-              updateDists();
+              f.updateDists();
             }
             i++;
           }
-          goto UPDATE;
       }
-      else if(strafeRightToAlignWithWall() || !canGoLeft())
+      else if(f.strafeRightToAlignWithWall() || !f.canGoLeft())
       {
         logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
         logfile << "strafeRight called" << endl;
-        strafeRight();
-        while (!avoidRight() && !avoidLeft())
+        f.strafeRight();
+        int i = 0;
+        while (!f.avoidRight() && !f.avoidLeft())
         {
           if (i % 16667 == 0)
           {
-            updateDists();
+            f.updateDists();
           }
           i++;
         }
-        goto UPDATE;
       }
-      else if (!tooFarOnLeft() && !canGoLeft())
+      else if (!f.tooFarOnLeft() && !f.canGoLeft())
       {
         logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
         logfile << "goForward called" << endl;
-        goForward();
-        while (!avoidRight() && !avoidLeft())
+        f.goForward();
+        int i = 0;
+        while (!f.avoidRight() && !f.avoidLeft())
         {
           if (i % 16667 == 0)
           {
-            updateDists();
+            f.updateDists();
           }
           i++;
         }
-        goto UPDATE;
       }
     }
   }
