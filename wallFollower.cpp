@@ -115,7 +115,7 @@ namespace WallFollower
 
     bool wallFollower::canGoLeft()
     {
-      for (int i = -15; i < 16; i++)
+      for (int i = 0; i < 16; i++)
       {
         if(getDists(90 + i) < getMinLeftDist() + (43.3 * abs(i))/30)
         {
@@ -139,7 +139,7 @@ namespace WallFollower
 
     bool wallFollower::canGoRight()
     {
-      for (int i = -15; i < 16; i++)
+      for (int i = 0; i < 16; i++)
       {
         if(getDists(270 + i) < getMinRightDist() + (43.3 * abs(i))/30)
         {
