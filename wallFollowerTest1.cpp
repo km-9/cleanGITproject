@@ -17,6 +17,7 @@ int main (int argc, char const *argv[])
 
   while (!f.canGoLeft())
   {
+    f.updateDists();
     f.goForward();
   }
   f.turnLeft(90);
