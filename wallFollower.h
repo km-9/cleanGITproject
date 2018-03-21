@@ -39,6 +39,8 @@ namespace WallFollower
           //right wheel
           PCA9685 pwm2;
 
+          int avoidance_radius;
+
           //maximum allowable distance between the robot and the wall
           int max_left_dist;
 
@@ -53,6 +55,12 @@ namespace WallFollower
 
           //constructor
           wallFollower();
+
+          //scans front Left quadrant for obstacles
+          bool avoidLeft();
+
+          //scans front Right quadrant for obstacles
+          bool avoidRight();
 
           //returns whether or not we are able to reverse
           bool canGoBack();

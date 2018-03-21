@@ -74,6 +74,7 @@ namespace WallFollower
         this->max_left_dist = 350;
         this->pastGoLefts = new bool[10];
         this->pastGoRights = new bool[10];
+        this->avoidance_radius = 150;
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
@@ -85,17 +86,45 @@ namespace WallFollower
         this->logfile.open("WallFollowerRun.log");
     }
 
+    bool wallFollower::avoidLeft()
+    {
+      for (int i = 90; i < 181; i++)
+      {
+        if(getDists(i) < avoidance_radius)
+        {
+          logfile << "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
+          return true;
+        }
+      }
+      logfile << "avoidLeft has not registered any objects in front of it" << endl;
+      return false;
+    }
+
+    bool wallFollower::avoidRight()
+    {
+      for (int i = 180; i < 271; i++)
+      {
+        if(getDists(i) < avoidance_radius)
+        {
+          logfile << "avoidRight has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
+          return true;
+        }
+      }
+      logfile << "avoidRight has not registered any objects in front of it" << endl;
+      return false;
+    }
+
     bool wallFollower::canGoBack()
     {
       for (int i = -30; i < 31; i++)
       {
         if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
         {
-          logfile << "canGoForward has registered an object" << getDists(270 + i) << " units away at " << 180 + i << " degrees " << endl;
+          logfile << "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
           return false;
         }
       }
-      logfile << "canGoForward has not registered any objects in front of it" << endl;
+      logfile << "canGoBack has not registered any objects in front of it" << endl;
       return true;
     }
 
@@ -269,7 +298,6 @@ namespace WallFollower
       while(true)
       {
         UPDATE: updateDists();
-
         if(loopCounter > 3)
         {
           //unstick
@@ -279,58 +307,99 @@ namespace WallFollower
           turnLeft(180);
         };
 
-        if(canGoForward())
+        if (avoidLeft())
         {
           loopCounter = 0;
-
-
-          if (!tooFarOnLeft() && !canGoLeft())
+          strafeRight();
+          int i = 0;
+          while (avoidLeft())
           {
-            logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
-            logfile << "goForward called" << endl;
-            while(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+            if (i % 16667 == 0)
             {
               updateDists();
-              goForward();
             }
+            i++;
           }
-          else if(strafeLeftToAlignWithWall() || tooFarOnLeft())
+          goto UPDATE;
+        }
+        else if (avoidRight())
+        {
+          loopCounter = 0;
+          strafeLeft();
+          while (avoidRight() && !avoidLeft())
+          {
+            if (i % 16667 == 0)
+            {
+              updateDists();
+            }
+            i++;
+          }
+          goto UPDATE;
+        }
+        else if(canGoForward())
+        {
+          loopCounter = 0;
+          if(strafeLeftToAlignWithWall() || tooFarOnLeft())
           {
               logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
-              while(canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft()))
+              strafeLeft();
+              while (!avoidRight() && !avoidLeft())
               {
-                updateDists();
-                strafeLeft();
+                if (i % 16667 == 0)
+                {
+                  updateDists();
+                }
+                i++;
               }
+              goto UPDATE;
           }
           else if(strafeRightToAlignWithWall() || !canGoLeft())
           {
             logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             logfile << "strafeRight called" << endl;
-            while (canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft()))
+            strafeRight();
+            while (!avoidRight() && !avoidLeft())
             {
-              updateDists();
-              strafeRight();
+              if (i % 16667 == 0)
+              {
+                updateDists();
+              }
+              i++;
             }
+            goto UPDATE;
+          }
+          else if (!tooFarOnLeft() && !canGoLeft())
+          {
+            logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+            logfile << "goForward called" << endl;
+            goForward();
+            while (!avoidRight() && !avoidLeft())
+            {
+              if (i % 16667 == 0)
+              {
+                updateDists();
+              }
+              i++;
+            }
+            goto UPDATE;
           }
         }
         else
         {
           loopCounter = 0;
-          stop();
-          updateDists();
-
           if(canGoLeft())
           {
             logfile << "!canGoForward && canGoLeft" << endl;
             //might need to be looked at
             turnLeft(90);
+            goto UPDATE;
           }
           else if(canGoRight())
           {
             logfile << "!canGoForward && canGoRight" << endl;
             turnRight(90);
+            goto UPDATE;
           }
         }
       }
@@ -373,7 +442,7 @@ namespace WallFollower
     {
       for (int i = -15; i < 16; i++)
       {
-        if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
+        if(getDists(90 + i) > getMaxLeftDist() + (43 * abs(i))/30)
         {
           logfile << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
           return true;
