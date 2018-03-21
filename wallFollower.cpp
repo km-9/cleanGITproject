@@ -101,7 +101,7 @@ namespace WallFollower
 
     bool wallFollower::canGoForward()
     {
-      for (int i = -30; i < 31; i++)
+      for (int i = -20; i < 21; i++)
       {
         if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
         {
@@ -115,7 +115,7 @@ namespace WallFollower
 
     bool wallFollower::canGoLeft()
     {
-      for (int i = -30; i < 31; i++)
+      for (int i = -15; i < 16; i++)
       {
         if(getDists(90 + i) < getMinLeftDist() + (43.3 * abs(i))/30)
         {
@@ -139,7 +139,7 @@ namespace WallFollower
 
     bool wallFollower::canGoRight()
     {
-      for (int i = -30; i < 31; i++)
+      for (int i = -15; i < 16; i++)
       {
         if(getDists(270 + i) < getMinRightDist() + (43.3 * abs(i))/30)
         {
@@ -373,7 +373,7 @@ namespace WallFollower
 
     bool wallFollower::tooFarOnLeft()
     {
-      for (int i = -30; i < 31; i++)
+      for (int i = -15; i < 16; i++)
       {
         if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
         {
