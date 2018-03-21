@@ -65,8 +65,8 @@ int main (int argc, char const *argv[])
       }
       else if(f.strafeRightToAlignWithWall() || !f.canGoLeft())
       {
-        logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
-        logfile << "strafeRight called" << endl;
+        f.logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
+        f.logfile << "strafeRight called" << endl;
         f.strafeRight();
         int i = 0;
         while (!f.avoidRight() && !f.avoidLeft())
