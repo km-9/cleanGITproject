@@ -17,7 +17,7 @@ int main (int argc, char const *argv[])
 
   while (true)
   {
-    f.updateDists()
+    f.updateDists();
     if (f.avoidLeft())
     {
       f.strafeRight();
