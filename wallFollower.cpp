@@ -67,14 +67,14 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 280;
-        this->min_left_dist = 280;
-        this->max_left_dist = 350;
-        this->min_right_dist = 280;
-        this->max_left_dist = 350;
+        this->min_forward_dist = 140;
+        this->min_left_dist = 140;
+        this->max_left_dist = 175;
+        this->min_right_dist = 140;
+        this->max_left_dist = 175;
         this->pastGoLefts = new bool[10];
         this->pastGoRights = new bool[10];
-        this->avoidance_radius = 150;
+        this->avoidance_radius = 100;
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
@@ -118,7 +118,7 @@ namespace WallFollower
     {
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
+        if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
           logfile << "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
           return false;
@@ -132,7 +132,7 @@ namespace WallFollower
     {
       for (int i = -20; i < 21; i++)
       {
-        if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
+        if(getDists(180 + i) < getMinForwardDist() + (22 * abs(i))/30)
         {
           logfile << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
           return false;
@@ -146,7 +146,7 @@ namespace WallFollower
     {
       for (int i = 0; i < 16; i++)
       {
-        if(getDists(90 + i) < getMinLeftDist() + (43.3 * abs(i))/30)
+        if(getDists(90 + i) < getMinLeftDist() + (22 * abs(i))/30)
         {
           logfile << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
@@ -170,7 +170,7 @@ namespace WallFollower
     {
       for (int i = 0; i < 16; i++)
       {
-        if(getDists(270 + i) < getMinRightDist() + (43.3 * abs(i))/30)
+        if(getDists(270 + i) < getMinRightDist() + (22 * abs(i))/30)
         {
           logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
@@ -446,7 +446,7 @@ namespace WallFollower
     {
       for (int i = -15; i < 16; i++)
       {
-        if(getDists(90 + i) > getMaxLeftDist() + (43 * abs(i))/30)
+        if(getDists(90 + i) > getMaxLeftDist() + (22 * abs(i))/30)
         {
           logfile << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
           return true;
