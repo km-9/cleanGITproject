@@ -326,6 +326,7 @@ namespace WallFollower
         {
           loopCounter = 0;
           strafeLeft();
+          int i = 0;
           while (avoidRight() && !avoidLeft())
           {
             if (i % 16667 == 0)
@@ -344,6 +345,7 @@ namespace WallFollower
               logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
               strafeLeft();
+              int i = 0;
               while (!avoidRight() && !avoidLeft())
               {
                 if (i % 16667 == 0)
@@ -359,6 +361,7 @@ namespace WallFollower
             logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             logfile << "strafeRight called" << endl;
             strafeRight();
+            int i = 0;
             while (!avoidRight() && !avoidLeft())
             {
               if (i % 16667 == 0)
@@ -374,6 +377,7 @@ namespace WallFollower
             logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
             logfile << "goForward called" << endl;
             goForward();
+            int i = 0;
             while (!avoidRight() && !avoidLeft())
             {
               if (i % 16667 == 0)
