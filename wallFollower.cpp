@@ -269,8 +269,6 @@ namespace WallFollower
       while(true)
       {
         UPDATE: updateDists();
-        stop();
-        pause(500000);
 
         if(loopCounter > 3)
         {
