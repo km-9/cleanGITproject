@@ -19,7 +19,6 @@ int main (int argc, char const *argv[])
   {
     if (f.avoidLeft())
     {
-      int loopCounter = 0;
       f.strafeRight();
       int i = 0;
       while (f.avoidLeft())
@@ -33,7 +32,6 @@ int main (int argc, char const *argv[])
     }
     else if (f.avoidRight())
     {
-      loopCounter = 0;
       f.strafeLeft();
       int i = 0;
       while (f.avoidRight() && !f.avoidLeft())
@@ -47,7 +45,6 @@ int main (int argc, char const *argv[])
     }
     else if(f.canGoForward())
     {
-      loopCounter = 0;
       if(f.strafeLeftToAlignWithWall() || f.tooFarOnLeft())
       {
           f.logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
@@ -80,8 +77,8 @@ int main (int argc, char const *argv[])
       }
       else if (!f.tooFarOnLeft() && !f.canGoLeft())
       {
-        logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
-        logfile << "goForward called" << endl;
+        f.logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+        f.logfile << "goForward called" << endl;
         f.goForward();
         int i = 0;
         while (!f.avoidRight() && !f.avoidLeft())
@@ -94,7 +91,6 @@ int main (int argc, char const *argv[])
         }
       }
     }
-  }
     else
     {
       f.stop();
