@@ -52,11 +52,7 @@ int main (int argc, char const *argv[])
         f.strafeRight();
         while (!f.avoidRight() && !f.avoidLeft())
         {
-          if (i % 16667 == 0)
-          {
-            f.updateDists();
-          }
-          i++;
+          f.updateDists();
         }
       }
       else if (!f.tooFarOnLeft() && !f.canGoLeft())
