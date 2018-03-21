@@ -15,22 +15,7 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 
-  while (!f.canGoLeft())
-  {
-    f.updateDists();
-    f.goForward();
-  }
-  f.turnLeft(90);
-  if (f.canGoForward())
-  {
-    f.goForward();
-    f.pause(1000000);
-  }
-  else
-  {
-    f.stop();
-  }
-  f.stop();
+  f.startWallFollowingLeft();
 
 
   /*while (true)
