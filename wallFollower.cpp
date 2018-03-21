@@ -397,17 +397,10 @@ namespace WallFollower
     	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
     	{
     			drv->ascendScanData(nodes, count);
-
-    			//0 is behind
+          
     			for (int pos = 0; pos < 360 ; ++pos)
     			{
             dists[pos] = nodes[pos].distance_q2/4.0f;
-            /*
-            for (int pos = 0; pos < (int)count ; ++pos)
-            {
-
-                //tmp[pos] = nodes[pos].distance_q2/4.0f;
-            }*/
     			}
     	}
     	else
@@ -421,8 +414,9 @@ namespace WallFollower
 
     void wallFollower::turnLeft(int degrees)
     {
+      stop();
       logfile << "turnLeft(" << degrees << ") called" << endl;
-      long time = degrees*11111;
+      long time = degrees*14290;
       pwm1.setPWM(0,0,250);
       pwm2.setPWM(1,0,0);
       usleep(time);
@@ -430,8 +424,9 @@ namespace WallFollower
 
     void wallFollower::turnRight(int degrees)
     {
+      stop();
       logfile << "turnRight(" << degrees << ") called" << endl;
-      long time = degrees*11111;
+      long time = degrees*14290;
       pwm1.setPWM(0,0,0);
       pwm2.setPWM(1,0,500);
       usleep(time);
