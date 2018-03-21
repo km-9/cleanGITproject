@@ -15,7 +15,47 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 
-  f.startWallFollowingLeft();
+  while (true)
+  {
+    if (f.canGoForward())
+    {
+      if (!tooFarOnLeft() && !canGoLeft())
+      {
+        logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+        logfile << "goForward called" << endl;
+        while(canGoForward() && !tooFarOnLeft() && !canGoLeft())
+        {
+          updateDists();
+          goForward();
+        }
+      }
+      else if(strafeLeftToAlignWithWall() || tooFarOnLeft())
+      {
+          logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
+          logfile << "strafeLeft called" << endl;
+          while(canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft()))
+          {
+            updateDists();
+            strafeLeft();
+          }
+      }
+      else if(strafeRightToAlignWithWall() || !canGoLeft())
+      {
+        logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
+        logfile << "strafeRight called" << endl;
+        while (canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft()))
+        {
+          updateDists();
+          strafeRight();
+        }
+      }
+    }
+    else
+    {
+      f.stop();
+    }
+
+  }
 
 
   /*while (true)
