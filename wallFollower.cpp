@@ -67,14 +67,14 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 280;
-        this->min_left_dist = 280;
-        this->max_left_dist = 350;
-        this->min_right_dist = 280;
-        this->max_left_dist = 350;
+        this->min_forward_dist = 350;
+        this->min_left_dist = 350;
+        this->max_left_dist = 450;
+        this->min_right_dist = 350;
+        this->max_left_dist = 450;
         this->pastGoLefts = new bool[10];
         this->pastGoRights = new bool[10];
-        this->avoidance_radius = 200;
+        this->avoidance_radius = 300;
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
