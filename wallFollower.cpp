@@ -93,7 +93,7 @@ namespace WallFollower
         if(getDists(i) < avoidance_radius)
         {
           logfile << "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
-          cout << << "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
+          cout <<  "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
           return true;
         }
       }
@@ -444,7 +444,7 @@ namespace WallFollower
     void wallFollower::strafeLeft()
     {
       logfile << "strafeLeft" << endl;
-      cout << << "strafeLeft" << endl;
+      cout <<  "strafeLeft" << endl;
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
       //if this doesn't work I would want to make time our parameter
@@ -488,7 +488,7 @@ namespace WallFollower
     {
       stop();
       logfile << "turnLeftUntilYouCant() called" << endl;
-      long time = degrees*1000;
+      long time = 1000;
       do {
         pwm1.setPWM(0,0,250);
         pwm2.setPWM(1,0,0);
