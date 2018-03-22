@@ -19,7 +19,7 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-  f.startWallFollowingLeft();
+//  f.startWallFollowingLeft();
 
   while (true){
     f.updateDists();
