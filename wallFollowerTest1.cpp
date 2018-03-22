@@ -21,6 +21,10 @@ int main (int argc, char const *argv[])
   //cout << "holdTheFuckUp" << endl;
 
   while (true){
+    f.straightRight();
+  }
+
+  while (true){
     f.updateDists();
     for (int i = 85; i < 275; i++){
       if (f.getDists(i) < 250){
