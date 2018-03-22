@@ -6,7 +6,9 @@
 using namespace WallFollower;
 using namespace std;
 
-bool currCanLeft; currCanRight; currCanForward;
+bool currCanLeft;
+bool currCanRight;
+bool currCanForward;
 
 int main (int argc, char const *argv[])
 {
@@ -21,7 +23,7 @@ int main (int argc, char const *argv[])
     f.updateDists();
     for (int i = 85; i < 265; i++){
       if (f.getDists(i) < 200){
-        cout << "a distance is less than 200. avoidance call is needed"
+        cout << "a distance is less than 200. avoidance call is needed" << endl;
 
         for (int x = 85; x < 125; x++){
           if (f.getDists(x) < 200){
