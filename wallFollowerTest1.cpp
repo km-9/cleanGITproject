@@ -24,28 +24,28 @@ int main (int argc, char const *argv[])
   while (true){
     f.updateDists();
     for (int i = 90; i < 95; i++){
-      if (f.dists(i) < 200){
+      if (f.dists[i] < 200){
         f.strafeRight();
         break;
       }
     }
 
     for (int i = 95; i < 145; i++){
-      if(f.dists(i) < 300){
+      if(f.dists[i] < 300){
         f.strafeRight();
         break;
       }
     }
 
     for (int i = 145; i < 165; i++){
-      if(f.dists(i) < 250){
+      if(f.dists[i] < 250){
         f.turnRight(45);
         break;
       }
     }
 
     for (int i = 165; i < 195; i ++){
-      if(f.dists(i) < 250){
+      if(f.dists[i] < 250){
         f.stop();
         f.reverse();
         usleep(400000);
@@ -60,21 +60,21 @@ int main (int argc, char const *argv[])
     }
 
     for (int i = 195; i < 215; i++){
-      if(f.dists(i) < 250){
+      if(f.dists[i] < 250){
         f.turnLeft(45);
         break;
       }
     }
 
     for (int i = 215; i < 265; i++){
-      if(f.dists(i) < 300){
+      if(f.dists[i] < 300){
         f.strafeLeft();
         break;
       }
     }
 
     for (int i = 265; i < 270; i ++){
-      if(f.dists(i) < 200){
+      if(f.dists[i] < 200){
         f.strafeLeft();
         break;
       }
