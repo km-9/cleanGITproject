@@ -5,6 +5,9 @@
 
 using namespace WallFollower;
 using namespace std;
+
+bool currCanLeft; currCanRight; currCanForward;
+
 int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
@@ -14,7 +17,6 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-  bool currCanLeft; currCanRight; currCanForward;
   while (true){
     f.updateDists();
     for (int i = 85; i < 265; i++){
