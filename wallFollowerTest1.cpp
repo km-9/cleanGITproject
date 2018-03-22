@@ -6,9 +6,9 @@
 using namespace WallFollower;
 using namespace std;
 
-bool currCanLeft;
-bool currCanRight;
-bool currCanForward;
+bool canLeft;
+bool canRight;
+bool canForward;
 
 int main (int argc, char const *argv[])
 {
@@ -19,66 +19,83 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-//  f.startWallFollowingLeft();
+// TODO f.startWallFollowingLeft();
 
   while (true){
     f.updateDists();
+
     for (int i = 90; i < 95; i++){
       if (f.dists[i] < 200){
         f.strafeRight();
+        canLeft = false;
         break;
       }
+      canLeft = true;
     }
 
     for (int i = 95; i < 145; i++){
       if(f.dists[i] < 300){
         f.strafeRight();
+        canLeft = false;
         break;
       }
+      canLeft = true;
     }
 
     for (int i = 145; i < 165; i++){
       if(f.dists[i] < 250){
         f.turnRight(45);
+        canLeft = false;
         break;
       }
+      canLeft = true;
     }
 
-    for (int i = 165; i < 195; i ++){
+    for (int i = 165; i < 185; i ++){
       if(f.dists[i] < 185){
         f.stop();
         f.reverse();
         usleep(500000);
-        if (f.dists[90] > 500){
+        if (canLeft){
           f.turnLeftUntilYouCant();
           break;
         }
-        else
-        f.turnRight(80);
+        else if (canRight){
+        f.turnRight(90);
         break;
+      }
+        else
+        f.turnLeft(180);
       }
     }
 
-    for (int i = 195; i < 215; i++){
+    for (int i = 185; i < 215; i++){
       if(f.dists[i] < 250){
         f.turnLeft(45);
+        canRight = false;
         break;
       }
+      canRight = true;
     }
 
     for (int i = 215; i < 265; i++){
       if(f.dists[i] < 300){
         f.strafeLeft();
+        canRight = false;
         break;
       }
+      canRight = true;
     }
 
     for (int i = 265; i < 270; i ++){
       if(f.dists[i] < 200){
         f.strafeLeft();
+        canRight = false;
         break;
       }
+      canRight = true;
     }
+  }
   }
 
   /*while (true){
