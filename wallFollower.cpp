@@ -67,14 +67,13 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 280;
-        this->min_left_dist = 280;
-        this->max_left_dist = 350;
-        this->min_right_dist = 280;
-        this->max_left_dist = 350;
+        this->min_forward_dist = 175;
+        this->min_left_dist = 175;
+        this->max_left_dist = 300;
+        this->min_right_dist = 175;
         this->pastGoLefts = new bool[10];
         this->pastGoRights = new bool[10];
-        this->avoidance_radius = 200;
+        this->avoidance_radius = 150;
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
@@ -89,9 +88,9 @@ namespace WallFollower
     int wallFollower::avoidHeadOn()
     {
       int direction = 0;
-      for (int i = 0; i < 11; i++)
+      for (int i = 1; i < 11; i++)
       {
-        if(getDists(180 + i) > 400 + (8 * abs(i))/10)
+        if(getDists(180 + i) > 250 + (8 * abs(i))/10)
         {
 
         }
@@ -145,7 +144,7 @@ namespace WallFollower
     {
       for (int i = -30; i < 31; i++)
       {
-        if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
+        if(getDists(180 + i) < getMinForwardDist() + (25 * abs(i))/30)
         {
           logfile << "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
           cout <<  "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
@@ -161,7 +160,7 @@ namespace WallFollower
     {
       for (int i = -20; i < 21; i++)
       {
-        if(getDists(180 + i) < getMinForwardDist() + (43.3 * abs(i))/30)
+        if(getDists(180 + i) < getMinForwardDist() + abs(i))
         {
           logfile << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
           cout << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
@@ -177,7 +176,7 @@ namespace WallFollower
     {
       for (int i = 0; i < 16; i++)
       {
-        if(getDists(90 + i) < getMinLeftDist() + (43.3 * abs(i))/30)
+        if(getDists(90 + i) < getMinLeftDist() + (15 * abs(i))/15)
         {
           logfile << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
           cout << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
@@ -203,7 +202,7 @@ namespace WallFollower
     {
       for (int i = 0; i < 16; i++)
       {
-        if(getDists(270 + i) < getMinRightDist() + (43.3 * abs(i))/30)
+        if(getDists(270 + i) < getMinRightDist() + (15 * abs(i))/15)
         {
           logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
           cout << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
@@ -272,7 +271,7 @@ namespace WallFollower
 
     void wallFollower::goForward()
     {
-      pwm1.setPWM(0, 0, 43.35);
+      pwm1.setPWM(0, 0, 255);
 			pwm2.setPWM(1, 0, 500);
     }
 
@@ -485,7 +484,7 @@ namespace WallFollower
     {
       for (int i = -15; i < 16; i++)
       {
-        if(getDists(90 + i) > getMaxLeftDist() + (43.3 * abs(i))/30)
+        if(getDists(90 + i) > getMaxLeftDist() + (25 * abs(i))/30)
         {
           logfile << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
           cout << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
