@@ -45,10 +45,10 @@ int main (int argc, char const *argv[])
     }
 
     for (int i = 165; i < 195; i ++){
-      if(f.dists[i] < 250){
+      if(f.dists[i] < 185){
         f.stop();
         f.reverse();
-        usleep(1000000);
+        usleep(500000);
         if (f.dists[90] > 500){
           f.turnLeftUntilYouCant();
           break;
