@@ -138,6 +138,9 @@ namespace WallFollower
           //turns the robot degrees to the left
           void turnLeft(int degrees);
 
+          //turns left until can't go left
+          void turnLeftUntilYouCant();
+
           //turns the robot degree so the right
           void turnRight(int degres);
 

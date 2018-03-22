@@ -456,6 +456,18 @@ namespace WallFollower
       return false;
     }
 
+    void wallFollower::turnLeftUntilYouCant()
+    {
+      stop();
+      logfile << "turnLeftUntilYouCant() called" << endl;
+      long time = degrees*1000;
+      do {
+        pwm1.setPWM(0,0,250);
+        pwm2.setPWM(1,0,0);
+        holdTheFuckUp(time);
+      } while(canGoLeft() && avoidLeft());
+    }
+
     int wallFollower::updateDists()
     {
       int ans;
