@@ -6,7 +6,9 @@
 using namespace WallFollower;
 using namespace std;
 
-bool currCanLeft; currCanRight; currCanForward;
+bool currCanLeft;
+bool currCanRight;
+bool currCanForward;
 
 int main (int argc, char const *argv[])
 {
@@ -20,11 +22,11 @@ int main (int argc, char const *argv[])
   while (true){
     f.updateDists();
     for (int i = 85; i < 265; i++){
-      if (f.getDists(i) < 200){
-        cout << "a distance is less than 200. avoidance call is needed"
+      if (f.getDists(i) < 250){
+        cout << "a distance is less than 250. avoidance call is needed" << endl;
 
         for (int x = 85; x < 125; x++){
-          if (f.getDists(x) < 200){
+          if (f.getDists(x) < 250){
             cout << "close object detected to left of robot at " << f.getDists(x) << endl;
             f.turnLeft(45);
             f.updateDists();
@@ -36,7 +38,7 @@ int main (int argc, char const *argv[])
         }
 
         for (int x = 125; x < 155; x++){
-          if (f.getDists(x) < 200){
+          if (f.getDists(x) < 250){
             cout << "close object detected to left-front of robot at " << f.getDists(x) << endl;
             f.strafeLeft();
             f.updateDists();
@@ -48,7 +50,7 @@ int main (int argc, char const *argv[])
         }
 
         for (int x = 155; x < 195; x++){
-          if (f.getDists(x) < 200){
+          if (f.getDists(x) < 250){
             cout << "close object detected to front of robot at " << f.getDists(x) << endl;
             f.stop();
             cout << "wheels stopped" << endl;
@@ -62,7 +64,7 @@ int main (int argc, char const *argv[])
         }
 
         for (int x = 195; x < 230; x++){
-          if (f.getDists(x) < 200){
+          if (f.getDists(x) < 250){
             cout << "close object detected to right-front of robot at " << f.getDists(x) << endl;
             f.strafeRight();
             f.updateDists();
@@ -74,7 +76,7 @@ int main (int argc, char const *argv[])
         }
 
         for (int x = 230; x < 270; x++){
-          if (f.getDists(x) < 200){
+          if (f.getDists(x) < 250){
             cout << "close object detected to right of robot at " << f.getDists(x) << endl;
             f.turnRight(45);
             f.updateDists();
