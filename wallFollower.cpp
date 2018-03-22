@@ -394,7 +394,7 @@ namespace WallFollower
               cout << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               cout << "strafeLeft called" << endl;
               strafeLeft();
-              while (!avoidRight() && !avoidLeft())
+              while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
               {
                 updateDists();
               }
@@ -407,7 +407,7 @@ namespace WallFollower
             cout << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             cout << "strafeRight called" << endl;
             strafeRight();
-            while (!avoidRight() && !avoidLeft())
+            while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
             {
               updateDists();
             }
@@ -420,7 +420,7 @@ namespace WallFollower
             cout << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
             cout << "goForward called" << endl;
             goForward();
-            while (!avoidRight() && !avoidLeft())
+            while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
             {
               updateDists();
 
