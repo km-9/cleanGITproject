@@ -294,7 +294,7 @@ namespace WallFollower
 
     void wallFollower::reverse()
     {
-      pwm1.setPWM(0, 0, 120);
+      pwm1.setPWM(0, 0, 55);
 			pwm2.setPWM(1, 0, 300);
     }
 
