@@ -349,12 +349,18 @@ namespace WallFollower
           if (avoidHeadOn() < 0)
           {
             strafeLeft();
-            pause(10000);
+            while (avoidHeadOn() < 0)
+            {
+              updateDists()
+            }
           }
           else
           {
             strafeRight();
-            pause(10000);
+            while (avoidHeadOn() > 0)
+            {
+              updateDists()
+            }
           }
           goto UPDATE;
         }
