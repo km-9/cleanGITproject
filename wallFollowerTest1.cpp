@@ -19,8 +19,8 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-
-  while (true){
+  f.startWallFollowingLeft();
+  /*while (true){
     f.strafeRight();
   }
 
