@@ -90,7 +90,7 @@ namespace WallFollower
       int direction = 0;
       for (int i = 1; i < 11; i++)
       {
-        if(getDists(180 + i) > 250 + (8 * abs(i))/10)
+        if(getDists(180 + i) > 400 + (8 * abs(i))/10)
         {
 
         }
@@ -348,19 +348,11 @@ namespace WallFollower
         {
           if (avoidHeadOn() < 0)
           {
-            strafeLeft();
-            while (avoidHeadOn() < 0)
-            {
-              updateDists();
-            }
+            turnLeft(30);
           }
           else
           {
-            strafeRight();
-            while (avoidHeadOn() > 0)
-            {
-              updateDists();
-            }
+            turnRight(30);
           }
           goto UPDATE;
         }
