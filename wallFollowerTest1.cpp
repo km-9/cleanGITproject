@@ -49,7 +49,7 @@ int main (int argc, char const *argv[])
         f.stop();
         f.reverse();
         usleep(400000);
-        if (f.dists(90) < 500){
+        if (f.dists[90] < 500){
           f.turnLeftUntilYouCant();
           break;
         }
