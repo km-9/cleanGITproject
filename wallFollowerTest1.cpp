@@ -30,25 +30,25 @@ int main (int argc, char const *argv[])
         for (int x = 85; x < 125; x++){
           if (f.getDists(x) < 250){
             cout << "close object detected to left of robot at " << f.getDists(x) << endl;
-            f.turnLeft(45);
+            f.turnRight(45);
             f.updateDists();
-            currCanLeft = false;
+            currCanRight = false;
             break;
           }
           else
-          currCanLeft = true;
+          currCanRight = true;
         }
 
         for (int x = 125; x < 155; x++){
           if (f.getDists(x) < 250){
             cout << "close object detected to left-front of robot at " << f.getDists(x) << endl;
-            f.strafeLeft();
+            f.strafeRight();
             f.updateDists();
-            currCanLeft = false;
+            currCanRight = false;
             break;
           }
           else
-          currCanLeft = true;
+          currCanRight = true;
         }
 
         for (int x = 155; x < 195; x++){
@@ -68,10 +68,10 @@ int main (int argc, char const *argv[])
         for (int x = 195; x < 230; x++){
           if (f.getDists(x) < 250){
             cout << "close object detected to right-front of robot at " << f.getDists(x) << endl;
-            f.strafeRight();
+            f.strafeLeft();
             f.updateDists();
             break;
-            currCanRight = false;
+            currCanLeft = false;
           }
           else
           currCanRight = true;
@@ -80,13 +80,13 @@ int main (int argc, char const *argv[])
         for (int x = 230; x < 270; x++){
           if (f.getDists(x) < 250){
             cout << "close object detected to right of robot at " << f.getDists(x) << endl;
-            f.turnRight(45);
+            f.turnLeft(45);
             f.updateDists();
-            currCanRight = false;
+            currCanLeft = false;
             break;
           }
           else
-          currCanRight = true;
+          currCanLeft = true;
         }
 
       }
