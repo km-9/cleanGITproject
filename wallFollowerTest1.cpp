@@ -20,6 +20,67 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
   f.startWallFollowingLeft();
+
+  while (true){
+    f.updateDists();
+    for (int i = 90; i < 95; i++){
+      if (f.dist(i) < 200){
+        f.strafeRight();
+        break;
+      }
+    }
+
+    for (int i = 95; i < 145; i++){
+      if(f.dist(i) < 300){
+        f.strafeRight();
+        break;
+      }
+    }
+
+    for (int i = 145; i < 165; i++){
+      if(f.dist(i) < 250){
+        f.turnRight(45);
+        break;
+      }
+    }
+
+    for (int i = 165; i < 195; i ++){
+      if(f.dist(i) < 250){
+        f.stop();
+        f.reverse();
+        usleep(400000);
+        if (f.dist(90) < 500){
+          f.turnLeftUntilYouCant();
+          break;
+        }
+        else
+        f.turnRight(80);
+        break;
+      }
+    }
+
+    for (int i = 195; i < 215; i++){
+      if(f.dist(i) < 250){
+        f.turnLeft(45);
+        break;
+      }
+    }
+
+    for (int i = 215; i < 265; i++){
+      if(f.dist(i) < 300){
+        f.strafeLeft();
+        break;
+      }
+    }
+
+    for (int i = 265; i < 270; i ++){
+      if(f.dist(i) < 200){
+        f.strafeLeft();
+        break;
+      }
+    }
+  }
+
   /*while (true){
     f.strafeRight();
   }

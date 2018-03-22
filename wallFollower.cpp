@@ -343,7 +343,7 @@ namespace WallFollower
           pause(500000);
           turnLeft(180);
         };
-
+  
         if (avoidHeadOn() != 0)
         {
           if (avoidHeadOn() < 0)
