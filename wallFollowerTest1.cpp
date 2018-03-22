@@ -96,7 +96,6 @@ int main (int argc, char const *argv[])
       canRight = true;
     }
   }
-  }
 
   /*while (true){
     f.strafeRight();
