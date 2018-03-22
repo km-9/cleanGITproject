@@ -351,7 +351,7 @@ namespace WallFollower
             strafeLeft();
             while (avoidHeadOn() < 0)
             {
-              updateDists()
+              updateDists();
             }
           }
           else
@@ -359,7 +359,7 @@ namespace WallFollower
             strafeRight();
             while (avoidHeadOn() > 0)
             {
-              updateDists()
+              updateDists();
             }
           }
           goto UPDATE;
