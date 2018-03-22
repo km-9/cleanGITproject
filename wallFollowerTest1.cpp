@@ -21,7 +21,7 @@ int main (int argc, char const *argv[])
   //cout << "holdTheFuckUp" << endl;
 
   while (true){
-    f.straightRight();
+    f.strafeRight();
   }
 
   while (true){
