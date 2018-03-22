@@ -14,16 +14,19 @@ int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
   wallFollower f = wallFollower();
-
-  f.startWallFollowingLeft();
   //cout << "constructor finished" << endl;
   //f.goForward();
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-  /*while (true){
+
+  while (true){
+    f.strafeRight();
+  }
+
+  while (true){
     f.updateDists();
-    for (int i = 85; i < 265; i++){
+    for (int i = 85; i < 275; i++){
       if (f.getDists(i) < 250){
         cout << "a distance is less than 250. avoidance call is needed" << endl;
 
@@ -77,7 +80,7 @@ int main (int argc, char const *argv[])
           currCanRight = true;
         }
 
-        for (int x = 230; x < 270; x++){
+        for (int x = 230; x < 275; x++){
           if (f.getDists(x) < 250){
             cout << "close object detected to right of robot at " << f.getDists(x) << endl;
             f.turnLeft(45);
