@@ -48,8 +48,8 @@ int main (int argc, char const *argv[])
       if(f.dists[i] < 250){
         f.stop();
         f.reverse();
-        usleep(400000);
-        if (f.dists[90] < 500){
+        usleep(1000000);
+        if (f.dists[90] > 500){
           f.turnLeftUntilYouCant();
           break;
         }
