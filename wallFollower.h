@@ -56,6 +56,9 @@ namespace WallFollower
           //constructor
           wallFollower();
 
+          //dka;hghd
+          int avoidHeadOn();
+
           //scans front Left quadrant for obstacles
           bool avoidLeft();
 
