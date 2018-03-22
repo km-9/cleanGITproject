@@ -435,7 +435,7 @@ namespace WallFollower
       logfile << "in strafeRight" << endl;
       cout << "in strafeRight" << endl;
       //same idea with turnLeft()
-      pwm1.setPWM(0,0,315);
+      pwm1.setPWM(0,0,290);
       pwm2.setPWM(1,0,400);
     }
 
