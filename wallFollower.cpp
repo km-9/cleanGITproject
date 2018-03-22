@@ -326,14 +326,9 @@ namespace WallFollower
         {
           loopCounter = 0;
           strafeRight();
-          int i = 0;
           while (avoidLeft())
           {
-            if (i % 16667 == 0)
-            {
-              updateDists();
-            }
-            i++;
+            updateDists();
           }
           goto UPDATE;
         }
@@ -341,14 +336,9 @@ namespace WallFollower
         {
           loopCounter = 0;
           strafeLeft();
-          int i = 0;
           while (avoidRight() && !avoidLeft())
           {
-            if (i % 16667 == 0)
-            {
-              updateDists();
-            }
-            i++;
+            updateDists();
           }
           goto UPDATE;
         }
@@ -362,14 +352,9 @@ namespace WallFollower
               cout << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               cout << "strafeLeft called" << endl;
               strafeLeft();
-              int i = 0;
               while (!avoidRight() && !avoidLeft())
               {
-                if (i % 16667 == 0)
-                {
-                  updateDists();
-                }
-                i++;
+                updateDists();
               }
               goto UPDATE;
           }
@@ -380,14 +365,9 @@ namespace WallFollower
             cout << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             cout << "strafeRight called" << endl;
             strafeRight();
-            int i = 0;
             while (!avoidRight() && !avoidLeft())
             {
-              if (i % 16667 == 0)
-              {
-                updateDists();
-              }
-              i++;
+              updateDists();
             }
             goto UPDATE;
           }
@@ -398,14 +378,10 @@ namespace WallFollower
             cout << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
             cout << "goForward called" << endl;
             goForward();
-            int i = 0;
             while (!avoidRight() && !avoidLeft())
             {
-              if (i % 16667 == 0)
-              {
-                updateDists();
-              }
-              i++;
+              updateDists();
+
             }
             goto UPDATE;
           }

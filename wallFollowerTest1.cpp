@@ -14,12 +14,14 @@ int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
   wallFollower f = wallFollower();
+
+  f.startWallFollowingLeft();
   //cout << "constructor finished" << endl;
   //f.goForward();
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-  while (true){
+  /*while (true){
     f.updateDists();
     for (int i = 85; i < 265; i++){
       if (f.getDists(i) < 250){
