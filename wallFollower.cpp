@@ -67,14 +67,14 @@ namespace WallFollower
       	while(0);
         cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
-        this->min_forward_dist = 350;
-        this->min_left_dist = 350;
-        this->max_left_dist = 450;
-        this->min_right_dist = 350;
-        this->max_left_dist = 450;
+        this->min_forward_dist = 280;
+        this->min_left_dist = 280;
+        this->max_left_dist = 350;
+        this->min_right_dist = 280;
+        this->max_left_dist = 350;
         this->pastGoLefts = new bool[10];
         this->pastGoRights = new bool[10];
-        this->avoidance_radius = 300;
+        this->avoidance_radius = 200;
         for (int i = 0; i < 10; i++)
         {
           pastGoLefts[i] = false;
@@ -84,6 +84,29 @@ namespace WallFollower
         updateDists();
 
         this->logfile.open("WallFollowerRun.log");
+    }
+
+    int wallFollower::avoidHeadOn()
+    {
+      int direction = 0;
+      for (int i = 0; i < 11; i++)
+      {
+        if(getDists(180 + i) > 400 + (8 * abs(i))/10)
+        {
+
+        }
+        else if (getDists(180 + i) > getDists(180 - i))
+        {
+          direction++;
+        }
+        else
+        {
+          direction--;
+        }
+      }
+      logfile << "aviodHeadOn has determined direction = " << direction << endl;
+      cout << "avoidHeadOn has determined object = " << direction << endl;
+      return direction;
     }
 
     bool wallFollower::avoidLeft()
@@ -322,7 +345,21 @@ namespace WallFollower
           turnLeft(180);
         };
 
-        if (avoidLeft())
+        if (avoidHeadOn() != 0)
+        {
+          if (avoidHeadOn() < 0)
+          {
+            strafeLeft();
+            pause(10000);
+          }
+          else
+          {
+            strafeRight();
+            pause(10000);
+          }
+          goto UPDATE;
+        }
+        else if (avoidLeft())
         {
           loopCounter = 0;
           strafeRight();
