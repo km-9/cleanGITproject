@@ -45,9 +45,6 @@ while (true){
         canLeft = false;
         break;
       }
-      if(f.dists[95] > 300){
-        f.strafeLeft();
-      }
       else{
         f.goForward();
       }
@@ -56,15 +53,15 @@ while (true){
     f.updateDists();
     //check front-left
     for (int i = 115; i < 145; i++){//115 used to be 145, 145 used to be 165
-      if(f.dists[i] < 250){
-        f.turnRight(45);
+      if(f.dists[i] < 300){
+        f.turnRight(15);
+        f.strafeRight();
         canLeft = false;
         break;
       }
-      else if (f.dists[i] ){
-
+      else if (f.dists[i] > 300){
+        f.goForward();
       }
-      canLeft = true;
     }
 
     f.updateDists();
