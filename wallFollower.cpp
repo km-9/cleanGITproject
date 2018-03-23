@@ -554,4 +554,112 @@ namespace WallFollower
       pwm2.setPWM(1,0,500);
       usleep(time);
     }
+
+    //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
+    /*
+    The concept here is to use "sectors" of lidar data to make decisions. With only 10 sectors we have over 1000 options (1024).
+    So obviously the less complex we make sectors the better. Some situations can be ignored (anytime sRFront5 or sLFront5 are short)
+    which helps cut back on the massive number of cases to deal with. If we can get the relevant cases distilled out and implimented
+    we should be able to use sectors to determine the robots relative position to the closest object. Which means smarter decisions
+    and smoother/faster/better navigation.
+    One nice thing is that we are really only mirroring the left and right conditions. Which means we cut even our relevant cases in
+    half and just change "left" to "right". (512 is still too many, so learning to filter and ignore bad cases is crucial)
+    */
+    double sLeft3, sLeft37, sLeft30, sLFront15, sLFront5, sRFront5, sRFront15, sRight30, sRight37, sRight3;
+    /*
+    the doubles will hold the average distance of the sector. we can make partial dicisions with this data
+    */
+    bool sLeft3LR, sLeft37LR, sLeft30LR, sLFront15LR, sLFront5LR, sRFront5LR, sRFront15LR, sRight30LR, sRight37LR, sRight3LR;
+    /*
+    the bools allow you to know which general orientation the robot has. If the bool for a sector is true, that means that the robot is angled TOWARDS the side of the sector.
+    ie: sLeft3LR == true, means that the robot is oriented at least slightly to the left. sRight3LR means that the robot is angle to the right. This can be used to easily
+    orient the robot, but also to decide between going straight, arcing, turning, or backing up. If the robot is angled right and has a sRFront5 value that is too low we know
+    that the robot is slightly skewed to the right and facing a wall in front of it. Turning/Spinning left is the best option.
+    */
+    /*<-DELETE THIS LINE TO RUN CODE
+    void wallFollower::lidarSectorAssigner(){
+      updateDists();
+      for (int i = 89; i < 93; i++){
+        ///////////////////////////////////
+        if (dists[89] > dists[92]){
+          sLeft3LR = true;
+        }
+        sLeft3 = sLeft3 + dists[i];
+      }
+      sLeft3 = sLeft3/3;
+      /////////////////////////////////////
+      for (int i = 93; i < 130; i++){
+        if (dists[93] > dists[129]){
+          sLeft37LR = true;
+        }
+        sLeft37 = sLeft37 + dists[i];
+      }
+      sLeft37 = sLeft37/37;
+      /////////////////////////////////////
+      for (int i = 130; i < 160: i++){
+        if (dists[130] > dists[159]){
+          sLeft30LR = true;
+        }
+        sLeft30 = sLeft30 + dists[i];
+      }
+      sLeft30 = sLeft30/30;
+      /////////////////////////////////////
+      for (int i = 160; i < 175; i++){
+        if (dists[160] > dists[174]){
+          sLFront15LR = true;
+        }
+        sLFront15 = sLFront15 + dists[i];
+      }
+      sLFront15 = sLFront15/15;
+      /////////////////////////////////////
+      for (int i = 175; i < 180){
+        if (dists[175] > dists[179]){
+          sLFront5LR = true;
+        }
+        sLFront5 = sLFront5 + dists[i];
+      }
+      sLFront5 = sLFront5/5;
+      /////////////////////////////////////
+      for (int i = 180; i < 185; i++){
+        if (dists[180] < dists[185]){
+          sRFront5LR = true;
+        }
+        sRFront5 = sRFront5 + dists[i];
+      }
+      sRFront5 = sRFront5/5;
+      /////////////////////////////////////
+      for (int i = 185; i < 200; i++){
+        if (dists[185] < dists[200]){
+          sRFront15LR = true;
+        }
+        sRFront15 = sRFront15 + dists[i];
+      }
+      sRFront15 = sRFront15/15;
+      //////////////////////////////////////
+      for (int i = 200; i < 230; i++){
+        if (dists[200] < dists[230]){
+          sRight30LR = true;
+        }
+        sRight30 = sRight30 + dists[i];
+      }
+      sRight30 = sRight30/30;
+      /////////////////////////////////////
+      for (int i = 230; i < 267; i++){
+        if (dists[230] < dists[267]){
+          sRight37LR = true;
+        }
+        sRight37 = sRight37 + dists[i];
+      }
+      sRight37 = sRight37/37;
+      /////////////////////////////////////
+      for (int i = 267; i < 270; i++){
+        if (dists[267] < dists[270]){
+          sRight3LR = true;
+        }
+        sRight3 = sRight3 + dists[i];
+      }
+      sRight3 = sRight3/3;
+      /////////////////////////////////////
+    }
+    //*******************************************************end of expirement******************************************************/
 }
