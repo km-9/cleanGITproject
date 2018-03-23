@@ -30,18 +30,20 @@ int main (int argc, char const *argv[])
         canLeft = false;
         break;
       }
+      f.strafeLeftToAlignWithWall();
       canLeft = true;
     }
-
+    f.updateDists();
     for (int i = 95; i < 145; i++){
       if(f.dists[i] < 300){
         f.strafeRight();
         canLeft = false;
         break;
       }
+      f.strafeLeftToAlignWithWall();
       canLeft = true;
     }
-
+    f.updateDists();
     for (int i = 145; i < 165; i++){
       if(f.dists[i] < 250){
         f.turnRight(45);
@@ -50,9 +52,9 @@ int main (int argc, char const *argv[])
       }
       canLeft = true;
     }
-
+    f.updateDists();
     for (int i = 165; i < 185; i ++){
-      if(f.dists[i] < 185){
+      if(f.dists[i] < 150){
         f.stop();
         f.reverse();
         usleep(500000);
@@ -68,7 +70,7 @@ int main (int argc, char const *argv[])
         f.turnLeft(180);
       }
     }
-
+    f.updateDists();
     for (int i = 185; i < 215; i++){
       if(f.dists[i] < 250){
         f.turnLeft(45);
@@ -77,18 +79,18 @@ int main (int argc, char const *argv[])
       }
       canRight = true;
     }
-
+    f.updateDists();
     for (int i = 215; i < 265; i++){
-      if(f.dists[i] < 300){
+      if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
         break;
       }
       canRight = true;
     }
-
+    f.updateDists();
     for (int i = 265; i < 270; i ++){
-      if(f.dists[i] < 200){
+      if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
         break;
@@ -96,6 +98,58 @@ int main (int argc, char const *argv[])
       canRight = true;
     }
   }
+
+  /*
+  while (true){
+    f.updateDists();
+
+    for (int i = 178; i < 182; i ++){
+      if(f.dists[i] < 200){
+        f.stop();
+        while (f.dists[i] < 250){
+          f.reverse();
+          f.updateDists();
+        }
+        if (f.dists[90] > 500){
+          f.turnLeft(80);
+        }
+        if (f.dists[270]){
+          f.turnRight(80);
+        }
+      }
+    }
+
+    for (int i = )
+
+    for (int i = 90; i < 95; i++){
+      if (f.dists[i] < 200 && f.dists[i+82] > 250){
+        f.strafeRight();
+        canLeft = false;
+        break;
+      }
+      f.strafeLeftToAlignWithWall();
+      canLeft = true;
+    }
+
+    for (int i = 95; i < 145; i++){
+      if(f.dists[i] < 300 && f.dists[i] > 300){
+        f.strafeRight();
+        canLeft = false;
+        break
+      }
+      f.strafeLeftToAlignWithWall();
+      canLeft = true;
+    }
+
+    for (int i = 145; i < 178; i++){
+      if(f.dists[i] < 250){
+        f.turnRight(45);
+        canLeft = false;
+        break;
+      }
+      canLeft = true;
+    }
+  */
 
   /*while (true){
     f.strafeRight();
