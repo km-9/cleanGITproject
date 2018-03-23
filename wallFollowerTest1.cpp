@@ -47,6 +47,7 @@ while (true){
       else{
         f.goForward();
         f.strafeLeft();
+        f.goForward();
       }
     }
 
@@ -82,8 +83,7 @@ while (true){
         f.turnRight(80);
       }
         else
-        f.turnLeft(180);
-        f.goForward();
+        f.turnRight(180);
       }
     }
 
@@ -94,6 +94,7 @@ while (true){
       if(f.dists[i] < 250){
         f.turnLeft(45);
         canRight = false;
+        break;
       }
       else
       canRight = true;
