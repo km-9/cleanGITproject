@@ -34,7 +34,7 @@ while (true){
         f.strafeLeft();
         f.goForward();
       }
-      f.gotForward();
+      f.goForward();
     }
 
     f.updateDists();
