@@ -24,13 +24,13 @@ int main (int argc, char const *argv[])
 while (true){
     f.updateDists();
     //check immediate left
-    for (int i = 90; i < 95; i++){
+    for (int i = 89; i < 93; i++){
       if (f.dists[i] < 200){
         f.strafeRight();
         canLeft = false;
         break;
       }
-      if (f.dists[90] > 250){
+      if (f.dists[89] > 250){
         f.strafeLeft();
         f.goForward();
       }
@@ -39,7 +39,7 @@ while (true){
 
     f.updateDists();
     //check forward left
-    for (int i = 95; i < 115; i++){ //115 used to be 145
+    for (int i = 93; i < 165; i++){
       if(f.dists[i] < 250){
         f.strafeRight();
         canLeft = false;
@@ -51,8 +51,9 @@ while (true){
     }
 
     f.updateDists();
-    //check front-left
-    for (int i = 115; i < 145; i++){//115 used to be 145, 145 used to be 165
+  /*
+  //check front-left
+    for (int i = 145; i < 165; i++){
       if(f.dists[i] < 300){
         f.turnRight(15);
         f.strafeRight();
@@ -62,12 +63,12 @@ while (true){
       else if (f.dists[i] > 300){
         f.goForward();
       }
-    }
+    }*/
 
     f.updateDists();
 
     //check front
-    for (int i = 145; i < 205; i ++){ //145 used to be 165, 205 used to be 185
+    for (int i = 165; i < 185; i ++){
       if(f.dists[i] < 150){
         f.stop();
         while (f.dists[180] < 250){
@@ -90,7 +91,7 @@ while (true){
     f.updateDists();
 
     //check front-right
-    for (int i = 205; i < 235; i++){ //205 used to be 185, 235 used to be 215
+    for (int i = 185; i < 215; i++){
       if(f.dists[i] < 250){
         f.turnLeft(45);
         canRight = false;
@@ -102,7 +103,7 @@ while (true){
     f.updateDists();
 
     //check forward right
-    for (int i = 235; i < 265; i++){//235 used to be 215
+    for (int i = 267; i < 215; i++){
       if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
@@ -114,7 +115,7 @@ while (true){
     f.updateDists();
 
     //check immediate right
-    for (int i = 265; i < 270; i ++){
+    for (int i = 267; i < 270; i ++){
       if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
