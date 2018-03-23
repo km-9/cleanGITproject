@@ -32,15 +32,14 @@ while (true){
       }
       if (f.dists[90] > 250){
         f.strafeLeft();
-      }
-      else{
         f.goForward();
       }
+      f.gotForward();
     }
 
     f.updateDists();
     //check forward left
-    for (int i = 95; i < 145; i++){
+    for (int i = 95; i < 115; i++){ //115 used to be 145
       if(f.dists[i] < 250){
         f.strafeRight();
         canLeft = false;
@@ -56,7 +55,7 @@ while (true){
 
     f.updateDists();
     //check front-left
-    for (int i = 145; i < 165; i++){
+    for (int i = 115; i < 145; i++){//115 used to be 145, 145 used to be 165
       if(f.dists[i] < 250){
         f.turnRight(45);
         canLeft = false;
@@ -71,17 +70,19 @@ while (true){
     f.updateDists();
 
     //check front
-    for (int i = 165; i < 185; i ++){
+    for (int i = 145; i < 205; i ++){ //145 used to be 165, 205 used to be 185
       if(f.dists[i] < 150){
         f.stop();
-        f.reverse();
-        usleep(500000);
+        while (f.dists[180] < 250){
+          f.reverse();
+          f.updateDists();
+        }
         if (canLeft){
           f.turnLeftUntilYouCant();
           break;
         }
         else if (canRight){
-        f.turnRight(90);
+        f.turnRight(80);
         break;
       }
         else
@@ -92,7 +93,7 @@ while (true){
     f.updateDists();
 
     //check front-right
-    for (int i = 185; i < 215; i++){
+    for (int i = 205; i < 235; i++){ //205 used to be 185, 235 used to be 215
       if(f.dists[i] < 250){
         f.turnLeft(45);
         canRight = false;
@@ -104,7 +105,7 @@ while (true){
     f.updateDists();
 
     //check forward right
-    for (int i = 215; i < 265; i++){
+    for (int i = 235; i < 265; i++){//235 used to be 215
       if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
