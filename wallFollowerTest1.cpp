@@ -21,67 +21,7 @@ int main (int argc, char const *argv[])
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
 
-  while(true){
-    f.updateDists();
-    for (int i = 175; i < 185; i++){
-      f.updateDists();
-      if (f.dists[i] > 250 && f.dists[90] > 200 && f.dists[90] < 275){
-        //aligns with wall if leaning left
-        while (f.dists[90] > f.dists[95]){
-          f.updateDists();
-          f.strafeRightToAlignWithWall();
-          usleep(1200);
-        }
-        //aligns with wall if leaning left
-        while (f.dists[90] > f.dists[85]){
-          f.updateDists();
-          f.strafeLeftToAlignWithWall();
-          usleep(12000);
-        }
-      f.goForward();
-     }
-     else if (f.dists[i] < 250){
-       while (f.dists[180] < 200){
-         f.updateDists();
-         f.reverse();
-         usleep(25000);
-       }
-       if (f.dists[180] > 200 && f.dists[91] > 400){
-         f.turnLeft(80);
-       }
-       if (f.dists[180] > 200 && f.dists[169] > 400 && f.dists[91] < 400){
-         f.turnRight(80);
-       }
-       else
-        f.turnRight(160);
-     }
-     if (f.dists[270] < 250){
-       f.strafeLeft();
-     }
-   }
- }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  while (true){
+while (true){
     f.updateDists();
     //check immediate left
     for (int i = 90; i < 95; i++){
