@@ -46,6 +46,7 @@ while (true){
       }
       else{
         f.goForward();
+        f.strafeLeft();
       }
     }
 
@@ -75,13 +76,14 @@ while (true){
           f.updateDists();
         }
         if (canLeft){
-          f.turnLeftUntilYouCant();
+          f.turnLeft(80);
         }
         else if (canRight){
         f.turnRight(80);
       }
         else
         f.turnLeft(180);
+        f.goForward();
       }
     }
 
