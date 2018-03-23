@@ -29,13 +29,13 @@ int main (int argc, char const *argv[])
         //aligns with wall if leaning left
         while (f.dists[90] > f.dists[95]){
           f.updateDists();
-          strafeRightToAlignWithWall();
+          f.strafeRightToAlignWithWall();
           usleep(1200);
         }
         //aligns with wall if leaning left
         while (f.dists[90] > f.dists[85]){
           f.updateDists();
-          strafeLeftToAlignWithWall();
+          f.strafeLeftToAlignWithWall();
           usleep(12000);
         }
       f.goForward();
@@ -56,9 +56,10 @@ int main (int argc, char const *argv[])
         f.turnRight(160);
      }
      if (f.dists[270] < 250){
-       strafeLeft();
+       f.strafeLeft();
      }
-  }
+   }
+ }
 
 
 
