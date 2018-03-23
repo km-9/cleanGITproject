@@ -23,36 +23,54 @@ int main (int argc, char const *argv[])
 
   while (true){
     f.updateDists();
-
+    //check immediate left
     for (int i = 90; i < 95; i++){
       if (f.dists[i] < 200){
         f.strafeRight();
         canLeft = false;
         break;
       }
-      f.strafeLeftToAlignWithWall();
-      canLeft = true;
+      if (f.dists[90] > 250){
+        f.strafeLeft();
+      }
+      else{
+        f.goForward();
+      }
     }
+
     f.updateDists();
+    //check forward left
     for (int i = 95; i < 145; i++){
-      if(f.dists[i] < 300){
+      if(f.dists[i] < 250){
         f.strafeRight();
         canLeft = false;
         break;
       }
-      f.strafeLeftToAlignWithWall();
-      canLeft = true;
+      if(f.dists[95] > 300){
+        f.strafeLeft();
+      }
+      else{
+        f.goForward();
+      }
     }
+
     f.updateDists();
+    //check front-left
     for (int i = 145; i < 165; i++){
       if(f.dists[i] < 250){
         f.turnRight(45);
         canLeft = false;
         break;
       }
+      else if (f.dists[i] ){
+
+      }
       canLeft = true;
     }
+
     f.updateDists();
+
+    //check front
     for (int i = 165; i < 185; i ++){
       if(f.dists[i] < 150){
         f.stop();
@@ -70,7 +88,10 @@ int main (int argc, char const *argv[])
         f.turnLeft(180);
       }
     }
+
     f.updateDists();
+
+    //check front-right
     for (int i = 185; i < 215; i++){
       if(f.dists[i] < 250){
         f.turnLeft(45);
@@ -79,7 +100,10 @@ int main (int argc, char const *argv[])
       }
       canRight = true;
     }
+
     f.updateDists();
+
+    //check forward right
     for (int i = 215; i < 265; i++){
       if(f.dists[i] < 150){
         f.strafeLeft();
@@ -88,7 +112,10 @@ int main (int argc, char const *argv[])
       }
       canRight = true;
     }
+
     f.updateDists();
+
+    //check immediate right
     for (int i = 265; i < 270; i ++){
       if(f.dists[i] < 150){
         f.strafeLeft();
