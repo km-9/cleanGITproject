@@ -28,9 +28,8 @@ while (true){
       if (f.dists[i] < 200){
         f.strafeRight();
         canLeft = false;
-        break;
       }
-      if (f.dists[89] > 250){
+      else if (f.dists[89] > 250){
         f.strafeLeft();
         f.goForward();
       }
@@ -43,7 +42,6 @@ while (true){
       if(f.dists[i] < 250){
         f.strafeRight();
         canLeft = false;
-        break;
       }
       else{
         f.goForward();
@@ -77,11 +75,9 @@ while (true){
         }
         if (canLeft){
           f.turnLeftUntilYouCant();
-          break;
         }
         else if (canRight){
         f.turnRight(80);
-        break;
       }
         else
         f.turnLeft(180);
@@ -95,8 +91,8 @@ while (true){
       if(f.dists[i] < 250){
         f.turnLeft(45);
         canRight = false;
-        break;
       }
+      else
       canRight = true;
     }
 
@@ -107,8 +103,8 @@ while (true){
       if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
-        break;
       }
+      else
       canRight = true;
     }
 
@@ -119,8 +115,8 @@ while (true){
       if(f.dists[i] < 150){
         f.strafeLeft();
         canRight = false;
-        break;
       }
+      else
       canRight = true;
     }
   }
