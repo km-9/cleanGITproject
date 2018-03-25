@@ -559,7 +559,6 @@ namespace WallFollower
     {
       pwm1.setPWM(0,0,335);
       pwm2.setPWM(1,0,335);
-      usleep(1425000);
     }
 
     //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
@@ -696,8 +695,10 @@ namespace WallFollower
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if(fAvg < lAvg) {
-        turnRightInPlace();
+      if(fAvg < 450) {
+        while(getDists(80) < getDists(90) < getDists(100)) {
+          turnRightInPlace();
+        }
         stop();
       }
       //if (fAvg < 450){
