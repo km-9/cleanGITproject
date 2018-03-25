@@ -86,7 +86,8 @@ while (true){
       if(f.dists[i] < 300){
         f.stop();
         while (f.dists[i] < 300){
-          f.reverse();
+          //f.reverse();
+          f.stop();
           f.updateDists();
         }
         if (canLeft){
