@@ -134,7 +134,7 @@ namespace WallFollower
 
           void swayToLeft();
 
-          void swayToRIght();
+          void swayToRight();
 
           //calls reverse()
           void takeItBackNowYall();

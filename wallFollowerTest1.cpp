@@ -38,7 +38,7 @@ while(true){
     f.swayToLeft();
   }
   if (avg < 250){
-    f.swayToRIght();
+    f.swayToRight();
   }
   if (avg == 250){
     f.goForward();
