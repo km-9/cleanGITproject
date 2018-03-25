@@ -686,9 +686,9 @@ namespace WallFollower
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if (fAvg < 250){
+      if (fAvg < 450){
         stop();
-        if (lAvg > 350){
+        if (lAvg > 450){
           turnLeft(80);
         }
         else
