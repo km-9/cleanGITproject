@@ -108,7 +108,7 @@ namespace WallFollower
          void holdTheFuckUp(int units);
 
          //majority of past canGoLeft values were false, but we now canGoLeft()
-         bool leftPathAppeared(double avg);
+         bool leftPathAppeared();
 
          void leftWallFollower(double avg);
 
