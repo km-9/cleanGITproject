@@ -21,28 +21,23 @@ int main (int argc, char const *argv[])
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
 
-while(0){
-  usleep(10000);
+while(true){
   f.updateDists();
-  double avg = 0;
+  //Left Vals
+  double leftAvg = 0;
   for (int i = 89; i < 93; i++){
-    avg = avg + f.dists[i];
+    leftAvg = leftAvg + f.dists[i];
   }
-  avg = avg/3;
-  while (f.dists[180] < 250){
-    f.stop();
-    f.updateDists();
-    usleep(10000);
+  leftAvg = leftAvg/3;
+  //Front Vals
+  double frontAvg = 0;
+  for (int i = 175; i < 185; i++){
+    frontAvg = frontAvg + f.dists[i];
   }
-  if (avg > 250){
-    f.swayToLeft();
-  }
-  if (avg < 250){
-    f.swayToRight();
-  }
-  if (avg == 250){
-    f.goForward();
-  }
+  frontAvg = frontAvg/10;
+
+  f.frontHandler(frontAvg, leftAvg);
+  f.leftWallFollower(leftAvg);
 }
 
 //Closes thing to working

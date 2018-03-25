@@ -667,9 +667,32 @@ namespace WallFollower
       pwm1.setPWM(0,0,150);
       pwm2.setPWM(1,0,375);
     }
-    //255, 500
+
     void wallFollower::swayToRight(){
       pwm1.setPWM(0,0,255);
       pwm2.setPWM(1,0,500);
+    }
+    //Left Wall Follower
+    void wallFollower::leftWallFollower(double avg){
+      if (avg > 250){
+        swayToLeft();
+      }
+      if (avg < 250){
+        swayToRight();
+      }
+      if (avg == 250){
+        goForward();
+      }
+    }
+    //Front Wall Handler
+    void wallFollower::frontHandler(double fAvg, double lAvg){
+      if (fAvg < 250){
+        stop();
+        if (lAvg > 350){
+          turnLeft(80);
+        }
+        else
+          turnRight(80);
+      }
     }
 }
