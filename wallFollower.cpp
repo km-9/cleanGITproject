@@ -698,6 +698,7 @@ namespace WallFollower
       if(fAvg < 450) {
         while(getDists(80) < getDists(90) < getDists(100)) {
           turnRightInPlace();
+          updateDists();
         }
         stop();
       }
