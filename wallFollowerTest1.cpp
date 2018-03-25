@@ -24,10 +24,10 @@ int main (int argc, char const *argv[])
 while(true){
   f.updateDists();
   double avg = 0;
-  for int i = 89; i < 93; i++){
+  for (int i = 89; i < 93; i++){
     avg = avg + f.dists[i];
   }
-  avg = abg/3;
+  avg = avg/3;
   while (f.dists[180] < 200){
     f.stop();
     f.updateDists();
