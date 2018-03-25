@@ -674,25 +674,32 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
+      if (avg < 100){
+        strafeRight();
+        return;
+      }
+      if (avg > 350){
+        strafeLeft();
+        return;
+      }
       if (avg > 250){
         swayToLeft();
+        return;
       }
       if (avg < 250){
         swayToRight();
+        return;
       }
       if (avg == 250){
         goForward();
+        return;
       }
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
       if (fAvg < 450){
         stop();
-        if (lAvg > 450){
-          turnLeft(60);
-        }
-        else
-          turnRight(60);
+        turnRight(60);
       }
     }
 }
