@@ -22,6 +22,7 @@ int main (int argc, char const *argv[])
 // TODO f.startWallFollowingLeft();
 
 while(true){
+  usleep(15000);
   f.updateDists();
   double avg = 0;
   for (int i = 89; i < 93; i++){
@@ -31,6 +32,7 @@ while(true){
   while (f.dists[180] < 200){
     f.stop();
     f.updateDists();
+    usleep(15000);
   }
   if (avg > 250){
     f.strafeLeft();

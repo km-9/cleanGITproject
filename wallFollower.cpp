@@ -461,7 +461,7 @@ namespace WallFollower
       //and for (i < units) turn, then take in a bool keep_moving
       //if keep_moing == true go back to straight, else stop
       pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,350);
+      pwm2.setPWM(1,0,325);
     }
 
     void wallFollower::strafeRight()
