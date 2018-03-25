@@ -704,6 +704,5 @@ namespace WallFollower
       //if (fAvg < 450){
       // stop();  
       //turnRight(35);
-      }
     }
 }
