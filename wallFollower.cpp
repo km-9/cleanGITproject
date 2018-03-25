@@ -555,6 +555,12 @@ namespace WallFollower
       usleep(time);
     }
 
+    void wallFollower::turnRightInPlace()
+    {
+      pwm1.setPWM(0,0,300);
+      pwm2.setPWM(1,0,300);
+    }
+
     //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
     /*
     The concept here is to use "sectors" of lidar data to make decisions. With only 10 sectors we have over 1000 options (1024).
@@ -689,9 +695,15 @@ namespace WallFollower
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if (fAvg < 450){
+      if(fAvg < lAvg) {
+        while(fAvg < lAvg) {
+          turnRightInPlace();
+        }
         stop();
-        turnRight(35);
+      }
+      //if (fAvg < 450){
+      // stop();  
+      //turnRight(35);
       }
     }
 }
