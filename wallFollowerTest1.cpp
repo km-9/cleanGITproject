@@ -21,7 +21,7 @@ int main (int argc, char const *argv[])
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
 
-while(true){
+while(0){
   usleep(10000);
   f.updateDists();
   double avg = 0;
@@ -29,7 +29,7 @@ while(true){
     avg = avg + f.dists[i];
   }
   avg = avg/3;
-  while (f.dists[180] < 200){
+  while (f.dists[180] < 250){
     f.stop();
     f.updateDists();
     usleep(10000);
@@ -47,6 +47,7 @@ while(true){
 
 //Closes thing to working
 while (true){
+    usleep(10000);
     f.updateDists();
     //check immediate left
     for (int i = 89; i < 93; i++){
@@ -55,7 +56,7 @@ while (true){
         canLeft = false;
       }
       else if (f.dists[89] > 300){
-        f.strafeLeft();
+        f.swayToLeft();
       }
       else
       f.goForward();
@@ -66,12 +67,10 @@ while (true){
     //check forward left
     for (int i = 93; i < 175; i++){
       if(f.dists[i] < 200){
-        f.strafeRight();
+        f.swayToRight();
         canLeft = false;
       }
       else{
-        f.goForward();
-        f.strafeLeft();
         f.goForward();
       }
     }
