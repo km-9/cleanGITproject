@@ -32,6 +32,7 @@ while (true){
       else if (f.dists[89] > 300){
         f.strafeLeft();
       }
+      else 
       f.goForward();
     }
 
