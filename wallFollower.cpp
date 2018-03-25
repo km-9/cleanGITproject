@@ -665,7 +665,7 @@ namespace WallFollower
     //*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,375);
+      pwm2.setPWM(1,0,350);
     }
 
     void wallFollower::swayToRight(){
@@ -674,11 +674,11 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
-      if (avg < 100){
+      if (avg < 150){
         strafeRight();
         return;
       }
-      if (avg > 350){
+      if (avg > 450){
         strafeLeft();
         return;
       }
