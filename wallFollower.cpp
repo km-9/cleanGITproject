@@ -670,7 +670,7 @@ namespace WallFollower
 
     void wallFollower::swayToRight(){
       pwm1.setPWM(0,0,255);
-      pwm2.setPWM(1,0,500);
+      pwm2.setPWM(1,0,550);
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
@@ -689,10 +689,10 @@ namespace WallFollower
       if (fAvg < 450){
         stop();
         if (lAvg > 450){
-          turnLeft(80);
+          turnLeft(60);
         }
         else
-          turnRight(80);
+          turnRight(60);
       }
     }
 }
