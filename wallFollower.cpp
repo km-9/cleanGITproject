@@ -695,7 +695,7 @@ namespace WallFollower
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if(fAvg < 450) {
+      if(fAvg < 550) {
         while(getDists(180) < 275) {
           turnRightInPlace();
           updateDists();
