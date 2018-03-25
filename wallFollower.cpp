@@ -674,23 +674,15 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
-      if (avg < 150){
-        strafeRight();
-        return;
-      }
-      if (avg > 450){
-        strafeLeft();
-        return;
-      }
-      if (avg > 250){
+      if (avg > 200){
         swayToLeft();
         return;
       }
-      if (avg < 250){
+      if (avg < 200){
         swayToRight();
         return;
       }
-      if (avg == 250){
+      if (avg == 200){
         goForward();
         return;
       }
