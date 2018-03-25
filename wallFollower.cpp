@@ -559,6 +559,7 @@ namespace WallFollower
     {
       pwm1.setPWM(0,0,335);
       pwm2.setPWM(1,0,335);
+      usleep(10000);
     }
 
     //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
