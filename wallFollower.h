@@ -83,6 +83,9 @@ namespace WallFollower
          //whether or not the majority of past canGoRight values were true
          bool couldntGoRight();
 
+         //handler call for front collisions
+         void frontHandler();
+
          //getter for dist[i]
          double getDists(int i);
 
@@ -106,6 +109,8 @@ namespace WallFollower
 
          //majority of past canGoLeft values were false, but we now canGoLeft()
          bool leftPathAppeared();
+
+         void leftWallFollower();
 
           //holds for units milliseconds?
           void pause(int units);
