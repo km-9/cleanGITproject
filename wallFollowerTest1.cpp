@@ -50,19 +50,25 @@ while (true){
     usleep(10000);
     f.updateDists();
     //check immediate left
+    double avg = 0;
     for (int i = 89; i < 93; i++){
-      if (f.dists[i] < 250){
-        f.strafeRight();
-        canLeft = false;
-      }
-      else if (f.dists[89] > 300){
-        f.swayToLeft();
-      }
-      else
+      avg = avg + f.dists[i];
+    }
+    avg = avg/3;
+    while (f.dists[180] < 250){
+      f.stop();
+      f.updateDists();
+      usleep(10000);
+    }
+    if (avg > 250){
+      f.swayToLeft();
+    }
+    if (avg < 250){
+      f.swayToRight();
+    }
+    if (avg == 250){
       f.goForward();
     }
-
-    f.updateDists();
 
     //check forward left
     for (int i = 93; i < 175; i++){
@@ -74,8 +80,6 @@ while (true){
         f.goForward();
       }
     }
-
-    f.updateDists();
 
     //check front
     for (int i = 175; i < 185; i ++){
@@ -96,8 +100,6 @@ while (true){
       }
     }
 
-    f.updateDists();
-
     //check front-right
     for (int i = 185; i < 215; i++){
       if(f.dists[i] < 250){
@@ -109,8 +111,6 @@ while (true){
       canRight = true;
     }
 
-    f.updateDists();
-
     //check forward right
     for (int i = 267; i < 215; i++){
       if(f.dists[i] < 200){
@@ -120,8 +120,6 @@ while (true){
       else
       canRight = true;
     }
-
-    f.updateDists();
 
     //check immediate right
     for (int i = 267; i < 270; i ++){
