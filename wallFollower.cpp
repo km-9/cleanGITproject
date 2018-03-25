@@ -559,7 +559,7 @@ namespace WallFollower
     {
       pwm1.setPWM(0,0,335);
       pwm2.setPWM(1,0,335);
-      usleep(10000);
+      usleep(100000);
       stop();
     }
 
