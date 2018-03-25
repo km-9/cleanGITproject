@@ -35,10 +35,10 @@ while(true){
     usleep(15000);
   }
   if (avg > 250){
-    f.strafeLeft();
+    f.swayToLeft();
   }
   if (avg < 250){
-    f.strafeRight();
+    f.swayToRIght();
   }
   if (avg == 250){
     f.goForward();
