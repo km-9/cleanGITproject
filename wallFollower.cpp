@@ -576,8 +576,8 @@ namespace WallFollower
     orient the robot, but also to decide between going straight, arcing, turning, or backing up. If the robot is angled right and has a sRFront5 value that is too low we know
     that the robot is slightly skewed to the right and facing a wall in front of it. Turning/Spinning left is the best option.
     */
-    /*<-DELETE THIS LINE TO RUN CODE
-    void wallFollower::lidarSectorAssigner(){
+/*
+    void wallFollower::lidarSectorAssignment(){
       updateDists();
       for (int i = 89; i < 93; i++){
         ///////////////////////////////////
