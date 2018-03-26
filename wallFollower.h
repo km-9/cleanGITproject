@@ -169,7 +169,7 @@ namespace WallFollower
           int updateDists();
 
           //getVideoCaptureToFile
-          //void cv::camToFile(string fileName);
+          void cv::camToFile(string fileName);
 
   };
 }
