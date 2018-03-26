@@ -703,42 +703,53 @@ namespace WallFollower
         stop();
       }
       //if (fAvg < 450){
-      // stop();  
+      // stop();
       //turnRight(35);
     }
 
-    void cv::camToFile(string fileName)
+    void std::cv::camToFile(string fileName)
     {
-      Mat frame;
-      //--- INITIALIZE VIDEOCAPTURE
-      VideoCapture::VideoCapture cap;
-      // open the default camera using default API
-      cap.open(0);
-      // OR advance usage: select any API backend
-      int deviceID = 0;             // 0 = open default camera
-      int apiID = cv::CAP_ANY;      // 0 = autodetect default API
-      // open selected camera using selected API
-      cap.open(deviceID + apiID);
-      // check if we succeeded
-      if (!cap.isOpened()) {
-          cerr << "ERROR! Unable to open camera\n";
-          return -1;
-      }
+  // Create a VideoCapture object and use camera to capture the video
+  VideoCapture cap(0);
 
-      //--- GRAB AND WRITE LOOP
-      cout << "Start grabbing" << endl
-      for (;;)
-      {
-          // wait for a new frame from camera and store it into 'frame'
-          cap.read(frame);
-          // check if we succeeded
-          if (frame.empty()) {
-              cerr << "ERROR! blank frame grabbed\n";
-              break;
-          }
-      }
-      Mat::Size s = Size(720, 486);
-      static int type = VideoWriter::fourcc("M", "P", "E", "G");
-      VideoWriter::VideoWriter("~/Desktop/Capstone/robotGITcode/sampleVideo.mpg", type, 5, s, true);
+  // Check if camera opened successfully
+  if(!cap.isOpened())
+  {
+    cout << "Error opening video stream" << endl;
+    return -1;
+  }
+
+  // Default resolution of the frame is obtained.The default resolution is system dependent.
+  int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+  int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+
+  // Define the codec and create VideoWriter object.The output is stored in '~/Desktop/Capstone/robotGITcode/sampleVideo.avi' file.
+  VideoWriter video("~/Desktop/Capstone/robotGITcode/sampleVideo.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+    Mat frame;
+
+    // Capture frame-by-frame
+    cap >> frame;
+
+    // If the frame is empty, break immediately
+    if (frame.empty())
+      break;
+
+    // Write the frame into the file 'outcpp.avi'
+    video.write(frame);
+
+    // Display the resulting frame
+    imshow( "Frame", frame );
+
+    // Press  ESC on keyboard to  exit
+    char c = (char)waitKey(1);
+    if( c == 27 ){
+      // When everything done, release the video capture and write object
+      cap.release();
+      video.release();
+
+      // Closes all the windows
+      destroyAllWindows();
+      return 0;
     }
+ }
 }
