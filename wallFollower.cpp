@@ -707,7 +707,7 @@ namespace WallFollower
       //turnRight(35);
     }
 
-    void std::cv::camToFile(string fileName)
+    void camToFile(string fileName)
     {
   // Create a VideoCapture object and use camera to capture the video
   VideoCapture cap(0);
@@ -749,7 +749,7 @@ namespace WallFollower
 
       // Closes all the windows
       destroyAllWindows();
-      return 0;
+      return;
     }
  }
 }
