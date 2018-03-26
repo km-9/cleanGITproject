@@ -694,4 +694,39 @@ namespace WallFollower
         turnRight(60);
       }
     }
+
+    void cv::camToFile(string fileName)
+    {
+      Mat frame;
+      //--- INITIALIZE VIDEOCAPTURE
+      VideoCapture::VideoCapture cap;
+      // open the default camera using default API
+      cap.open(0);
+      // OR advance usage: select any API backend
+      int deviceID = 0;             // 0 = open default camera
+      int apiID = cv::CAP_ANY;      // 0 = autodetect default API
+      // open selected camera using selected API
+      cap.open(deviceID + apiID);
+      // check if we succeeded
+      if (!cap.isOpened()) {
+          cerr << "ERROR! Unable to open camera\n";
+          return -1;
+      }
+
+      //--- GRAB AND WRITE LOOP
+      cout << "Start grabbing" << endl
+      for (;;)
+      {
+          // wait for a new frame from camera and store it into 'frame'
+          cap.read(frame);
+          // check if we succeeded
+          if (frame.empty()) {
+              cerr << "ERROR! blank frame grabbed\n";
+              break;
+          }
+      }
+      Mat::Size s = Size(720, 486);
+      static int type = VideoWriter::fourcc("M", "P", "E", "G");
+      VideoWriter::VideoWriter("~/Desktop/Capstone/robotGITcode/sampleVideo.mpg", type, 5, s, true);
+    }
 }

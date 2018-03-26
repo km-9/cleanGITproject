@@ -12,6 +12,9 @@
 #include <cstdio>
 #include <ctime>
 #include <fstream>
+#include <opencv2/imgcodecs.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/highgui.hpp>
 
 namespace WallFollower
 {
@@ -133,12 +136,16 @@ namespace WallFollower
           //stop both wheels
           void stop();
 
+          //arc left significantly
           void strafeLeft();
 
+          //arc right significantly
           void strafeRight();
 
+          //slightly sway towards left
           void swayToLeft();
 
+          //slightly tend towards right
           void swayToRight();
 
           //calls reverse()
@@ -158,5 +165,9 @@ namespace WallFollower
 
           //updates the dist[] using drv
           int updateDists();
+
+          //getVideoCaptureToFile
+          //void cv::camToFile(string fileName);
+
   };
 }
