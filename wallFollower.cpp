@@ -555,6 +555,12 @@ namespace WallFollower
       usleep(time);
     }
 
+    void wallFollower::turnRightInPlace()
+    {
+      pwm1.setPWM(0,0,335);
+      pwm2.setPWM(1,0,335);
+    }
+
     //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
     /*
     The concept here is to use "sectors" of lidar data to make decisions. With only 10 sectors we have over 1000 options (1024).
@@ -665,7 +671,7 @@ namespace WallFollower
     //*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,350);
+      pwm2.setPWM(1,0,360);
     }
 
     void wallFollower::swayToRight(){
@@ -689,10 +695,16 @@ namespace WallFollower
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if (fAvg < 450){
+      if(fAvg < 550) {
+        while(getDists(180) < 275) {
+          turnRightInPlace();
+          updateDists();
+        }
         stop();
-        turnRight(60);
       }
+      //if (fAvg < 450){
+      // stop();  
+      //turnRight(35);
     }
 
     void cv::camToFile(string fileName)

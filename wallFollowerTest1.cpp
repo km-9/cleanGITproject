@@ -28,7 +28,7 @@ while(true){
   for (int i = 89; i < 93; i++){
     leftAvg = leftAvg + f.dists[i];
   }
-  leftAvg = leftAvg/3;
+  leftAvg = leftAvg/4;
   //Front Vals
   double frontAvg = 0;
   for (int i = 175; i < 185; i++){

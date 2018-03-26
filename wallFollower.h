@@ -148,6 +148,8 @@ namespace WallFollower
           //slightly tend towards right
           void swayToRight();
 
+          void turnRightInPlace();
+
           //calls reverse()
           void takeItBackNowYall();
 
