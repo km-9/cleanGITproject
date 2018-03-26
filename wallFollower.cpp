@@ -733,7 +733,8 @@ namespace WallFollower
 
     // If the frame is empty, break immediately
     if (frame.empty())
-      break;
+    cout<<"empty frame"<<endl;
+      return;
 
     // Write the frame into the file 'outcpp.avi'
     video.write(frame);
