@@ -3,6 +3,7 @@
 #define _countof(_Array) (int)(sizeof(_Array) / sizeof(_Array[0]))
 #endif
 using namespace std;
+using namespace cv;
 
 namespace WallFollower
 {
@@ -716,7 +717,7 @@ namespace WallFollower
   if(!cap.isOpened())
   {
     cout << "Error opening video stream" << endl;
-    return -1;
+    return;
   }
 
   // Default resolution of the frame is obtained.The default resolution is system dependent.
