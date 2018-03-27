@@ -40,21 +40,22 @@ int main (int argc, char const *argv[])
   // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
   VideoWriter video("outcpp.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
   while(1)
-  {
     Mat frame;
 
-    // Capture frame-by-frame
-    cap >> frame;
-
-    // If the frame is empty, break immediately
-    if (frame.empty())
-      break;
-
-    // Write the frame into the file 'outcpp.avi'
-    video.write(frame);
 //***********************************************
 while(true){
   f.updateDists();
+  //*****************
+  // Capture frame-by-frame
+  cap >> frame;
+
+  // If the frame is empty, break immediately
+  if (frame.empty())
+    break;
+
+  // Write the frame into the file 'outcpp.avi'
+  video.write(frame);
+  //*****************
   //Left Vals
   double leftAvg = 0;
   for (int i = 85; i < 96; i++){
