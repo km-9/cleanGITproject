@@ -70,21 +70,16 @@ while(true){
 
   f.frontHandler(frontAvg, leftAvg);
   f.leftWallFollower(leftAvg);
+
+  // Press  ESC on keyboard to  exit
+  char c = (char)waitKey(1);
+  if( c == 27 )
+  //  break;
 }
-
-    // Press  ESC on keyboard to  exit
-    char c = (char)waitKey(1);
-    if( c == 27 )
-      break;
-  }
-
+}
   // When everything done, release the video capture and write object
   cap.release();
   video.release();
-
-  // Closes all the windows
-  //destroyAllWindows();
-  return 0;
 
 /*Closes thing to working//Closes thing to working
 while (true){
