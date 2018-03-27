@@ -716,8 +716,8 @@ namespace WallFollower
     void wallFollower::camToFile()
     {
   // Create a VideoCapture object and use camera to capture the video
-  VideoCapture cap(0);
-
+  VideoCapture cap;
+  cap.open(0);
   // Check if camera opened successfully
   if(!cap.isOpened())
   {
@@ -745,7 +745,7 @@ namespace WallFollower
     video.write(frame);
 
     // Display the resulting frame
-    imshow( "Frame", frame );
+    //imshow( "Frame", frame );
 
     // Press  ESC on keyboard to  exit
     char c = (char)waitKey(1);
