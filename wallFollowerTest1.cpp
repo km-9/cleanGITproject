@@ -87,7 +87,7 @@ while(true){
   video.release();
 
   // Closes all the windows
-  destroyAllWindows();
+  //destroyAllWindows();
   return 0;
 
 /*Closes thing to working//Closes thing to working
