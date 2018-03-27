@@ -167,5 +167,9 @@ namespace WallFollower
 
           //updates the dist[] using drv
           int updateDists();
+
+          //getVideoCaptureToFile
+          void camToFile();
+
   };
 }
