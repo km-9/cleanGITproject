@@ -20,27 +20,27 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
-f.camToFile();
+camToFile();
 while(true){
   f.updateDists();
   //Left Vals
   double leftAvg = 0;
-  for (int i = 89; i < 93; i++){
+  for (int i = 85; i < 96; i++){
     leftAvg = leftAvg + f.dists[i];
   }
-  leftAvg = leftAvg/4;
+  leftAvg = leftAvg/11;
   //Front Vals
   double frontAvg = 0;
-  for (int i = 176; i < 185; i++){
+  for (int i = 175; i < 186; i++){
     frontAvg = frontAvg + f.dists[i];
   }
-  frontAvg = frontAvg/10;
+  frontAvg = frontAvg/11;
 
   f.frontHandler(frontAvg, leftAvg);
   f.leftWallFollower(leftAvg);
 }
 
-//Closes thing to working
+//Closes thing to working//Closes thing to working
 while (true){
     usleep(10000);
     f.updateDists();
