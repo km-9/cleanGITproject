@@ -74,8 +74,7 @@ while(true){
   // Press  ESC on keyboard to  exit
   char c = (char)waitKey(1);
   if( c == 27 )
-  //  break;
-}
+   break;
 }
   // When everything done, release the video capture and write object
   cap.release();
