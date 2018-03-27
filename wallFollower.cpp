@@ -712,7 +712,7 @@ namespace WallFollower
       //turnRight(35);
     }
 
-    void camToFile(string fileName)
+    void camToFile()
     {
   // Create a VideoCapture object and use camera to capture the video
   VideoCapture cap(0);
