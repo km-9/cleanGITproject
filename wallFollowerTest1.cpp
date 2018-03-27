@@ -20,7 +20,7 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
-camToFile();
+f.camToFile();
 while(true){
   f.updateDists();
   //Left Vals
