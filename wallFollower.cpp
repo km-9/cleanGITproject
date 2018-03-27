@@ -681,28 +681,33 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
-      if (avg > 300){
+      if (avg < 150){
+        strafeRight();
+        return;
+      }
+      if (avg > 350){
+        strafeLeft();
+        return;
+      }
+      if (avg > 250){
         swayToLeft();
-        return;
       }
-      if (avg < 300){
+      if (avg < 250){
         swayToRight();
-        return;
       }
-      if (avg == 300){
+      if (avg == 250){
         goForward();
-        return;
       }
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
-      if(fAvg < 1500) {
+      if(fAvg < 450) {
         stop();
-        while(getDists(180) < 275) {
+        while(getDists(180) < 325) {
           turnRightInPlace();
           updateDists();
         }
-        while(getDists(60) < getDists(90)) {
+        while(getDists(60) < getDists(90) || getDists(180) < getDists(90)) {
           turnRightInPlace();
           updateDists();
         }
@@ -712,37 +717,4 @@ namespace WallFollower
       // stop();
       //turnRight(35);
     }
-
-    void wallFollower::camToFile()
-    {
-  // Create a VideoCapture object and use camera to capture the video
-  VideoCapture cap;
-  cap.open(0);
-  // Check if camera opened successfully
-  if(!cap.isOpened())
-  {
-    cout << "Error opening video stream" << endl;
-    return;
-  }
-
-  // Default resolution of the frame is obtained.The default resolution is system dependent.
-  //int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-  //int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
-
-  // Define the codec and create VideoWriter object.The output is stored in '~/Desktop/Capstone/robotGITcode/sampleVideo.avi' file.
-  VideoWriter video("~/Downloads/lidar_sdk/sdk/app/cleanGITproject/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(640,480));
-    Mat frame;
-
-    // Capture frame-by-frame
-    cap >> frame;
-
-    // If the frame is empty, break immediately
-    if (frame.empty()){
-    cout<<"empty frame"<<endl;
-      return;
-    }
-
-    // Write the frame into the file 'outcpp.avi'
-    video.write(frame);
- }
 }
