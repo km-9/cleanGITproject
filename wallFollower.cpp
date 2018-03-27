@@ -737,26 +737,12 @@ namespace WallFollower
     cap >> frame;
 
     // If the frame is empty, break immediately
-    if (frame.empty())
+    if (frame.empty()){
     cout<<"empty frame"<<endl;
       return;
+    }
 
     // Write the frame into the file 'outcpp.avi'
     video.write(frame);
-
-    // Display the resulting frame
-    //imshow( "Frame", frame );
-
-    // Press  ESC on keyboard to  exit
-    char c = (char)waitKey(1);
-    if( c == 27 ){
-      // When everything done, release the video capture and write object
-      cap.release();
-      video.release();
-
-      // Closes all the windows
-      destroyAllWindows();
-      return;
-    }
  }
 }
