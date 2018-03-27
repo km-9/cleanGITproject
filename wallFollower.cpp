@@ -677,7 +677,7 @@ namespace WallFollower
 
     void wallFollower::swayToRight(){
       pwm1.setPWM(0,0,255);
-      pwm2.setPWM(1,0,550);
+      pwm2.setPWM(1,0,500);
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
