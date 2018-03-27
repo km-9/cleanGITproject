@@ -726,11 +726,11 @@ namespace WallFollower
   }
 
   // Default resolution of the frame is obtained.The default resolution is system dependent.
-  int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
-  int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
+  //int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH);
+  //int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 
   // Define the codec and create VideoWriter object.The output is stored in '~/Desktop/Capstone/robotGITcode/sampleVideo.avi' file.
-  VideoWriter video("~/Downloads/lidar_sdk/sdk/app/cleanGITproject/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+  VideoWriter video("~/Downloads/lidar_sdk/sdk/app/cleanGITproject/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(640,480));
     Mat frame;
 
     // Capture frame-by-frame
