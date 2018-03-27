@@ -729,7 +729,7 @@ namespace WallFollower
   int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 
   // Define the codec and create VideoWriter object.The output is stored in '~/Desktop/Capstone/robotGITcode/sampleVideo.avi' file.
-  VideoWriter video("~/Desktop/Capstone/robotGITcode/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+  VideoWriter video("~/Downloads/lidar_sdk/sdk/app/cleanGITproject/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
     Mat frame;
 
     // Capture frame-by-frame
