@@ -684,10 +684,10 @@ namespace WallFollower
       if (avg > 350){
         swayToLeft();
       }
-      if (avg < 350){
+      else if (avg < 350){
         swayToRight();
       }
-      if (avg == 350){
+      else if (avg == 350){
         goForward();
       }
     }

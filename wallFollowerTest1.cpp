@@ -57,10 +57,10 @@ while(true){
   //*****************
   //Left Vals
   double leftAvg = 0;
-  for (int i = 85; i < 96; i++){
+  for (int i = 90; i < 96; i++){
     leftAvg = leftAvg + f.dists[i];
   }
-  leftAvg = leftAvg/11;
+  leftAvg = leftAvg/5;
   //Front Vals
   double frontAvg = 0;
   for (int i = 175; i < 186; i++){
