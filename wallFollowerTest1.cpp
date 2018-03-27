@@ -72,10 +72,6 @@ while(true){
   f.leftWallFollower(leftAvg);
 }
 
-
-    // Display the resulting frame
-    imshow( "Frame", frame );
-
     // Press  ESC on keyboard to  exit
     char c = (char)waitKey(1);
     if( c == 27 )
