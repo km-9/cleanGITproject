@@ -744,6 +744,5 @@ namespace WallFollower
 
     // Write the frame into the file 'outcpp.avi'
     video.write(frame);
-    }
  }
 }
