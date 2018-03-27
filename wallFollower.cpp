@@ -681,13 +681,13 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
-      if (avg > 350){
+      if (avg > 300){
         swayToLeft();
       }
-      else if (avg < 350){
+      else if (avg < 300){
         swayToRight();
       }
-      else if (avg == 350){
+      else if (avg == 300){
         goForward();
       }
     }
@@ -695,7 +695,7 @@ namespace WallFollower
     void wallFollower::frontHandler(double fAvg, double lAvg){
       if(fAvg < 300) {
         stop();
-        while(getDists(180) < 350) {
+        while(getDists(180) < 375) {
           turnRightInPlace();
           updateDists();
         }
