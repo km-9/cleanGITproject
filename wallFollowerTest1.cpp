@@ -20,7 +20,20 @@ int main (int argc, char const *argv[])
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
 // TODO f.startWallFollowingLeft();
-f.camToFile();
+//f.camToFile();
+//************************
+VideoCapture cap;
+cap.open(0);
+// Check if camera opened successfully
+if(!cap.isOpened())
+{
+  cout << "Error opening video stream" << endl;
+  return;
+}
+VideoWriter video("~/Downloads/lidar_sdk/sdk/app/cleanGITproject/sampleVideo.mpg",CV_FOURCC('M','J','P','G'),10, Size(640, 480));
+  Mat frame;
+
+//************************
 while(true){
   f.updateDists();
   //Left Vals
@@ -38,6 +51,18 @@ while(true){
 
   f.frontHandler(frontAvg, leftAvg);
   f.leftWallFollower(leftAvg);
+  //****************************************
+  // Capture frame-by-frame
+  cap >> frame;
+
+  // If the frame is empty, break immediately
+  if (frame.empty()){
+  cout<<"empty frame"<<endl;
+  }
+
+  // Write the frame into the file 'outcpp.avi'
+  video.write(frame);
+  //***************************************
 }
 
 //Closes thing to working//Closes thing to working
