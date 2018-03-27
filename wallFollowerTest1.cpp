@@ -22,7 +22,7 @@ int main (int argc, char const *argv[])
 // TODO f.startWallFollowingLeft();
 //f.camToFile();
 //************************
-VideoCapture cap;
+f.VideoCapture cap;
 cap.open(0);
 // Check if camera opened successfully
 if(!cap.isOpened())
