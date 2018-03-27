@@ -684,11 +684,8 @@ namespace WallFollower
       if (avg > 300){
         swayToLeft();
       }
-      else if (avg < 300){
+      else{
         swayToRight();
-      }
-      else if (avg == 300){
-        goForward();
       }
     }
     //Front Wall Handler
