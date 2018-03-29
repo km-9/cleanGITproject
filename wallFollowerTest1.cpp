@@ -80,9 +80,9 @@ while(true){
   }
   leftAngleAvg = leftAngleAvg/5;
 
-  if (f.frontHandler(frontAvg, leftAvg))
-    if(f.beSmart())
-      if(f.orientationFix(leftAngleAvg))
+  if (!f.frontHandler(frontAvg, leftAvg))
+    if(!f.beSmart())
+      if(!f.orientationFix(leftAngleAvg))
         f.leftWallFollower(leftAvg);
 
 
