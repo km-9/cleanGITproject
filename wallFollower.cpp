@@ -713,19 +713,25 @@ namespace WallFollower
     }
     //45 handler (for robot orientation to wall)
     bool wallFollower::orientationFix(double avg, double lAvg){
-      if(avg < 250){
+      if(avg < 150 || lAvg < 200){
         while(getDists(95) < getDists(135)){
           turnRightInPlace();
           updateDists();
         }
         return true;
       }
-      if(lAvg < 250){
+      else if(getDists(90)>getDists(95)){
         while (getDists(90) > getDists(95)){
-          strafeLeft();
+          strafeRight();
           updateDists();
         }
         return true;
+      }
+      else if(getDists(90)>getDists(85)){
+        while(getDIsts(90)>getDists(95)){
+          strafeLeft();
+          updateDists();
+        }
       }
       return false;
     }
