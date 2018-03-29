@@ -696,13 +696,13 @@ namespace WallFollower
     }
     //Front Wall Handler
     bool wallFollower::frontHandler(double fAvg, double lAvg){
-      if(fAvg < 300) {
+      if(fAvg < 300 && getDists(90) < 600) {
         stop();
-        while(getDists(180) < 375) {
+        while(getDists(180) < 400) {
           turnRightInPlace();
           updateDists();
         }
-        while(getDists(60) < getDists(90) || getDists(180) < getDists(90)) {
+        while(getDists(180) < getDists(90) && ) {
           turnRightInPlace();
           updateDists();
         }
