@@ -702,7 +702,7 @@ namespace WallFollower
           turnRightInPlace();
           updateDists();
         }
-        while(getDists(180) < getDists(90) && ) {
+        while(getDists(180) < getDists(90)) {
           turnRightInPlace();
           updateDists();
         }
