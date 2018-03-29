@@ -717,7 +717,7 @@ namespace WallFollower
     void wallFollower::beSmart(){
       int left = 90;
       int right = 270;
-      if (getDists(left) > (getDists(left-5) && getDists(left) > 400){
+      if (getDists(left) > getDists(left-5) && getDists(left) > 400){
         //canTurnLeft
         lefts++;
         rights = 0;
