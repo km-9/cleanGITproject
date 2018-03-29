@@ -706,7 +706,9 @@ namespace WallFollower
     //45 handler (for robot orientation to wall)
     void wallFollower::orientationFix(double avg){
       if (avg < 250){
-        while (getDists(135) < getDists(90) || getDists(135) < getDists(200))
+        rights++;
+        lefts = 0;
+        while (getDists(135) < getDists(90))
         turnRightInPlace();
         updateDists();
       }
@@ -717,12 +719,18 @@ namespace WallFollower
     void wallFollower::beSmart(){
       int left = 90;
       int right = 270;
-      if (getDists(left) > getDists(left-5) && getDists(left) > 400){
+      if (getDists(left) > getDists(left-5) && getDists(left) > 600){
         //canTurnLeft
+        turnLeft(80);
+        goForward();
+        usleep(250000);
         lefts++;
         rights = 0;
       }else if (getDists(right) > getDists(right-5) && getDists(right) > 600){
         //canTurnRight
+        turnRight(80);
+        goForward();
+        usleep(250000);
         rights++;
         lefts = 0;
       }
