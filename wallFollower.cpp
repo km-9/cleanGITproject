@@ -721,7 +721,7 @@ namespace WallFollower
         //canTurnLeft
         lefts++;
         rights = 0;
-      }else if (getDists(right) > (getDists(right-5) && getDists(right) > 600){
+      }else if (getDists(right) > getDists(right-5) && getDists(right) > 600){
         //canTurnRight
         rights++;
         lefts = 0;
