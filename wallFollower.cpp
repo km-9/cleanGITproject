@@ -712,9 +712,10 @@ namespace WallFollower
       if (avg < 250){
         rights++;
         lefts = 0;
-        while (getDists(135) < getDists(90))
+        while (getDists(135) < getDists(90)){
         turnRightInPlace();
         updateDists();
+      }
       }
     }
     //Intersection check
