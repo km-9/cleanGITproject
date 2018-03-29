@@ -685,13 +685,14 @@ namespace WallFollower
       pwm2.setPWM(1,0,500);
     }
     //Left Wall Follower
-    void wallFollower::leftWallFollower(double avg){
+    bool wallFollower::leftWallFollower(double avg){
       if (avg > 250){
         swayToLeft();
       }
       else{
         swayToRight();
       }
+      return true;
     }
     //Front Wall Handler
     bool wallFollower::frontHandler(double fAvg, double lAvg){
