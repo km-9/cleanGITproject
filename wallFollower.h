@@ -9,8 +9,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <cstddef>
-#include <cstdio>
-#include <ctime>
+#include <cmath>
 #include <fstream>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/videoio.hpp>
@@ -68,6 +67,9 @@ namespace WallFollower
           //scans front Right quadrant for obstacles
           bool avoidRight();
 
+          //checks if the robot is at an intersection
+          void beSmart();
+
           //returns whether or not we are able to reverse
           bool canGoBack();
 
@@ -113,7 +115,11 @@ namespace WallFollower
          //majority of past canGoLeft values were false, but we now canGoLeft()
          bool leftPathAppeared();
 
+         //takes an average distance from the wall and follows it
          void leftWallFollower(double avg);
+
+         //uses avg of forward-left distances to orient robot to a wall
+         void orientationFix(double leftAngleAvg);
 
           //holds for units milliseconds?
           void pause(int units);

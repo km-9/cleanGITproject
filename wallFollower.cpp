@@ -681,7 +681,7 @@ namespace WallFollower
     }
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
-      if (avg > 300){
+      if (avg > 250){
         swayToLeft();
       }
       else{
@@ -702,8 +702,29 @@ namespace WallFollower
         }
         stop();
       }
-      //if (fAvg < 450){
-      // stop();
-      //turnRight(35);
+    }
+    //45 handler (for robot orientation to wall)
+    void wallFollower::orientationFix(double avg){
+      if (avg < 250){
+        while (getDists(135) < getDists(90) || getDists(135) < getDists(200))
+        turnRightInPlace();
+        updateDists();
+      }
+    }
+    //Intersection check
+    static int lefts = 0;
+    static int rights = 0;
+    void wallFollower::beSmart(){
+      int left = 90;
+      int right = 270;
+      if (getDists(left) > (getDists(left-5) && getDists(left) > 400){
+        //canTurnLeft
+        lefts++;
+        rights = 0;
+      }else if (getDists(right) > (getDists(right-5) && getDists(right) > 600){
+        //canTurnRight
+        rights++;
+        lefts = 0;
+      }
     }
 }
