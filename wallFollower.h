@@ -119,7 +119,7 @@ namespace WallFollower
          bool leftWallFollower(double avg);
 
          //uses avg of forward-left distances to orient robot to a wall
-         bool orientationFix(double leftAngleAvg);
+         bool orientationFix(double leftAngleAvg, double lAvg);
 
           //holds for units milliseconds?
           void pause(int units);
