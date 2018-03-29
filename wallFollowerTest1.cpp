@@ -66,9 +66,6 @@ while(true){
   //Front Vals
   double frontAvg = 0;
   for (int i = 175; i < 186; i++){
-    if (f.dists[180] < 250){
-      //handle front collision
-    }
     frontAvg = frontAvg + f.dists[i];
   }
   frontAvg = frontAvg/12;

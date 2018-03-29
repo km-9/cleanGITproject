@@ -698,11 +698,11 @@ namespace WallFollower
     bool wallFollower::frontHandler(double fAvg, double lAvg){
       if(fAvg < 300 && getDists(90) < 600) {
         stop();
-        while(getDists(180) < 400) {
+        while(getDists(180) < 375) {
           turnRightInPlace();
           updateDists();
         }
-        while(getDists(180) < getDists(90)) {
+        while(getDists(180) < getDists(90) && getDists(90) < 300) {
           turnRightInPlace();
           updateDists();
         }
