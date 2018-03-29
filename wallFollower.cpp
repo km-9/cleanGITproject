@@ -68,10 +68,10 @@ namespace WallFollower
                 fprintf(stderr, "Error, cannot grab scan data.\n");
                 break;
             }
-      			cout << "end of lidar driver in main" << endl;
+      			//cout << "end of lidar driver in main" << endl;
       	}
       	while(0);
-        cout << "in wallFollower(drv)" << endl;
+        //cout << "in wallFollower(drv)" << endl;
         //I incremented these because hypotenuses now
         this->min_forward_dist = 175;
         this->min_left_dist = 175;
@@ -110,7 +110,7 @@ namespace WallFollower
         }
       }
       logfile << "aviodHeadOn has determined direction = " << direction << endl;
-      cout << "avoidHeadOn has determined object = " << direction << endl;
+      //cout << "avoidHeadOn has determined object = " << direction << endl;
       return direction;
     }
 
@@ -121,12 +121,12 @@ namespace WallFollower
         if(getDists(i) < avoidance_radius)
         {
           logfile << "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
-          cout <<  "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
+          //cout <<  "avoidLeft has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
           return true;
         }
       }
       logfile << "avoidLeft has not registered any objects in front of it" << endl;
-      cout << "avoidLeft has not registered any objects in front of it" << endl;
+      //cout << "avoidLeft has not registered any objects in front of it" << endl;
       return false;
     }
 
@@ -137,12 +137,12 @@ namespace WallFollower
         if(getDists(i) < avoidance_radius)
         {
           logfile << "avoidRight has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
-          cout << "avoidRight has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
+          //cout << "avoidRight has registered an object " << getDists(i) << " units away at " << i << " degrees " << endl;
           return true;
         }
       }
       logfile << "avoidRight has not registered any objects in front of it" << endl;
-      cout <<  "avoidRight has not registered any objects in front of it" << endl;
+      //cout <<  "avoidRight has not registered any objects in front of it" << endl;
       return false;
     }
 
@@ -153,12 +153,12 @@ namespace WallFollower
         if(getDists(180 + i) < getMinForwardDist() + (25 * abs(i))/30)
         {
           logfile << "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
-          cout <<  "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
+          //cout <<  "canGoBack has registered an object " << getDists( i) << " units away at " <<  i << " degrees " << endl;
           return false;
         }
       }
       logfile << "canGoBack has not registered any objects in front of it" << endl;
-      cout <<  "canGoBack has not registered any objects in front of it" << endl;
+      //cout <<  "canGoBack has not registered any objects in front of it" << endl;
       return true;
     }
 
@@ -169,12 +169,12 @@ namespace WallFollower
         if(getDists(180 + i) < getMinForwardDist() + abs(i))
         {
           logfile << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
-          cout << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
+          //cout << "canGoForward has registered an object " << getDists(180 + i) << " units away at " << 180 + i << " degrees " << endl;
           return false;
         }
       }
       logfile << "canGoForward has not registered any objects in front of it" << endl;
-      cout << "canGoForward has not registered any objects in front of it" << endl;
+      //cout << "canGoForward has not registered any objects in front of it" << endl;
       return true;
     }
 
@@ -185,7 +185,7 @@ namespace WallFollower
         if(getDists(90 + i) < getMinLeftDist() + (15 * abs(i))/15)
         {
           logfile << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
-          cout << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
+          //cout << "canGoLeft has registered an object " << getDists(90 + i) << " units away at " << 90 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
           {
             pastGoLefts[i] = pastGoLefts[i+1];
@@ -195,7 +195,7 @@ namespace WallFollower
         }
       }
       logfile << "canGoLeft has not registered any objects in front of it" << endl;
-      cout << "canGoLeft has not registered any objects in front of it" << endl;
+      //cout << "canGoLeft has not registered any objects in front of it" << endl;
       for (int i = 0; i < 10; i++)
       {
         pastGoLefts[i] = pastGoLefts[i+1];
@@ -211,7 +211,7 @@ namespace WallFollower
         if(getDists(270 + i) < getMinRightDist() + (15 * abs(i))/15)
         {
           logfile << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
-          cout << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
+          //cout << "canGoRight has registered an object " << getDists(270 + i) << " units away at " << 270 + i << " degrees " << endl;
           for (int i = 0; i < 10; i++)
           {
             pastGoRights[i] = pastGoRights[i+1];
@@ -221,7 +221,7 @@ namespace WallFollower
         }
       }
       logfile << "canGoRight has not registered any objects in front of it" << endl;
-      cout << "canGoRight has not registered any objects in front of it" << endl;
+      //cout << "canGoRight has not registered any objects in front of it" << endl;
       for (int i = 0; i < 10; i++)
       {
         pastGoRights[i] = pastGoRights[i+1];
@@ -294,7 +294,7 @@ namespace WallFollower
     void wallFollower::pause(int units)
     {
       logfile << "pause(" << units << ") has been called" << endl;
-      cout << "pause(" << units << ") has been called" << endl;
+      //cout << "pause(" << units << ") has been called" << endl;
       usleep(units);
     }
 
@@ -318,7 +318,7 @@ namespace WallFollower
       }
       string answer = (goLeft>0)?"true":"false";
       logfile << "strafeLeftToAlignWithWall has determined "<< answer << endl;
-      cout << "strafeLeftToAlignWithWall has determined "<< answer << endl;
+      //cout << "strafeLeftToAlignWithWall has determined "<< answer << endl;
       (goLeft>0)?true:false;
     }
 
@@ -331,7 +331,7 @@ namespace WallFollower
       }
       string answer = (goRight>0)?"true":"false";
       logfile << "strafeRightToAlignWithWall has determined "<< answer << endl;
-      cout << "strafeRightToAlignWithWall has determined "<< answer << endl;
+      //cout << "strafeRightToAlignWithWall has determined "<< answer << endl;
       (goRight>0)?true:false;
     }
 
@@ -389,8 +389,8 @@ namespace WallFollower
           {
               logfile << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
               logfile << "strafeLeft called" << endl;
-              cout << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
-              cout << "strafeLeft called" << endl;
+              //cout << "canGoForward() && (strafeLeftToAlignWithWall() || tooFarOnLeft())" << endl;
+              //cout << "strafeLeft called" << endl;
               strafeLeft();
               while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
               {
@@ -402,8 +402,8 @@ namespace WallFollower
           {
             logfile << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
             logfile << "strafeRight called" << endl;
-            cout << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
-            cout << "strafeRight called" << endl;
+            //cout << "canGoForward() && (strafeRightToAlignWithWall() || !canGoLeft())" << endl;
+            //cout << "strafeRight called" << endl;
             strafeRight();
             while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
             {
@@ -415,8 +415,8 @@ namespace WallFollower
           {
             logfile << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
             logfile << "goForward called" << endl;
-            cout << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
-            cout << "goForward called" << endl;
+            //cout << "canGoForward && !toofarOnLeft && !canGoLeft" << endl;
+            //cout << "goForward called" << endl;
             goForward();
             while (!avoidRight() && !avoidLeft() && (avoidHeadOn() != 0))
             {
@@ -432,7 +432,7 @@ namespace WallFollower
           if(canGoLeft())
           {
             logfile << "!canGoForward && canGoLeft" << endl;
-            cout << "!canGoForward && canGoLeft" << endl;
+            //cout << "!canGoForward && canGoLeft" << endl;
             //might need to be looked at
             turnLeft(90);
             goto UPDATE;
@@ -440,7 +440,7 @@ namespace WallFollower
           else if(canGoRight())
           {
             logfile << "!canGoForward && canGoRight" << endl;
-            cout << "!canGoForward && canGoRight" << endl;
+            //cout << "!canGoForward && canGoRight" << endl;
             turnRight(90);
             goto UPDATE;
           }
@@ -452,7 +452,7 @@ namespace WallFollower
     void wallFollower::stop()
     {
       logfile << "stop has been called" << endl;
-      cout << "stop has been called" << endl;
+      //cout << "stop has been called" << endl;
       pwm1.setPWM(0,0,0);
     	pwm2.setPWM(1,0,0);
     }
@@ -460,7 +460,7 @@ namespace WallFollower
     void wallFollower::strafeLeft()
     {
       logfile << "strafeLeft" << endl;
-      cout <<  "strafeLeft" << endl;
+      //cout <<  "strafeLeft" << endl;
       //idk if this works, but my idea is grab four points
       //of reference and if three agree within a range we can stop turning
       //if this doesn't work I would want to make time our parameter
@@ -473,7 +473,7 @@ namespace WallFollower
     void wallFollower::strafeRight()
     {
       logfile << "in strafeRight" << endl;
-      cout << "in strafeRight" << endl;
+      //cout << "in strafeRight" << endl;
       //same idea with turnLeft()
       pwm1.setPWM(0,0,290);
       pwm2.setPWM(1,0,400);
@@ -491,12 +491,12 @@ namespace WallFollower
         if(getDists(90 + i) > getMaxLeftDist() + (25 * abs(i))/30)
         {
           logfile << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
-          cout << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
+          //cout << "tooFarOnLeft has decided that theta " << 90 + i << " is " << getDists(90 + i) << " from the wall, so we are too far" << endl;
           return true;
         }
       }
       logfile << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
-      cout << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
+      //cout << "tooFarOnLeft has decided we are not too far from the left wall" << endl;
       return false;
     }
 
@@ -543,7 +543,7 @@ namespace WallFollower
     {
       stop();
       logfile << "turnLeft(" << degrees << ") called" << endl;
-      cout << "turnLeft(" << degrees << ") called" << endl;
+      //cout << "turnLeft(" << degrees << ") called" << endl;
       long time = degrees*12700;
       pwm1.setPWM(0,0,250);
       pwm2.setPWM(1,0,0);
@@ -554,7 +554,7 @@ namespace WallFollower
     {
       stop();
       logfile << "turnRight(" << degrees << ") called" << endl;
-      cout << "turnRight(" << degrees << ") called" << endl;
+      //cout << "turnRight(" << degrees << ") called" << endl;
       long time = degrees*12700;
       pwm1.setPWM(0,0,0);
       pwm2.setPWM(1,0,500);
@@ -677,7 +677,7 @@ namespace WallFollower
     //*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,250);
-      pwm2.setPWM(1,0,400);
+      pwm2.setPWM(1,0,375);
     }
 
     void wallFollower::swayToRight(){
@@ -686,7 +686,7 @@ namespace WallFollower
     }
     //Left Wall Follower
     bool wallFollower::leftWallFollower(double avg){
-      if (avg > 150){
+      if (avg > 150 || getDists(90) < 200){
         swayToLeft();
       }
       else{
