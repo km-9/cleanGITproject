@@ -177,7 +177,7 @@ while (true){
       else
       canRight = true;
     }
-  }
+  }*/
   f.drv->stop();
   f.drv->stopMotor();
 
