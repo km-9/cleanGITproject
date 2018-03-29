@@ -527,7 +527,7 @@ namespace WallFollower
 
     			for (int pos = 0; pos < 360 ; ++pos)
     			{
-            dists[pos] = (nodes[pos].distance_q2/4.0f == 0)50:nodes[pos].distance_q2/4.0f;
+            dists[pos] = (nodes[pos].distance_q2/4.0f == 0);50:nodes[pos].distance_q2/4.0f;
     			}
     	}
     	else
