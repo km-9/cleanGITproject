@@ -734,7 +734,7 @@ namespace WallFollower
         lefts++;
         rights = 0;
         updateDists();
-        if (dists(180) > 400){
+        if (getDists(180) > 400){
           goForward();
           usleep(250000);
         }
@@ -745,7 +745,7 @@ namespace WallFollower
         rights++;
         lefts = 0;
         updateDists();
-        if (dists(180) > 400){
+        if (getDists(180) > 400){
           goForward();
           usleep(250000);
         }
