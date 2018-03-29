@@ -37,6 +37,9 @@ namespace WallFollower
         int opt_com_baudrate = 115200;
       	//device path for lidar
         const char * opt_com_path = "/dev/ttyUSB0";
+        //track turning decisions
+        static int lefts = 0;
+        static int rights = 0;
 
         this->drv = rp::standalone::rplidar::RPlidarDriver::CreateDriver(rp::standalone::rplidar::RPlidarDriver::DRIVER_TYPE_SERIALPORT);
       	do
@@ -714,8 +717,6 @@ namespace WallFollower
       }
     }
     //Intersection check
-    static int lefts = 0;
-    static int rights = 0;
     void wallFollower::beSmart(){
       int left = 90;
       int right = 270;
