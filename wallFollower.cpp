@@ -677,16 +677,16 @@ namespace WallFollower
     //*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,150);
-      pwm2.setPWM(1,0,360);
+      pwm2.setPWM(1,0,400);
     }
 
     void wallFollower::swayToRight(){
-      pwm1.setPWM(0,0,255);
+      pwm1.setPWM(0,0,200);
       pwm2.setPWM(1,0,500);
     }
     //Left Wall Follower
     bool wallFollower::leftWallFollower(double avg){
-      if (avg > 250){
+      if (avg > 200){
         swayToLeft();
       }
       else{
@@ -713,7 +713,7 @@ namespace WallFollower
     }
     //45 handler (for robot orientation to wall)
     bool wallFollower::orientationFix(double avg, double lAvg){
-      if(avg < 150 || lAvg < 200){
+      if(avg < 100 || lAvg < 150){
         while(getDists(95) < getDists(135)){
           turnRightInPlace();
           updateDists();
@@ -745,7 +745,7 @@ namespace WallFollower
         lefts++;
         rights = 0;
         updateDists();
-        if (getDists(180) > 400){
+        if (getDists(180) > 600){
           goForward();
           usleep(250000);
         }
@@ -756,7 +756,7 @@ namespace WallFollower
         rights++;
         lefts = 0;
         updateDists();
-        if (getDists(180) > 400){
+        if (getDists(180) > 600){
           goForward();
           usleep(250000);
         }
