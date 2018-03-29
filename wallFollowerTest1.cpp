@@ -77,6 +77,10 @@ while(true){
   }
   leftAngleAvg = leftAngleAvg/5;
 
+  cout<<leftAvg<<"|Left"<<endl;
+  cout<<leftAngleAvg<<"|Left45"<<endl;
+  cout<<frontAvg<<"|Front"<<endl;
+
   if (!f.frontHandler(frontAvg, leftAvg))
     if(!f.beSmart())
       if(!f.orientationFix(leftAngleAvg, leftAvg))
