@@ -728,7 +728,7 @@ namespace WallFollower
         return true;
       }
       else if(getDists(90)>getDists(85)){
-        while(getDIsts(90)>getDists(95)){
+        while(getDists(90)>getDists(95)){
           strafeLeft();
           updateDists();
         }
