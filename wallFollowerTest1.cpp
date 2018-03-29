@@ -78,7 +78,7 @@ while(true){
   for (int i = 130; i <= 140; i++){
     leftAngleAvg = leftAngleAvg + f.dists[i];
   }
-  leftAngleAvg = leftAngleAvg/12;
+  leftAngleAvg = leftAngleAvg/11;
 
   f.frontHandler(frontAvg, leftAvg);
   f.beSmart();

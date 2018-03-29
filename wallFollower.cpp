@@ -8,6 +8,7 @@ using namespace cv;
 //track turning decisions
 static int lefts = 0;
 static int rights = 0;
+static bool justTurned = false;
 
 namespace WallFollower
 {
@@ -686,15 +687,18 @@ namespace WallFollower
     //Left Wall Follower
     void wallFollower::leftWallFollower(double avg){
       if (avg > 250){
+        justTurned = false;
         swayToLeft();
       }
       else{
+        justTurned = false;
         swayToRight();
       }
     }
     //Front Wall Handler
     void wallFollower::frontHandler(double fAvg, double lAvg){
       if(fAvg < 300) {
+        justTurned = false;
         stop();
         while(getDists(180) < 375) {
           turnRightInPlace();
@@ -715,27 +719,27 @@ namespace WallFollower
         while (getDists(135) < getDists(90)){
         turnRightInPlace();
         updateDists();
-      }
+        }
+      justTurned = false;
       }
     }
     //Intersection check
     void wallFollower::beSmart(){
       int left = 90;
       int right = 270;
-      if (getDists(left) > getDists(left-5) && getDists(left) > 600){
+      if (getDists(left) > getDists(left-5) && getDists(left) > 600 && !justTurned){
         //canTurnLeft
         turnLeft(80);
-        goForward();
-        usleep(250000);
         lefts++;
         rights = 0;
-      }else if (getDists(right) > getDists(right-5) && getDists(right) > 600){
+        justTurned = true;
+        return;
+      }else if (getDists(right) > getDists(right+5) && getDists(right) > 600 && !justTurned){
         //canTurnRight
         turnRight(80);
-        goForward();
-        usleep(250000);
         rights++;
         lefts = 0;
+        justTurned = true;
       }
     }
 }
