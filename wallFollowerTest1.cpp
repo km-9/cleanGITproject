@@ -38,7 +38,7 @@ int main (int argc, char const *argv[])
   int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 
   // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
-  VideoWriter video("outcppJUNK.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+  VideoWriter video("outcppCrib.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
 
 //***********************************************
 while(true){
