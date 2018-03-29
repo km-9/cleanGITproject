@@ -475,7 +475,7 @@ namespace WallFollower
       logfile << "in strafeRight" << endl;
       cout << "in strafeRight" << endl;
       //same idea with turnLeft()
-      pwm1.setPWM(0,0,200);
+      pwm1.setPWM(0,0,290);
       pwm2.setPWM(1,0,400);
     }
 
@@ -686,7 +686,7 @@ namespace WallFollower
     }
     //Left Wall Follower
     bool wallFollower::leftWallFollower(double avg){
-      if (avg > 200){
+      if (avg > 150){
         swayToLeft();
       }
       else{
@@ -722,14 +722,14 @@ namespace WallFollower
       }
       else if(getDists(90)>getDists(95)){
         while (getDists(90) > getDists(95)){
-          strafeRight();
+          swayToRight();
           updateDists();
         }
         return true;
       }
       else if(getDists(90)>getDists(85)){
         while(getDists(90)>getDists(95)){
-          strafeLeft();
+          swayToLeft();
           updateDists();
         }
       }
