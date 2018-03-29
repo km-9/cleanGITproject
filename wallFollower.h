@@ -68,7 +68,7 @@ namespace WallFollower
           bool avoidRight();
 
           //checks if the robot is at an intersection
-          void beSmart();
+          bool beSmart();
 
           //returns whether or not we are able to reverse
           bool canGoBack();
@@ -89,7 +89,7 @@ namespace WallFollower
          bool couldntGoRight();
 
          //handler call for front collisions
-         void frontHandler(double fAvg, double lAvg);
+         bool frontHandler(double fAvg, double lAvg);
 
          //getter for dist[i]
          double getDists(int i);
@@ -116,10 +116,10 @@ namespace WallFollower
          bool leftPathAppeared();
 
          //takes an average distance from the wall and follows it
-         void leftWallFollower(double avg);
+         bool leftWallFollower(double avg);
 
          //uses avg of forward-left distances to orient robot to a wall
-         void orientationFix(double leftAngleAvg);
+         bool orientationFix(double leftAngleAvg);
 
           //holds for units milliseconds?
           void pause(int units);

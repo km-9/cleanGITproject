@@ -75,15 +75,15 @@ while(true){
 
   //Angle Vals
   double leftAngleAvg = 0;
-  for (int i = 130; i <= 140; i++){
+  for (int i = 133; i <= 137; i++){
     leftAngleAvg = leftAngleAvg + f.dists[i];
   }
-  leftAngleAvg = leftAngleAvg/11;
+  leftAngleAvg = leftAngleAvg/5;
 
-  f.frontHandler(frontAvg, leftAvg);
-  f.beSmart();
-  f.orientationFix(leftAngleAvg);
-  f.leftWallFollower(leftAvg);
+  if (f.frontHandler(frontAvg, leftAvg))
+    if(f.beSmart())
+      if(f.orientationFix(leftAngleAvg))
+        f.leftWallFollower(leftAvg);
 
 
 }
