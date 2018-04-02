@@ -14,6 +14,8 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include "point.hpp"
+#include "interpolator.hpp"
 
 namespace WallFollower
 {
@@ -172,7 +174,7 @@ namespace WallFollower
           void turnRight(int degres);
 
           //updates the dist[] using drv
-          int updateDists();
+          void updateDists();
 
           //getVideoCaptureToFile
           void camToFile();
