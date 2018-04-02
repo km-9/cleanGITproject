@@ -512,31 +512,10 @@ namespace WallFollower
       } while(canGoLeft() && avoidLeft());
     }
 
-    int wallFollower::updateDists()
+    void wallFollower::updateDists()
     {
-      int ans;
-
-    	rplidar_response_measurement_node_t nodes[360*2];
-    	int count = _countof(nodes);
-
-      //double tmp [360];
-      ans = drv->grabScanData(nodes, count);
-    	if (IS_OK(ans) || ans == RESULT_OPERATION_TIMEOUT)
-    	{
-    			drv->ascendScanData(nodes, count);
-
-    			for (int pos = 0; pos < 360 ; ++pos)
-    			{
-            dists[pos] = nodes[pos].distance_q2/4.0f;
-    			}
-    	}
-    	else
-    	{
-    		printf("error code: %x\n", ans);
-    	}
-
-      //this->dists = tmp;
-      return 1;
+      vector<point> data = readLidar(drv, true);
+      interpolate(data, dists, 360, 1);
     }
 
     void wallFollower::turnLeft(int degrees)
