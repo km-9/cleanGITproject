@@ -56,12 +56,12 @@ bool checkRPLIDARHealth(RPlidarDriver * drv)
 RPlidarDriver *setupLidar(){
     const char * opt_com_path = NULL;
     _u32         opt_com_baudrate = 115200;
- 
+
     opt_com_path = TTY;
 
     // create the driver instance
     RPlidarDriver * drv = RPlidarDriver::CreateDriver(RPlidarDriver::DRIVER_TYPE_SERIALPORT);
-    
+
     if (!drv) {
         fprintf(stderr, "insufficent memory, exit\n");
         exit(-2);
@@ -136,7 +136,7 @@ vector<point> readLidar(RPlidarDriver * drv, bool zeroLowQuality){
     u_result op_result;
     lidarNode nodes[360*2];
     while(1){
-        size_t   count = _countof(nodes);
+        int   count = _countof(nodes);
         op_result = drv->grabScanData(nodes, count);
        	 if (IS_OK(op_result)) {
       	    drv->ascendScanData(nodes, count);
@@ -177,6 +177,6 @@ vector<point> always360(const vector<point>& inPoints) {
   p.theta=0;
   if (inPoints.size() < 360)
     outPoints.insert(outPoints.end(), 360-inPoints.size(), p);
-  
+
   return outPoints;
 }

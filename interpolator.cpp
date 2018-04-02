@@ -35,7 +35,7 @@ void interpolate(const vector<point>& inputPoints, int output[],
 	    && points[currentLeftIndex + 1].theta >= angle))
       currentLeftIndex++;
     left = points[currentLeftIndex];
-    right = currentLeftIndex == points.size() - 1 ? farRight : points[currentLeftIndex + 1];
+    right = currentLeftIndex == points.size() - 1 ? points.back() : points[currentLeftIndex + 1];
 
     // debugging output...make sure angle is correct
     //cout << left.theta << " < " << angle << " <= " << right.theta << endl;
