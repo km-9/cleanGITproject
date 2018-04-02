@@ -69,15 +69,15 @@ while(true){
   //Right Front Avg
   double rightFront = f.avg(190, 215);
   //Front Right Avg
-  double frontRight = f.avg(210, 235)
+  double frontRight = f.avg(210, 235);
   //General Left Avg
-  double softRight = f.avg(225, 270)
+  double softRight = f.avg(225, 270);
 
   cout<<left<<"|Left"<<endl;
   cout<<softLeft<<"|softLeft"<<endl;
   cout<<frontLeft<<"|frontLeft"<<endl;
   cout<<leftFront<<"|leftFront"<<endl;
-  cout<<frontAvg<<"|Front"<<endl;
+  cout<<front<<"|Front"<<endl;
   cout<<"--------------------------"<<endl;
 
   if (!f.frontHandler(front, left))
