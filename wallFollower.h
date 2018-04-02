@@ -16,7 +16,7 @@
 #include <opencv2/highgui.hpp>
 #include "point.hpp"
 #include "interpolator.hpp"
-#include "rtypes.h"
+#include "rptypes.h"
 #include "interpolator.cpp"
 
 namespace WallFollower
