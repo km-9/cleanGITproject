@@ -21,7 +21,7 @@ int main (int argc, char const *argv[])
   //cout << "goForward finished" << endl;
   //f.holdTheFuckUp(10000000);
   //cout << "holdTheFuckUp" << endl;
-// TODO f.startWallFollowingLeft();
+ f.startWallFollowingLeft();
 //***********************************************
   // Create a VideoCapture object and use camera to capture the video
   VideoCapture cap(0);
