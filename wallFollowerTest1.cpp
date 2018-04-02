@@ -75,24 +75,30 @@ while(true){
   cout<<"--------------------------"<<endl;
 
   if (front < 200 && front != 0){
-    while (front < 200 && front != 0){
+    while (front < 300 && front != 0){
       f.stop();
       cout<<"cant go forward"<<endl;
       f.updateDists();
       front = f.avg(175, 185);
     }
+    while (left > front){
+      f.updateDists();
+      f.turnRightInPlace();
+      front = f.avg(175, 185);
+      left = f.avg(87, 93);
+    }
   }
   else if (left > softLeft){
-    f.turnRight(1);
+    f.strafeRight();
   }
   else if (softLeft > frontLeft){
-    f.turnRight(1);
+    f.strafeRight();
   }
   else if (frontLeft < left){
-    f.turnRight(1);
+    f.strafeRight();
   }
   else if (left > 200 && frontLeft-50>left){
-    f.turnLeft(1);
+    f.strafeLeft();
   }
   //all is well. Make most basic wallfollowing decisions
   else if (left < 200){
