@@ -38,7 +38,7 @@ int main (int argc, char const *argv[])
   int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT);
 
   // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
-  VideoWriter video("outcppCrib.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+  VideoWriter video("outcppJUNK.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
 
 //***********************************************
 while(true){
@@ -56,35 +56,34 @@ while(true){
   video.write(frame);
   //*****************
 
-  //Left Vals
-  double leftAvg = 0;
-  for (int i = 90; i < 96; i++){
-    leftAvg = leftAvg + f.dists[i];
-  }
-  leftAvg = leftAvg/5;
+  //Left Direct Avg
+  double left = f.avg(87, 93);
+  //General Left Avg
+  double softLeft = f.avg(90, 135);
+  //Front Left Avg
+  double frontLeft = f.avg(125, 160);
+  //Left Front Avg
+  double leftFront = f.avg(145, 170);
+  //Front Direct Avg
+  double front = f.avg(175, 185);
+  //Right Front Avg
+  double rightFront = f.avg(190, 215);
+  //Front Right Avg
+  double frontRight = f.avg(210, 235)
+  //General Left Avg
+  double softRight = f.avg(225, 270)
 
-  //Front Vals
-  double frontAvg = 0;
-  for (int i = 175; i < 186; i++){
-    frontAvg = frontAvg + f.dists[i];
-  }
-  frontAvg = frontAvg/12;
-
-  //Angle Vals
-  double leftAngleAvg = 0;
-  for (int i = 133; i <= 137; i++){
-    leftAngleAvg = leftAngleAvg + f.dists[i];
-  }
-  leftAngleAvg = leftAngleAvg/5;
-
-  cout<<leftAvg<<"|Left"<<endl;
-  cout<<leftAngleAvg<<"|Left45"<<endl;
+  cout<<left<<"|Left"<<endl;
+  cout<<softLeft<<"|softLeft"<<endl;
+  cout<<frontLeft<<"|frontLeft"<<endl;
+  cout<<leftFront<<"|leftFront"<<endl;
   cout<<frontAvg<<"|Front"<<endl;
+  cout<<"--------------------------"<<endl;
 
-  if (!f.frontHandler(frontAvg, leftAvg))
+  if (!f.frontHandler(front, left))
     if(!f.beSmart())
-      if(!f.orientationFix(leftAngleAvg, leftAvg))
-        f.leftWallFollower(leftAvg);
+      if(!f.orientationFix(softLeft, left)
+        f.leftWallFollower(left);
 
 
 }
