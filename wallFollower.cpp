@@ -63,11 +63,7 @@ namespace WallFollower
                 break;
             }
 
-            if (IS_FAIL(updateDists()))
-            {
-                fprintf(stderr, "Error, cannot grab scan data.\n");
-                break;
-            }
+            updateDists();
       			//cout << "end of lidar driver in main" << endl;
       	}
       	while(0);
