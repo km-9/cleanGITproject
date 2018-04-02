@@ -42,9 +42,6 @@ int main (int argc, char const *argv[])
 
 //***********************************************
 while(true){
-  while (true){
-    f.swayToLeft();
-  }
   Mat frame;
   f.updateDists();
   //*****************
