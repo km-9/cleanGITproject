@@ -65,6 +65,9 @@ namespace WallFollower
           //constructor
           wallFollower();
 
+          //averages distances between degree values
+          double avg(int start, int end);
+
           //dka;hghd
           int avoidHeadOn();
 

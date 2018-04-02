@@ -88,7 +88,7 @@ namespace WallFollower
     }
 
     //returns the average of all distances at angles between start and end
-    double avg(int start, int end){
+    double wallFollower::avg(int start, int end){
         int divisor = end-start;
         double ans = 0;
         while (start < end){
