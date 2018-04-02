@@ -80,10 +80,25 @@ while(true){
   cout<<front<<"|Front"<<endl;
   cout<<"--------------------------"<<endl;
 
-  if (!f.frontHandler(front, left))
-    if(!f.beSmart())
-      if(!f.orientationFix(softLeft, left))
-        f.leftWallFollower(left);
+  if (front < 200){
+    while (front < 200){
+      f.stop();
+      cout<<"cant go forward"<<endl;
+      f.updateDists();
+      front = f.avg(175, 185);
+    }
+  }
+
+  //all is well. Make most basic wallfollowing decisions
+  if (left < 200){
+    f.swayToRight();
+  }
+  if (left > 200){
+    f.swayToLeft();
+  }
+  if (left == 200){
+    f.goForward();
+  }
 
 
 }
