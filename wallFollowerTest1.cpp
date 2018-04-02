@@ -16,12 +16,6 @@ int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
   wallFollower f = wallFollower();
-  //cout << "constructor finished" << endl;
-  //f.goForward();
-  //cout << "goForward finished" << endl;
-  //f.holdTheFuckUp(10000000);
-  //cout << "holdTheFuckUp" << endl;
- f.startWallFollowingLeft();
 //***********************************************
   // Create a VideoCapture object and use camera to capture the video
   VideoCapture cap(0);
