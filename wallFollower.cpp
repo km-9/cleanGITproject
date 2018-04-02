@@ -664,7 +664,7 @@ namespace WallFollower
     //*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,250);
-      pwm2.setPWM(1,0,350);
+      pwm2.setPWM(1,0,360);
     }
 
     void wallFollower::swayToRight(){
