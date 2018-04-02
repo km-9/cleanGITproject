@@ -24,15 +24,16 @@ PROGRAM=wallFollowerTest1
 INCLUDESPATH=/home/pi/Downloads/lidar_sdk/sdk/sdk/include
 INCLUDES=-rplidar.h -rplidar_driver.h -rplidar_protocol.h -rptypes.h -rplidar_cmd.h -wallFollower.h -point.hpp -point.cpp -interpolator.hpp -interpolator.cpp -lidar_support.cpp -lidar_support.hpp
 LIBRARIESPATH=/home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release
-LIBRARIES= lrplidar_sdk
+LIBRARIES= -lrplidar_sdk
 CC=g++
+CXXFLAGS=-std=c++14
 
 include $(HOME_TREE)/mak_def.inc
 
 CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp
 C_INCLUDES += -I$(CURDIR)/../../sdk/include
 
-EXTRA_OBJ := 
+EXTRA_OBJ :=
 LD_LIBS += -lstdc++ -lpthread -lopencv_core -lopencv_imgcodecs -lopencv_videoio
 
 all: build_app

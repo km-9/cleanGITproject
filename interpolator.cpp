@@ -10,7 +10,7 @@ double privateInterp(const point& left, const point& right, double angle) {
     (right.r - left.r) + left.r;
 }
 
-void interpolate(const vector<point>& inputPoints, int output[],
+void interpolate(const vector<point>& inputPoints, double output[],
 		 size_t n, double delta) {
 
   // special case: 0 degrees uses first and last data point
