@@ -17,4 +17,4 @@ std::vector<point> readLidar(rp::standalone::rplidar::RPlidarDriver * drv, bool 
  * Take a vector of points and return a vector of 360 points filling
  * gaps in input vector with repeats.
  */
-std::vector<point> always360(const vector<point>& inPoints);
+std::vector<point> always360(const std::vector<point>& inPoints);
