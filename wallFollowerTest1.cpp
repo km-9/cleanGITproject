@@ -82,7 +82,7 @@ while(true){
 
   if (!f.frontHandler(front, left))
     if(!f.beSmart())
-      if(!f.orientationFix(softLeft, left)
+      if(!f.orientationFix(softLeft, left))
         f.leftWallFollower(left);
 
 
