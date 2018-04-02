@@ -15,11 +15,8 @@
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
 #include "point.hpp"
-#include "point.cpp"
 #include "interpolator.hpp"
-#include "interpolator.cpp"
 #include "rptypes.h"
-#include "lidar_support.cpp"
 #include "lidar_support.hpp"
 
 namespace WallFollower
