@@ -186,14 +186,15 @@ Rect drawRect(Mat src){
  Mat plain;
  cvtColor(src, plain, CV_BGR2GRAY);
  minMaxLoc( plain, &minVal1, &maxVal1, &minLoc1, &maxLoc1, Mat() );
-cout<<maxVal<<" maxVal"<<endl;
-cout<<maxLoc.x << " max x loc"<<endl;
-if (maxVal1 > 100)
- Rect box;
+cout<<maxVal1<<" maxVal"<<endl;
+cout<<maxLoc1.x << " max x loc"<<endl;
+Rect box;
+if (maxVal1 > 100){
  box.x = (maxLoc1.x - 10);
  box.y = (maxLoc1.y - 10);
  box.width = 20;
  box.height = 20;
+}
  return box;
 }
 
