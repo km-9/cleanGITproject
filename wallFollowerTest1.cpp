@@ -103,10 +103,10 @@ while(true){
   else if (softLeft > frontLeft){
     f.strafeRight();
   }
-  else if (frontLeft < left){
+  else if (frontLeft < realLeft){
     f.strafeRight();
   }
-  else if (realLeft > 200 && frontLeft-50>left){
+  else if (realLeft > 200 && frontLeft-50>realLeft){
     f.strafeLeft();
   }
   //all is well. Make most basic wallfollowing decisions
