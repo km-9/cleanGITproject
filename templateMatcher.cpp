@@ -1,5 +1,5 @@
 #include "templateMatcher.h"
-namespace templateMatch
+using namespace templateMatch;
 using namespace std;
 using namespace cv;
 /*
