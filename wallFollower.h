@@ -14,6 +14,8 @@
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/highgui.hpp>
+#include <opencv2/core/utility.hpp>//TODONE add to makefile
+#include "opencv2/video/tracking.hpp"//TODONE add to makefile
 #include "point.hpp"
 #include "interpolator.hpp"
 #include "rptypes.h"

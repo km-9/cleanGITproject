@@ -12,10 +12,6 @@ using namespace std;
 
 Mat frame, blurColor, postBlur, mask, output;
 
-  int main (int argc, char const *argv[]){
-  //TODO grab a frame
-  }
-
   int findFire(Mat frame){
     GaussianBlur(frame, blurFrame, (21, 21), 0, 0, BORDER_DEFAULT);
 

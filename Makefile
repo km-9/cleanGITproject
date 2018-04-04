@@ -34,7 +34,7 @@ CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp interpolator.cpp lidar_support.c
 C_INCLUDES += -I$(CURDIR)/../../sdk/include
 
 EXTRA_OBJ :=
-LD_LIBS += -lstdc++ -lpthread -lopencv_core -lopencv_imgcodecs -lopencv_videoio
+LD_LIBS += -lstdc++ -lpthread -lopencv_core -lopencv_imgcodecs -lopencv_videoio -lopencv_video
 
 all: build_app
 
