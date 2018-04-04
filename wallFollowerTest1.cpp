@@ -158,14 +158,15 @@ void getAvg(){
 
 //TODO this all needs to get redone into proper OOP style
 int findFire(Mat frame){
-  Size_<int> size = (21, 21);
+  Size_<int> size;
+  size = Size_(21, 21);
 
   GaussianBlur(frame, blurFrame, size, 0, 0, BORDER_DEFAULT);
 
   cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0);
 
-  int lower [3] = { 18, 50, 50};
-  int upper [3] = { 35, 255, 255};
+  Scalar lower = Scalar(18, 50, 50);
+  Scalar upper = Scalar(35, 255, 255);
   inRange(postColor, lower, upper, mask);
 
   bitwise_and(frame, postColor, output, mask);
