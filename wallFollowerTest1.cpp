@@ -187,6 +187,8 @@ Mat findFire(Mat frame){
 
   bitwise_and(frame, postColor, output, mask);
 
+  imshow( "fire", output );
+
   return output;
 }
 
@@ -203,6 +205,7 @@ Rect drawRect(Mat src){
  Rect box = boundingRect(points);
  return box;
 }
+
 Mat image1;
 bool backprojMode1 = false;
 bool selectObject1 = false;
