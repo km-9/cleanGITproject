@@ -178,8 +178,8 @@ Mat findFire(Mat frame){
   size = Size_<int>(21, 21);
 
   GaussianBlur(frame, blurFrame, size, 0, 0, BORDER_DEFAULT);
-  return blurFrame;
-  /*cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0);
+  //return blurFrame;
+  cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0);
 
   Scalar lower = Scalar(18, 50, 50);
   Scalar upper = Scalar(35, 255, 255);
@@ -189,22 +189,20 @@ Mat findFire(Mat frame){
 
   imshow( "fire", output );
 
-  return output;*/
+  return output;
 }
 
 Rect drawRect(Mat src){
+ double minVal1; double maxVal1; Point minLoc1; Point maxLoc1;
  Mat plain;
  cvtColor(src, plain, CV_BGR2GRAY);
-   imshow( "fire", plain );
- vector<cv::Point> points;
- Mat_<uchar>::iterator it = plain.begin<uchar>();
- Mat_<uchar>::iterator end = plain.end<uchar>();
- for (; it != end; ++it)
- {
-     if (*it)
-     points.push_back(it.pos());
- }
- Rect box = boundingRect(points);
+ minMaxLoc( plain, &minVal1, &maxVal1, &minLoc1, &maxLoc1, Mat() );
+ 
+ Rect box;
+ box.x = maxLoc1.x -10;
+ box.y = maxLoc1.y -10;
+ box.width = 20;
+ box.height = 20;
  return box;
 }
 
