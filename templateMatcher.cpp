@@ -33,8 +33,8 @@ highly likely)
 // open the default camera (we only want one)
 VideoCapture cap(0);
 
-//if the matching method uses a mask or not
-bool use_mask;
+//if the matching method uses a templateMask or not
+bool use_templateMask;
 
 //img: the frame captured from the camera
 Mat img;
@@ -42,8 +42,8 @@ Mat img;
 //templ: current template being used by matching method
 Mat templ;
 
-//mask: mask for template (if any)
-Mat mask;
+//templateMask: templateMask for template (if any)
+Mat templateMask;
 
 //result: the resulting image after processing
 Mat result;
@@ -92,7 +92,7 @@ void lookAround()
         img = getFrame();
         templ = frontTempl;
 
-        if(img.empty() || templ.empty() || (use_mask && mask.empty()))
+        if(img.empty() || templ.empty() || (use_templateMask && templateMask.empty()))
         {
                 cout << "Can't read one of the images" << endl;
                 return;
@@ -131,7 +131,7 @@ void MatchingMethod( int, void* )
         double j = 0.3;
         ostringstream ss;
 
-        if(img.empty() || templ.empty() || (use_mask && mask.empty()))
+        if(img.empty() || templ.empty() || (use_templateMask && templateMask.empty()))
         {
                 cout << "Can't read one of the images" << endl;
                 return;
@@ -149,9 +149,9 @@ void MatchingMethod( int, void* )
                         int result_cols =  img.cols - templ.cols + 1;
                         int result_rows = img.rows - templ.rows + 1;
                         result.create( result_rows, result_cols, CV_32FC1 );
-                        bool method_accepts_mask = (CV_TM_SQDIFF == match_method || match_method == CV_TM_CCORR_NORMED);
-                        if (use_mask && method_accepts_mask)
-                        { matchTemplate( img, templ, result, match_method, mask); }
+                        bool method_accepts_templateMask = (CV_TM_SQDIFF == match_method || match_method == CV_TM_CCORR_NORMED);
+                        if (use_templateMask && method_accepts_templateMask)
+                        { matchTemplate( img, templ, result, match_method, templateMask); }
                         else
                         { matchTemplate( img, templ, result, match_method); }
                         minMaxLoc( result, &minVal, &maxVal, &minLoc, &maxLoc, Mat() );
