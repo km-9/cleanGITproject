@@ -50,7 +50,8 @@ void pause(int n) {
 	pause(1);
 int main(int argc, char const *argv[]) {
   cap >> frame;
-  Rect drawRect(findFire(frame));
+  frame = findFire(frame);
+  Rect drawRect(frame;
 
   while(true) {
     f.updateDists();
@@ -229,7 +230,7 @@ if (maxVal1 > 100){
  box.width = 20;
  box.height = 20;
 }
- rectangle(src, box, CV_BGR2GRAY, int thickness=1, int lineType=8, int shift=0);
+ rectangle(src, box, CV_BGR2GRAY, 1, 8, 0);
  imshow("box", src);
 
  return box;
