@@ -51,7 +51,7 @@ void pause(int n) {
 int main(int argc, char const *argv[]) {
   cap >> frame;
   frame = findFire(frame);
-  Rect drawRect(frame;
+  drawRect(frame);
 
   while(true) {
     f.updateDists();
