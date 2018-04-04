@@ -1,4 +1,8 @@
-#include "templateMatcher.h"
+//#include "templateMatcher.h"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+#include <iostream>
 using namespace templateMatch;
 using namespace std;
 using namespace cv;
@@ -26,7 +30,50 @@ with minmal difficulty and realative accuracy. (an offset of a few degrees/cm is
 highly likely)
 */
 
-VideoCapture cap(0); // open the default camera (we only want one)
+// open the default camera (we only want one)
+VideoCapture cap(0);
+
+//if the matching method uses a mask or not
+bool use_mask;
+
+//img: the frame captured from the camera
+Mat img;
+
+//templ: current template being used by matching method
+Mat templ;
+
+//mask: mask for template (if any)
+Mat mask;
+
+//result: the resulting image after processing
+Mat result;
+
+//template of left side of crib
+Mat leftTempl;
+
+//right side of crib
+Mat rightTempl;
+
+//face/front of crib
+Mat frontTempl;
+
+//scaling multiplyer for template
+double scale;
+
+//determines which side of the crib is being seen (according to which template is being used)
+int side;
+
+//always set to 4.
+int match_method;
+
+//calls getFrame(), checks if it was successful and then calls MatchingMethod;
+void lookAround();
+
+//runs the matching method and processes the image
+void MatchingMethod( int, void* );
+
+//returns a frame from a video stream
+Mat getFrame();
 
 templateMatch::templateMatcher()
 {
@@ -37,7 +84,6 @@ templateMatch::templateMatcher()
   match_method = 4;
 }
 
-//This is the only thing that should be called from outside (hence everything else being private)
 //runs the template matching program, can be modified to return any relevant type as needed
 void lookAround()
 {
@@ -53,8 +99,7 @@ void lookAround()
         return;
 }
 
-//creates a video capture and returns a single frame from it as a Mat
-//can be modified to only construct a single videoCapture (look into better constructor for it)
+//uses the video capture and returns a single frame from it as a Mat
 Mat getFrame()
 {
     if(!cap.isOpened())  // check if we succeeded
