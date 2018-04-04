@@ -175,7 +175,7 @@ int findFire(Mat frame){
 
   bitwise_and(frame, postColor, output, mask);
 
-  drawRect(frame);
+  wallFollowerTest1::drawRect(frame);
 
   return 0;
 }
