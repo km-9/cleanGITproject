@@ -200,12 +200,8 @@ Rect drawRect(Mat src){
  {
      if (*it) points.push_back(it.pos());
  }
- RotatedRect box = cv::minAreaRect(cv::Mat(points));
-
-
- //namedWindow( "Contours", WINDOW_NORMAL );
- //resizeWindow("Contours", 500,500);
- //imshow( "Contours", drawing );
+ Rect box = boundingRect(points);
+ return box;
 }
 Mat image;
 bool backprojMode = false;
