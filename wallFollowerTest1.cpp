@@ -15,6 +15,10 @@ bool canForward;
 double realLeft, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, realRight;
 Mat frame, mask, output, blurFrame, postColor;
 
+int thresh = 100;
+int max_thresh = 255;
+RNG rng(12345);
+
 wallFollower f = wallFollower();
 
 void getAvg();
@@ -154,9 +158,11 @@ void getAvg(){
 
 //TODO this all needs to get redone into proper OOP style
 int findFire(Mat frame){
-  GaussianBlur(frame, blurFrame, (21, 21), 0, 0, BORDER_DEFAULT);
+  Size_<int> size = (21, 21);
 
-  cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0)
+  GaussianBlur(frame, blurFrame, size, 0, 0, BORDER_DEFAULT);
+
+  cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0);
 
   int lower [3] = { 18, 50, 50};
   int upper [3] = { 35, 255, 255};
