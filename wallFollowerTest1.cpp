@@ -45,9 +45,14 @@ int main (int argc, char const *argv[])
 
   // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
   VideoWriter video("outcppJUNK.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
-  Mat temp;
-  cap >> temp;
-  findFire(temp);
+
+  const char* source_window = "Source";
+  namedWindow( source_window, WINDOW_AUTOSIZE );
+  temp = findFire(temp);
+  imshow( source_window, temp );
+  createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
+  drawRect(temp);
+
 //***********************************************
 while(true){
   Mat capFrame;
@@ -162,7 +167,7 @@ void getAvg(){
 }
 
 //TODO this all needs to get redone into proper OOP style
-int findFire(Mat frame){
+Mat findFire(Mat frame){
   Size_<int> size;
   size = Size_<int>(21, 21);
 
@@ -178,7 +183,7 @@ int findFire(Mat frame){
 
   drawRect(frame);
 
-  return 0;
+  return output;
 }
 
 void drawRect(Mat src){
