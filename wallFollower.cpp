@@ -566,7 +566,7 @@ namespace WallFollower
       pwm2.setPWM(1,0,335);
     }
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
     //This is a bit off-the-cuff and I am just expirementing with the LiDAR conditions. Feel free to ignore this, but DO NOT DELETE
     /*
     The concept here is to use "sectors" of lidar data to make decisions. With only 10 sectors we have over 1000 options (1024).
@@ -676,9 +676,9 @@ namespace WallFollower
 */
     /*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
-=======
+//=======
 void wallFollower::swayToLeft(){
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
       pwm1.setPWM(0,0,250);
       pwm1.setPWM(1,0,360);
     }
