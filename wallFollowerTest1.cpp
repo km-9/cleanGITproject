@@ -245,6 +245,7 @@ if (maxVal1 > 100){
  box.height = 20;
 }
  rectangle(src, box, CV_BGR2GRAY, 1, 8, 0);
+ cout<<"got to imshow"<<endl;
  imshow("box", src);
 
  return box;
