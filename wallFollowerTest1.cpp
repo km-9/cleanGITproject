@@ -27,8 +27,9 @@ RNG rng(12345);
 VideoCapture cap(0);
 
 wallFollower f = wallFollower();
-Rect drawRect(findFire(Mat frame));
-//int trackTarget(Rect target);
+Rect drawRect(Mat src);
+Mat findFire(Mat frame);
+int trackTarget(Rect target);
 void getAvg();
 
 
@@ -38,40 +39,28 @@ void getAvg();
 
 // desired distance from left wall (measured at 45 degree angle from robot)
 const int desiredLeftDistance = 320;
-const int desiredFrontDistance = 320;
 
 // mean speed of the motors
-const int forwardSpeed = 50;
+const int forwardSpeed = 100;
 
-void pause(double n) {
+void pause(int n) {
   usleep(1000000*n);
 }
 
-void frontCaseHandler() {
-	f.setMotorSpeed(0,0);
 	pause(1);
-	f.setMotorSpeed(40, -40);
-	pause(1);
-	f.setMotorSpeed(0,0);
-}
-
 int main(int argc, char const *argv[]) {
+  cap >> frame;
+  Rect drawRect(findFire(frame));
 
   while(true) {
     f.updateDists();
-    int frontDistance = f.getDists(180);
-    if(frontDistance > 0) {
-	if(frontDistance < desiredFrontDistance) {
-		frontCaseHandler();
-	}
-    }	
     double leftDistance = f.avg(135,136);
     cout << leftDistance << endl;
     if (leftDistance > 0) {
       if (leftDistance < desiredLeftDistance)
-	f.setMotorSpeed(forwardSpeed+40, forwardSpeed-40);
+	f.setMotorSpeed(forwardSpeed+20, forwardSpeed-20);
       else
-	f.setMotorSpeed(forwardSpeed-40, forwardSpeed+40);
+	f.setMotorSpeed(forwardSpeed-20, forwardSpeed+20);
     }
   }
 }
