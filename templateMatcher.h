@@ -3,6 +3,9 @@
 #include "opencv2/imgproc.hpp"
 #include <iostream>
 
+using namespace std;
+using namespace cv;
+
 namespace templateMatch
 {
   class templateMatcher
