@@ -57,7 +57,7 @@ int main (int argc, char const *argv[])
   cap >> temp;
   imshow( source_window, temp );
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
-  trackTarget(drawRect(findFire(temp)));
+  //trackTarget(drawRect(findFire(temp)));
 
 //***********************************************
 while(true){
