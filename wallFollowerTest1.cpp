@@ -47,7 +47,7 @@ int main (int argc, char const *argv[])
   VideoWriter video("outcppJUNK.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
 
   const char* source_window = "Source";
-  namedWindow( source_window, WINDOW_AUTOSIZE );
+  namedWindow( source_window, WINDOW_NORMAL );
   Mat temp = findFire(temp);
   imshow( source_window, temp );
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
@@ -217,6 +217,6 @@ void drawRect(Mat src){
    circle( drawing, center[i], (int)radius[i], color, 2, 8, 0 );
  }
 
- namedWindow( "Contours", WINDOW_AUTOSIZE );
+ namedWindow( "Contours", WINDOW_NORMAL );
  imshow( "Contours", drawing );
 }
