@@ -3,7 +3,7 @@
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 #include <iostream>
-using namespace templateMatch;
+
 using namespace std;
 using namespace cv;
 /*
@@ -75,7 +75,7 @@ void MatchingMethod( int, void* );
 //returns a frame from a video stream
 Mat getFrame();
 
-templateMatch::templateMatcher()
+templateMatcher templateMatcher()
 {
   leftTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Left.jpg", IMREAD_COLOR );
   rightTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Right.jpg", IMREAD_COLOR );
