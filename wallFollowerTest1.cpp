@@ -181,8 +181,8 @@ Mat findFire(Mat frame){
   //return blurFrame;
   cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0);
 
-  Scalar lower = Scalar(50, 50, 100);
-  Scalar upper = Scalar(100, 100, 255);
+  Scalar lower = Scalar(100, 0, 0);
+  Scalar upper = Scalar(255, 0, 0);
   inRange(postColor, lower, upper, mask);
 
   bitwise_and(frame, postColor, output, mask);
