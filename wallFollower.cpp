@@ -10,35 +10,32 @@ static int lefts = 0;
 static int rights = 0;
 static bool justTurned = false;
 
+
+const int leftMotorIndex = 1;
+const int rightMotorIndex = 0;
+
 namespace WallFollower
 {
     wallFollower::wallFollower()
     {
-        //left wheel
-        PCA9685 pwm1;
+
+      cout << "Attaching to PCA9685" << endl;
         //PCA9685 * pwm1 = &PCA9685();
         pwm1.init(1,0x40);
 
-        //right wheel
-        PCA9685 pwm2;
-        //PCA9685 * pwm2 = &PCA9685();
-        pwm2.init(1,0x40);
-
         //look up the documentation on this
         pwm1.setPWMFreq(50);
-        pwm2.setPWMFreq(50);
 
         //hold for a sec
         usleep(1000000);
 
         //stop both wheels 0 and 1 pins
-        pwm1.setPWM(0,0,0);
-        pwm2.setPWM(1,0,0);
+        pwm1.setPWM(leftMotorIndex,0);
+        pwm1.setPWM(rightMotorIndex,0);
 
-        this->pwm1 =  pwm1;
-        this->pwm2 =  pwm2;
+      cout << "Connecting to Lidar" << endl;
 
-        //to communicate with lidar
+      //to communicate with lidar
         int opt_com_baudrate = 115200;
       	//device path for lidar
         const char * opt_com_path = "/dev/ttyUSB0";
@@ -84,7 +81,11 @@ namespace WallFollower
 
         updateDists();
 
+	cout << "opening log file" << endl;
+
         this->logfile.open("WallFollowerRun.log");
+
+	cout << "constructor completed" << endl;
     }
 
     //returns the average of all distances at angles between start and end
@@ -100,11 +101,8 @@ namespace WallFollower
           start++;
         }
         divisor = divisor - temp;
-        ans = ans/divisor;
-        if (ans == 0){
-          ans = 200;
-        }
-        return ans;
+	if (divisor == 0 || ans == 0) return -1;
+        return ans/divisor;
     }
 
     int wallFollower::avoidHeadOn()
@@ -532,6 +530,12 @@ namespace WallFollower
     {
       vector<point> data = readLidar(drv, true);
       interpolate(data, dists, 360, 1);
+      int first = dists[0];
+      int second = dists[1];
+      for(size_t i=2; i < 360; i++)
+	dists[i-2] = dists[i];
+      dists[358]=first;
+      dists[359]=second;
     }
 
     void wallFollower::turnLeft(int degrees)
@@ -668,15 +672,20 @@ namespace WallFollower
       sRight3 = sRight3/3;
       /////////////////////////////////////
     }
-
-    //*******************************************************end of expirement******************************************************/
+*/
+    /*******************************************************end of expirement******************************************************/
     void wallFollower::swayToLeft(){
       pwm1.setPWM(0,0,250);
-      pwm2.setPWM(1,0,360);
+      pwm1.setPWM(1,0,360);
     }
 
     void wallFollower::swayToRight(){
       pwm1.setPWM(0,0,200);
-      pwm2.setPWM(1,0,500);
+      pwm1.setPWM(1,0,500);
+    }
+
+    void wallFollower::setMotorSpeed(int left, int right) {
+      pwm1.setPWM(leftMotorIndex,320+left*2); // left == 320 stops, <160 backwards, >160 forwards
+      pwm1.setPWM(rightMotorIndex,318-right*2);
     }
 }

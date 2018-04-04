@@ -65,7 +65,7 @@ namespace WallFollower
           //constructor
           wallFollower();
 
-          //averages distances between degree values
+          //averages distances between degree values, returns -1 if all values in the range are zero
           double avg(int start, int end);
 
           //dka;hghd
@@ -186,6 +186,11 @@ namespace WallFollower
 
           //getVideoCaptureToFile
           void camToFile();
+
+	  // set the left and right motor speeds speeds range from
+	  // -128 to 128 where negative speeds are backwards.  The
+	  // larger the number, the higher the motor speed.
+	  void setMotorSpeed(int left, int right);
 
   };
 }

@@ -22,6 +22,7 @@ int thresh = 100;
 int max_thresh = 255;
 RNG rng(12345);
 
+
 // Create a VideoCapture object and use camera to capture the video
 VideoCapture cap(0);
 
@@ -31,7 +32,37 @@ Mat findFire(Mat frame);
 int trackTarget(Rect target);
 void getAvg();
 
-int main (int argc, char const *argv[])
+
+// ------------------------------
+// wall following parameters
+// ------------------------------
+
+// desired distance from left wall (measured at 45 degree angle from robot)
+const int desiredLeftDistance = 320;
+
+// mean speed of the motors
+const int forwardSpeed = 100;
+
+void pause(int n) {
+  usleep(1000000*n);
+}
+
+int main(int argc, char const *argv[]) {
+
+  while(true) {
+    f.updateDists();
+    double leftDistance = f.avg(135,136);
+    cout << leftDistance << endl;
+    if (leftDistance > 0) {
+      if (leftDistance < desiredLeftDistance)
+	f.setMotorSpeed(forwardSpeed+20, forwardSpeed-20);
+      else
+	f.setMotorSpeed(forwardSpeed-20, forwardSpeed+20);
+    }
+  }
+}
+
+int mainqqqqq (int argc, char const *argv[])
 {
   cout << "in main" << endl;
 //***********************************************
