@@ -222,7 +222,7 @@ Rect drawRect(Mat src){
    rectangle( drawing, boundRect[i].tl(), boundRect[i].br(), color, 2, 8, 0 );
    circle( drawing, center[i], (int)radius[i], color, 2, 8, 0 );
  }
-
+ Scalar color = Scalar( rng.uniform(0, 255), rng.uniform(0,255), rng.uniform(0,255) );
  return rectangle( drawing, boundRect[contours.size()-1].tl(), boundRect[contours.size()-1].br(), color, 2, 8, 0 );
 
  //namedWindow( "Contours", WINDOW_NORMAL );
