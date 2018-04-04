@@ -50,7 +50,7 @@ void pause(double n) {
 void frontCaseHandler() {
 	f.setMotorSpeed(0,0);
 	pause(1);
-	f.setMotorSpeed(-50, 50);
+	f.setMotorSpeed(40, -40);
 	pause(1);
 	f.setMotorSpeed(0,0);
 }
