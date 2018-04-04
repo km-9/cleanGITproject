@@ -13,7 +13,7 @@ bool canRight;
 bool canForward;
 
 double realLeft, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, realRight;
-Mat frame, blurColor, postBlur, mask, output;
+Mat frame, mask, output, blurFrame, postColor;
 
 wallFollower f = wallFollower();
 
@@ -151,6 +151,7 @@ void getAvg(){
   //General realLeft Avg
   softRight = f.avg(225, 270);
 }
+
 //TODO this all needs to get redone into proper OOP style
 int findFire(Mat frame){
   GaussianBlur(frame, blurFrame, (21, 21), 0, 0, BORDER_DEFAULT);
