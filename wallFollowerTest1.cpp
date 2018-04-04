@@ -22,7 +22,7 @@ RNG rng(12345);
 
 wallFollower f = wallFollower();
 void drawRect(Mat src);
-int findFire(Mat frame);
+Mat findFire(Mat frame);
 void getAvg();
 
 int main (int argc, char const *argv[])
@@ -48,9 +48,9 @@ int main (int argc, char const *argv[])
 
   const char* source_window = "Source";
   namedWindow( source_window, WINDOW_AUTOSIZE );
-  temp = findFire(temp);
+  Mat temp = findFire(temp);
   imshow( source_window, temp );
-  createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
+  //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
   drawRect(temp);
 
 //***********************************************
