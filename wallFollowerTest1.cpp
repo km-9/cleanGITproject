@@ -45,6 +45,9 @@ int main (int argc, char const *argv[])
 
   // Define the codec and create VideoWriter object.The output is stored in 'outcpp.avi' file.
   VideoWriter video("outcppJUNK.avi",CV_FOURCC('M','J','P','G'),10, Size(frame_width,frame_height));
+  Mat temp;
+  cap >> temp;
+  findFire(temp);
 //***********************************************
 while(true){
   Mat capFrame;
