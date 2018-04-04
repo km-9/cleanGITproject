@@ -31,7 +31,7 @@ highly likely)
 */
 
 // open the default camera (we only want one)
-VideoCapture cap(0);
+//VideoCapture cap(0);
 
 //if the matching method uses a templateMask or not
 bool use_templateMask;
@@ -67,13 +67,13 @@ int side;
 int match_method;
 
 //calls getFrame(), checks if it was successful and then calls MatchingMethod;
-void lookAround();
+void lookAround(Mat img);
 
 //runs the matching method and processes the image
 void MatchingMethod( int, void* );
 
 //returns a frame from a video stream
-Mat getFrame();
+//Mat getFrame();
 
 class templateMatcher
 {
@@ -87,9 +87,8 @@ class templateMatcher
 };
 
 //runs the template matching program, can be modified to return any relevant type as needed
-void lookAround()
+void lookAround(Mat img)
 {
-        img = getFrame();
         templ = frontTempl;
 
         if(img.empty() || templ.empty() || (use_templateMask && templateMask.empty()))
@@ -104,7 +103,7 @@ void lookAround()
 //uses the video capture and returns a single frame from it as a Mat
 //could be modified to take a VideoCapture as a parameter and draw its frame from that
 //could also be skipped entirely and lookAround() could take a Mat parameter
-Mat getFrame()
+/*Mat getFrame()
 {
     if(!cap.isOpened())  // check if we succeeded
         cout << "Capture cannot be opened" << endl;
@@ -120,7 +119,7 @@ Mat getFrame()
     }
     // the camera will be deinitialized automatically in VideoCapture destructor
     return frame;
-}
+}*/
 
 //The actually matching method, this processes the image and generates/set relevant information
 void MatchingMethod( int, void* )
