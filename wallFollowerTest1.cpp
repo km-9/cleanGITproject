@@ -14,10 +14,13 @@ bool canForward;
 
 double left, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, right;
 
+wallFollower f = wallFollower();
+
+void getAvg();
+
 int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
-  wallFollower f = wallFollower();
 //***********************************************
   // Create a VideoCapture object and use camera to capture the video
   VideoCapture cap(0);
