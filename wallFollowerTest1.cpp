@@ -203,16 +203,16 @@ Rect drawRect(Mat src){
  Rect box = boundingRect(points);
  return box;
 }
-Mat image;
-bool backprojMode = false;
-bool selectObject = false;
+Mat image1;
+bool backprojMode1 = false;
+bool selectObject1 = false;
 int trackObject = 0;
-bool showHist = true;
-Point origin;
-Rect selection;
-int vmin = 10, vmax = 256, smin = 30;
+bool showHist1 = true;
+Point origin1;
+Rect selection1;
+int vmin1 = 10, vmax1 = 256, smin1 = 30;
 int trackTarget(Rect target){
-  selection = target;
+  selection1 = target;
   Rect trackWindow;
   int hsize = 16;
   float hranges[] = {0,180};
@@ -227,25 +227,25 @@ int trackTarget(Rect target){
           if( frame.empty() )
               break;
       }
-      frame.copyTo(image);
+      frame.copyTo(image1);
       if( !paused )
       {
-          cvtColor(image, hsv, COLOR_BGR2HSV);
+          cvtColor(image1, hsv, COLOR_BGR2HSV);
           if( trackObject )
           {
-              int _vmin = vmin, _vmax = vmax;
-              inRange(hsv, Scalar(0, smin, MIN(_vmin,_vmax)),
-                      Scalar(180, 256, MAX(_vmin, _vmax)), mask);
+              int _vmin1 = vmin1, _vmax1 = vmax1;
+              inRange(hsv, Scalar(0, smin1, MIN(_vmin1,_vmax1)),
+                      Scalar(180, 256, MAX(_vmin1, _vmax1)), mask);
               int ch[] = {0, 0};
               hue.create(hsv.size(), hsv.depth());
               mixChannels(&hsv, 1, &hue, 1, ch, 1);
               if( trackObject < 0 )
               {
                   // Object has been selected by user, set up CAMShift search properties once
-                  Mat roi(hue, selection), maskroi(mask, selection);
+                  Mat roi(hue, selection1), maskroi(mask, selection1);
                   calcHist(&roi, 1, 0, maskroi, hist, 1, &hsize, &phranges);
                   normalize(hist, hist, 0, 255, NORM_MINMAX);
-                  trackWindow = selection;
+                  trackWindow = selection1;
                   trackObject = 1; // Don't set up again, unless user selects new ROI
                   histimg = Scalar::all(0);
                   int binW = histimg.cols / hsize;
@@ -273,19 +273,19 @@ int trackTarget(Rect target){
                                      trackWindow.x + r, trackWindow.y + r) &
                                 Rect(0, 0, cols, rows);
               }
-              if( backprojMode )
-                  cvtColor( backproj, image, COLOR_GRAY2BGR );
-              ellipse( image, trackBox, Scalar(0,0,255), 3, LINE_AA );
+              if( backprojMode1 )
+                  cvtColor( backproj, image1, COLOR_GRAY2BGR );
+              ellipse( image1, trackBox, Scalar(0,0,255), 3, LINE_AA );
           }
       }
       else if( trackObject < 0 )
           paused = false;
-      if( selectObject && selection.width > 0 && selection.height > 0 )
+      if( selectObject1 && selection1.width > 0 && selection1.height > 0 )
       {
-          Mat roi(image, selection);
+          Mat roi(image1, selection1);
           bitwise_not(roi, roi);
       }
-      imshow( "CamShift Demo", image );
+      imshow( "CamShift Demo", image1 );
       imshow( "Histogram", histimg );
       char c = (char)waitKey(10);
       if( c == 27 )
@@ -293,15 +293,15 @@ int trackTarget(Rect target){
       switch(c)
       {
       case 'b':
-          backprojMode = !backprojMode;
+          backprojMode1 = !backprojMode1;
           break;
       case 'c':
           trackObject = 0;
           histimg = Scalar::all(0);
           break;
       case 'h':
-          showHist = !showHist;
-          if( !showHist )
+          showHist1 = !showHist1;
+          if( !showHist1 )
               destroyWindow( "Histogram" );
           else
               namedWindow( "Histogram", 1 );
