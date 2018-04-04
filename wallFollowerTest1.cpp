@@ -48,11 +48,12 @@ int main (int argc, char const *argv[])
 
   const char* source_window = "Source";
   namedWindow( source_window, WINDOW_NORMAL );
-  resizeWindow("Source", 500,500);
-  Mat temp = findFire(temp);
+  resizeWindow("souce", 500,500);
+  Mat temp;
+  cap >> temp;
   imshow( source_window, temp );
   //createTrackbar( " Threshold:", "Source", &thresh, max_thresh, drawRect);
-  drawRect(temp);
+  findFire(temp);
 
 //***********************************************
 while(true){
