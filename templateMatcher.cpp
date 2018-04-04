@@ -75,7 +75,7 @@ void MatchingMethod( int, void* );
 //returns a frame from a video stream
 Mat getFrame();
 
-templateMatcher templateMatcher()
+class templateMatcher()
 {
   leftTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Left.jpg", IMREAD_COLOR );
   rightTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Right.jpg", IMREAD_COLOR );
@@ -100,6 +100,8 @@ void lookAround()
 }
 
 //uses the video capture and returns a single frame from it as a Mat
+//could be modified to take a VideoCapture as a parameter and draw its frame from that
+//could also be skipped entirely and lookAround() could take a Mat parameter
 Mat getFrame()
 {
     if(!cap.isOpened())  // check if we succeeded
@@ -179,14 +181,15 @@ void MatchingMethod( int, void* )
                         cout<<"right match";
                         cout<<matchLoc<<endl;
                       }
-                else
+                else{
                         cout << "Match too low" << endl;
                         return;
+                    }
         }
         if( match_method  == TM_SQDIFF || match_method == TM_SQDIFF_NORMED )
-        { matchLoc = currMinLoc; }
+          { matchLoc = currMinLoc; }
         else
-        { matchLoc = currMaxLoc; }
+          { matchLoc = currMaxLoc; }
         cout<<"side "<< side << "| minVal "<< currMinVal<<"| maxVal "<< currMaxVal<<"| minLoc "<<currMinLoc<<"| maxLoc "<<currMaxLoc<<"| currMax "<<currMaxVal << endl;
         if (side == 0)
                 cout<<"front match";
