@@ -16,8 +16,8 @@ Point origin;
 Rect selection;
 int vmin = 10, vmax = 256, smin = 30;
 
-void trackObject(Rect drawnBox, Mat frame){
-  selection = drawnBox;
+int trackTarget(Rect target, VideoCapture cap){
+  selection = target;
   Rect trackWindow;
   int hsize = 16;
   float hranges[] = {0,180};
