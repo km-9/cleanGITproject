@@ -12,7 +12,7 @@ using namespace std;
 
 Mat frame, blurColor, postBlur, mask, output;
 
-  int findFire(Mat frame){
+  Mat findFire(Mat frame){
     GaussianBlur(frame, blurFrame, (21, 21), 0, 0, BORDER_DEFAULT);
 
     cvtColor(blurFrame, postColor, COLOR_BGR2HSV, 0)
@@ -23,12 +23,10 @@ Mat frame, blurColor, postBlur, mask, output;
 
     bitwise_and(frame, postColor, output, mask)
 
-    thresh_callback(0, 0);
-
-    return 0;
+    return output;
   }
 
-  void drawRect(Mat src){
+  Rect drawRect(Mat src){
    Mat threshold_output;
    vector<vector<Point> > contours;
    vector<Vec4i> hierarchy;
@@ -58,6 +56,7 @@ Mat frame, blurColor, postBlur, mask, output;
      circle( drawing, center[i], (int)radius[i], color, 2, 8, 0 );
    }
 
-   namedWindow( "Contours", WINDOW_AUTOSIZE );
-   imshow( "Contours", drawing );
+   return rectangle( drawing, boundRect[contours.size].tl(), boundRect[contourse.size].br(), color, 2, 8, 0 );
+  // namedWindow( "Contours", WINDOW_AUTOSIZE );
+  // imshow( "Contours", drawing );
  }
