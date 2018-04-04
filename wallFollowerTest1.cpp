@@ -1,10 +1,12 @@
 #include "wallFollower.h"
+#include "templateMatcher.h"
 #include <stdlib.h>
 #include <fstream>
 #include "opencv2/opencv.hpp"
 
 #include <iostream>
 
+using namespace templateMatch;
 using namespace WallFollower;
 using namespace std;
 using namespace cv;

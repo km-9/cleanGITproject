@@ -7,7 +7,7 @@ All usable variables are set to public for easy access, this can be switched to
 proper getters/setters later, but for now KISS is all 10 commandments
 *******************************************************************************
 This program takes a sample image and a set of template images and attempts to
-find the best match between the different templates are various sizes. If a
+find the best match between the different templates at various sizes. If a
 certainty value is too low, the program will ignore any potential crib objects.
 If multiple templates or sizes return high certainty values the program will
 pick the one with the highest value. This program differentiates between the
@@ -26,12 +26,13 @@ with minmal difficulty and realative accuracy. (an offset of a few degrees/cm is
 highly likely)
 */
 
+VideoCapture cap(0); // open the default camera (we only want one)
+
 templateMatch::templateMatcher()
 {
-  //TODO these filepaths are VERY wrong
-  leftTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Left.jpg", IMREAD_COLOR );
-  rightTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Right.jpg", IMREAD_COLOR );
-  frontTempl = imread( "/home/kmnine/Desktop/Capstone/TemplateMatching/smallSize/Center.jpg", IMREAD_COLOR );
+  leftTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Left.jpg", IMREAD_COLOR );
+  rightTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Right.jpg", IMREAD_COLOR );
+  frontTempl = imread( "/home/pi/Downloads/lidar_sdk/sdk/app/images/Center.jpg", IMREAD_COLOR );
   scale = 0.7;
   match_method = 4;
 }
@@ -56,7 +57,6 @@ void lookAround()
 //can be modified to only construct a single videoCapture (look into better constructor for it)
 Mat getFrame()
 {
-    VideoCapture cap(0); // open the default camera
     if(!cap.isOpened())  // check if we succeeded
         cout << "Capture cannot be opened" << endl;
 
