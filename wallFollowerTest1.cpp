@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <fstream>
 #include "opencv2/opencv.hpp"
-#include "opencv2/imgcodecs.hpp"
-#include "opencv2/highgui.hpp"
-#include "opencv2/imgproc.hpp"
 
 #include <iostream>
 
@@ -24,7 +21,8 @@ int max_thresh = 255;
 RNG rng(12345);
 
 wallFollower f = wallFollower();
-
+void drawRect(Mat src);
+int findFire(Mat frame);
 void getAvg();
 
 int main (int argc, char const *argv[])
@@ -175,7 +173,7 @@ int findFire(Mat frame){
 
   bitwise_and(frame, postColor, output, mask);
 
-  wallFollowerTest1::drawRect(frame);
+  drawRect(frame);
 
   return 0;
 }
