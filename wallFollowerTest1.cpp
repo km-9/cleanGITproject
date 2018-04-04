@@ -12,6 +12,8 @@ bool canLeft;
 bool canRight;
 bool canForward;
 
+double left, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, right;
+
 int main (int argc, char const *argv[])
 {
   cout << "in main" << endl;
@@ -38,6 +40,7 @@ int main (int argc, char const *argv[])
 while(true){
   Mat frame;
   f.updateDists();
+  getAvg();
   //*****************
   // Capture frame-by-frame
   cap >> frame;
@@ -49,30 +52,33 @@ while(true){
   // Write the frame into the file 'outcpp.avi'
   video.write(frame);
   //*****************
-
-  //Left Direct Avg
-  double left = f.avg(87, 93);
-  //General Left Avg
-  double softLeft = f.avg(90, 135);
-  //Front Left Avg
-  double frontLeft = f.avg(125, 160);
-  //Left Front Avg
-  double leftFront = f.avg(145, 170);
-  //Front Direct Avg
-  double front = f.avg(175, 185);
-  //Right Front Avg
-  double rightFront = f.avg(190, 215);
-  //Front Right Avg
-  double frontRight = f.avg(210, 235);
-  //General Left Avg
-  double softRight = f.avg(225, 270);
-
   cout<<left<<"|Left"<<endl;
   cout<<softLeft<<"|softLeft"<<endl;
   cout<<frontLeft<<"|frontLeft"<<endl;
   cout<<leftFront<<"|leftFront"<<endl;
   cout<<front<<"|Front"<<endl;
   cout<<"--------------------------"<<endl;
+
+  /*
+  The chain of decision making should be as follows.
+  1| Collision Avoidance (if the robot is on a collision course it must stop itself and adjust)
+  2| Orientation/Turning (the robot must be oriented properly in regards to the wall)
+  3| Distance (the robot must maintain a proper distance from obstacles)
+  4| Movement (the robot should move forward under basic principles)
+  *wildcard*| Decision Making (the robot must make decisions based upon conditions, the nature of these determines their ordering in the heirarchy)
+  */
+
+  /*if (wontCrash){
+    if (wontSkew){
+      if (notTooShort/Long){
+        if (canMoveForward){
+
+        }
+      }
+    }
+  }*/
+
+
 
   if (front < 200 && front != 0){
     while (front < 300 && front != 0){
@@ -210,4 +216,23 @@ while (true){
   rp::standalone::rplidar::RPlidarDriver::DisposeDriver(f.drv);
 
   return 0;
+}
+
+void getAvg(){
+  //Left Direct Avg
+  left = f.avg(87, 93);
+  //General Left Avg
+  softLeft = f.avg(90, 135);
+  //Front Left Avg
+  frontLeft = f.avg(125, 160);
+  //Left Front Avg
+  leftFront = f.avg(145, 170);
+  //Front Direct Avg
+  front = f.avg(175, 185);
+  //Right Front Avg
+  rightFront = f.avg(190, 215);
+  //Front Right Avg
+  frontRight = f.avg(210, 235);
+  //General Left Avg
+  softRight = f.avg(225, 270);
 }
