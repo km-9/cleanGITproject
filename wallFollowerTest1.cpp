@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include "opencv2/opencv.hpp"
+#include <wiringPi.h>
 
 #include <iostream>
 
@@ -50,10 +51,16 @@ void pause(double n) {
 
 void frontCaseHandler() {
   f.setMotorSpeed(0,0);
-  pause(1);
+  pause(.5);
   f.setMotorSpeed(20, -20);
-  pause(1);
+  pause(.5);
   f.setMotorSpeed(0,0);
+}
+
+void checkBumpSwitch() {
+	if(!digitalRead(7)) {
+		f.stop();
+	}
 }
 
 int main(int argc, char const *argv[]) {
@@ -61,8 +68,12 @@ int main(int argc, char const *argv[]) {
   frame = findFire(frame);
   drawRect(frame);
 
+  wiringPiSetup();
+  pinMode(4, INPUT);
+
   while(true) {
     f.updateDists();
+    checkBumpSwitch(); 
     int frontDistance = f.getDists(180);
    if(frontDistance > 0) {
  if(frontDistance < desiredFrontDistance) {
