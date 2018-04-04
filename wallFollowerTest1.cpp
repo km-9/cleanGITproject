@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <fstream>
 #include "opencv2/opencv.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
+#include "opencv2/imgproc.hpp"
+
 #include <iostream>
 
 using namespace WallFollower;
@@ -159,7 +163,7 @@ void getAvg(){
 //TODO this all needs to get redone into proper OOP style
 int findFire(Mat frame){
   Size_<int> size;
-  size = Size_(21, 21);
+  size = Size_<int>(21, 21);
 
   GaussianBlur(frame, blurFrame, size, 0, 0, BORDER_DEFAULT);
 
