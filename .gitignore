@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+
+# Specific executables that we don't want
+stop_servo
+cleanGitProject

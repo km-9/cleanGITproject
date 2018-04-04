@@ -1,4 +1,4 @@
 git pull 
-cd .. 
+#cd .. 
 make 
-cd cleanGITproject
+#cd cleanGITproject
