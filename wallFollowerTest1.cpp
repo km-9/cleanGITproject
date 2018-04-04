@@ -28,7 +28,7 @@ VideoCapture cap(0);
 wallFollower f = wallFollower();
 Rect drawRect(Mat src);
 Mat findFire(Mat frame);
-int trackTarget(Rect target)
+int trackTarget(Rect target);
 void getAvg();
 
 int main (int argc, char const *argv[])
@@ -229,7 +229,14 @@ Rect drawRect(Mat src){
  //resizeWindow("Contours", 500,500);
  //imshow( "Contours", drawing );
 }
-
+Mat image;
+bool backprojMode = false;
+bool selectObject = false;
+int trackObject = 0;
+bool showHist = true;
+Point origin;
+Rect selection;
+int vmin = 10, vmax = 256, smin = 30;
 int trackTarget(Rect target){
   selection = target;
   Rect trackWindow;
