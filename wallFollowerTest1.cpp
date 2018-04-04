@@ -41,7 +41,7 @@ int main (int argc, char const *argv[])
 
   //Closest thing to working
   while (true){
-      usleep(10000);
+      //usleep(10000);
       f.updateDists();
       //check immediate left
       double avg = 0;
