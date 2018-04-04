@@ -182,6 +182,7 @@ int findFire(Mat frame){
 }
 
 void drawRect(Mat src){
+ cvtColor( src, src, COLOR_BGR2GRAY );
  Mat threshold_output;
  vector<vector<Point> > contours;
  vector<Vec4i> hierarchy;
