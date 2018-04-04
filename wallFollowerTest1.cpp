@@ -12,7 +12,7 @@ bool canLeft;
 bool canRight;
 bool canForward;
 
-double left, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, right;
+double left =0, softLeft =0, frontLeft=0, leftFront=0, front=0, rightFront=0, frontRight=0, softRight=0, right=0;
 
 wallFollower f = wallFollower();
 
