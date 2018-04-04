@@ -30,7 +30,7 @@ CXXFLAGS=-std=c++14
 
 include $(HOME_TREE)/mak_def.inc
 
-CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp interpolator.cpp lidar_support.cpp point.cpp templateMatcher.cpp
+CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp interpolator.cpp lidar_support.cpp point.cpp templateMatcher.cpp camshift.cpp
 C_INCLUDES += -I$(CURDIR)/../../sdk/include
 
 EXTRA_OBJ :=
