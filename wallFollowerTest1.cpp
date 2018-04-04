@@ -12,7 +12,7 @@ bool canLeft;
 bool canRight;
 bool canForward;
 
-double left =0, softLeft =0, frontLeft=0, leftFront=0, front=0, rightFront=0, frontRight=0, softRight=0, right=0;
+double realLeft, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, realRight;
 
 wallFollower f = wallFollower();
 
@@ -90,14 +90,14 @@ while(true){
       f.updateDists();
       front = f.avg(175, 185);
     }
-    while (left > front){
+    while (realLeft > front){
       f.updateDists();
       f.turnRightInPlace();
       front = f.avg(175, 185);
-      left = f.avg(87, 93);
+      realLeft = f.avg(87, 93);
     }
   }
-  else if (left > softLeft){
+  else if (realLeft > softLeft){
     f.strafeRight();
   }
   else if (softLeft > frontLeft){
@@ -106,17 +106,17 @@ while(true){
   else if (frontLeft < left){
     f.strafeRight();
   }
-  else if (left > 200 && frontLeft-50>left){
+  else if (realLeft > 200 && frontLeft-50>left){
     f.strafeLeft();
   }
   //all is well. Make most basic wallfollowing decisions
-  else if (left < 200){
+  else if (realLeft < 200){
     f.swayToRight();
   }
-  else if (left > 200){
+  else if (realLeft > 200){
     f.swayToLeft();
   }
-  else if (left == 200){
+  else if (realLeft == 200){
     f.goForward();
   }
 
@@ -223,10 +223,10 @@ while (true){
 
 void getAvg(){
   //Left Direct Avg
-  left = f.avg(87, 93);
-  //General Left Avg
+  realLeft = f.avg(87, 93);
+  //General realLeft Avg
   softLeft = f.avg(90, 135);
-  //Front Left Avg
+  //Front realLeft Avg
   frontLeft = f.avg(125, 160);
   //Left Front Avg
   leftFront = f.avg(145, 170);
@@ -236,6 +236,6 @@ void getAvg(){
   rightFront = f.avg(190, 215);
   //Front Right Avg
   frontRight = f.avg(210, 235);
-  //General Left Avg
+  //General realLeft Avg
   softRight = f.avg(225, 270);
 }
