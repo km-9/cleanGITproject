@@ -4,6 +4,7 @@
 #include <fstream>
 #include "opencv2/opencv.hpp"
 #include <wiringPi.h>
+#include "serial_command.hpp"
 
 #include <iostream>
 
@@ -16,22 +17,24 @@ bool canLeft;
 bool canRight;
 bool canForward;
 
-double realLeft, softLeft, frontLeft, leftFront, front, rightFront, frontRight, softRight, realRight;
-Mat frame, mask, output, blurFrame, postColor;
-
-int thresh = 100;
-int max_thresh = 255;
 RNG rng(12345);
 
 
-// Create a VideoCapture object and use camera to capture the video
-VideoCapture cap(0);
-
 wallFollower f = wallFollower();
-Rect drawRect(Mat src);
-Mat findFire(Mat frame);
-int trackTarget(Rect target);
-void getAvg();
+
+// ------------------------------
+// talking to the arduino
+// ------------------------------
+
+int arduinoSerialPort;  // initialized below
+const char ARDUINO_READ_SOUND = 's';
+const char ARDUINO_READ_FLAME = 'f';
+
+const int FLAME_FAR_LEFT = 4;
+const int FLAME_MID_LEFT = 3;
+const int FLAME_CENTER = 2;
+const int FLAME_MID_RIGHT = 1;
+const int FLAME_FAR_RIGHT = 0;
 
 
 // ------------------------------
@@ -44,6 +47,40 @@ const int desiredFrontDistance = 320;
 
 // mean speed of the motors
 const int forwardSpeed = 50;
+
+bool readFlame(int flame[]) {
+  sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_FLAME);
+  string response;
+  response = readArduinoResponse(arduinoSerialPort);
+  stringstream ss;
+  ss << response;
+  if (! (ss >> flame[0] >> flame[1] >> flame[2] >> flame[3] >> flame[4]) )
+    return false;
+  return true;
+}
+
+void showFlame() {
+  int flame[5];
+  while(true) {
+    cout << readFlame(flame) << " ";
+    for(int i=0; i < 5; i++) cout << flame[i] << " ";
+    cout << endl;
+  }
+}
+
+
+void waitForSound(void) {
+  cout << "waiting for sound" << endl;
+  sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_SOUND);
+  string response;
+  while((response = readArduinoResponse(arduinoSerialPort))[0] != 'Y') {
+    cout << "From Arduino: " << response;
+    usleep(1000);
+    sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_SOUND);
+  }
+    
+  cout << "we have tone" << endl;
+}
 
 void pause(double n) {
   usleep(1000000*n);
@@ -69,8 +106,14 @@ void checkBumpSwitch() {
 
 int main(int argc, char const *argv[]) {
 
+  arduinoSerialPort = setupArduinoSerial();
+
   wiringPiSetup();
   pinMode(7, INPUT);
+
+  showFlame();
+
+  waitForSound();    // !!!!!!!!!!!!!!!!!!!
 
   while(true) {
     f.updateDists();

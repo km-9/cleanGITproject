@@ -22,7 +22,7 @@ MODULE_NAME := $(notdir $(CURDIR))
 SOURCE=wallFollowerTest1.cpp
 PROGRAM=wallFollowerTest1
 INCLUDESPATH=/home/pi/Downloads/lidar_sdk/sdk/sdk/include
-INCLUDES=rplidar.h rplidar_driver.h rplidar_protocol.h rptypes.h rplidar_cmd.h wallFollower.h point.hpp interpolator.hpp lidar_support.hpp templateMatcher.h
+INCLUDES=rplidar.h rplidar_driver.h rplidar_protocol.h rptypes.h rplidar_cmd.h wallFollower.h point.hpp interpolator.hpp lidar_support.hpp serial_command.hpp
 LIBRARIESPATH=/home/pi/Downloads/lidar_sdk/sdk/output/Linux/Release
 LIBRARIES= -lrplidar_sdk
 CC=g++
@@ -30,7 +30,8 @@ CXXFLAGS=-std=c++14
 
 include $(HOME_TREE)/mak_def.inc
 
-CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp interpolator.cpp lidar_support.cpp point.cpp templateMatcher.cpp
+CXXSRC += main.cpp PCA9685.cpp wallFollower.cpp interpolator.cpp lidar_support.cpp point.cpp serial_command.cpp
+CSRC += rs232.c
 C_INCLUDES += -I$(CURDIR)/../../sdk/include
 
 EXTRA_OBJ :=
