@@ -69,6 +69,16 @@ void orientToFlame()
       {
         mid_is_max = true;
       }
+      else if (max < 2)
+      {
+        f.setMotorSpeed(20,-20);
+        pause(.3);
+      }
+      else
+      {
+        f.setMotorSpeed(-20,20);
+        pause(.3);
+      }
     }
   }
   while (!mid_is_max)
