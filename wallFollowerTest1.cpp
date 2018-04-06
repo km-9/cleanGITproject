@@ -48,6 +48,24 @@ const int desiredFrontDistance = 320;
 // mean speed of the motors
 const int forwardSpeed = 50;
 
+
+void pause(double n) {
+  usleep(1000000*n);
+}
+
+
+//returns true if the returned array is valid, false if not
+bool readFlame(int flame[]) {
+  sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_FLAME);
+  string response;
+  response = readArduinoResponse(arduinoSerialPort);
+  stringstream ss;
+  ss << response;
+  if (! (ss >> flame[0] >> flame[1] >> flame[2] >> flame[3] >> flame[4]) )
+    return false;
+  return true;
+}
+
 void orientToFlame()
 {
   bool mid_is_max = false;
@@ -72,7 +90,7 @@ void orientToFlame()
       else if (max < 2)
       {
         f.setMotorSpeed(20,-20);
-        pause(.3);
+        pause(0.3);
       }
       else
       {
@@ -81,20 +99,7 @@ void orientToFlame()
       }
     }
   }
-  while (!mid_is_max)
-}
-
-
-//returns true if the returned array is valid, false if not
-bool readFlame(int flame[]) {
-  sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_FLAME);
-  string response;
-  response = readArduinoResponse(arduinoSerialPort);
-  stringstream ss;
-  ss << response;
-  if (! (ss >> flame[0] >> flame[1] >> flame[2] >> flame[3] >> flame[4]) )
-    return false;
-  return true;
+  while (!mid_is_max);
 }
 
 void showFlame() {
@@ -118,10 +123,6 @@ void waitForSound(void) {
   }
 
   cout << "we have tone" << endl;
-}
-
-void pause(double n) {
-  usleep(1000000*n);
 }
 
 void frontCaseHandler() {
