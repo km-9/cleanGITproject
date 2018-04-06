@@ -48,6 +48,34 @@ const int desiredFrontDistance = 320;
 // mean speed of the motors
 const int forwardSpeed = 50;
 
+void orientToFlame()
+{
+  bool mid_is_max = false;
+  int flame[5];
+  do
+  {
+    if (readFlame(flame))
+    {
+      int max = 0;
+      for (int i = 1; i < 5; i++)
+      {
+        if (flame[i] > flame[max])
+        {
+          max = i;
+        }
+      }
+
+      if (max == 2)
+      {
+        mid_is_max = true;
+      }
+    }
+  }
+  while (!mid_is_max)
+}
+
+
+//returns true if the returned array is valid, false if not
 bool readFlame(int flame[]) {
   sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_FLAME);
   string response;
@@ -78,7 +106,7 @@ void waitForSound(void) {
     usleep(1000);
     sendArduinoCommand(arduinoSerialPort, ARDUINO_READ_SOUND);
   }
-    
+
   cout << "we have tone" << endl;
 }
 
@@ -117,7 +145,7 @@ int main(int argc, char const *argv[]) {
 
   while(true) {
     f.updateDists();
-    checkBumpSwitch(); 
+    checkBumpSwitch();
     int frontDistance = f.getDists(180);
    if(frontDistance > 0) {
  if(frontDistance < desiredFrontDistance) {
@@ -134,4 +162,3 @@ int main(int argc, char const *argv[]) {
     }
   }
 }
-
