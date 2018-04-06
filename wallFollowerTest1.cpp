@@ -136,8 +136,12 @@ void checkBumpSwitch() {
 	if(!digitalRead(7)) {
 		f.stop();
 		pause(.5);
-		f.setMotorSpeed(-10,20);
+		f.setMotorSpeed(-10,-20);
 		pause(.5);
+    f.setMotorSpeed(10,-10);
+    pause(.3);
+    f.setMotorSpeed(20,20);
+    pause(.3);
 		f.stop();
 	}
 }
